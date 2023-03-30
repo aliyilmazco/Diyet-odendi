@@ -1,8 +1,8 @@
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
+import 'package:d/view/splash/splashScreen/viewmodel/splash_screen_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:lottie/lottie.dart';
 
 class SplashScreenView extends StatefulWidget {
   const SplashScreenView({super.key});
@@ -11,14 +11,18 @@ class SplashScreenView extends StatefulWidget {
   State<SplashScreenView> createState() => _SplashScreenViewState();
 }
 
-class _SplashScreenViewState extends State<SplashScreenView> {
+class _SplashScreenViewState extends SplashScreenViewModel {
   @override
   Widget build(BuildContext context) {
     return BaseView(
       builder: (context, width, height, appBar) {
         return Scaffold(
           backgroundColor: ColorConst.appBgColorWhite,
-          body: Column(),
+          body: Center(
+            child: Container(
+              child: Lottie.asset('assets/animations/splash.json'),
+            ),
+          ),
         );
       },
     );
