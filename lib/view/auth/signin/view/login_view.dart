@@ -1,14 +1,16 @@
 import 'package:d/core/base/view/base_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
 
-class SignUpView extends StatefulWidget {
-  const SignUpView({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<SignUpView> createState() => _SignUpViewState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _SignUpViewState extends State<SignUpView> {
+class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return BaseView(
