@@ -1,4 +1,5 @@
 import 'package:d/product/router/router_constant.dart';
+import 'package:d/view/auth/signin/view/login_view.dart';
 import 'package:d/view/auth/signin/view/sign_in_view.dart';
 import 'package:d/view/auth/signup/view/sign_up_view.dart';
 import 'package:d/view/splash/slider/view/slider_view.dart';
@@ -42,6 +43,15 @@ class AppRouter {
         pageBuilder: (context, state) {
           return const MaterialPage(
             child: SignUpView(),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouteConstants.login,
+        path: '/login',
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: LoginView(),
           );
         },
       ),

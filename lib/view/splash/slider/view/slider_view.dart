@@ -20,7 +20,7 @@ class _SliderViewState extends State<SliderView> {
     return OnBoardingSlider(
       finishButtonText: 'Register',
       onFinish: () {
-        context.pushReplacement('/signUp');
+        context.pushReplacementNamed(RouteConstants.login);
       },
       finishButtonStyle: const FinishButtonStyle(
         backgroundColor: ColorConst.sliderTitle,
@@ -42,7 +42,7 @@ class _SliderViewState extends State<SliderView> {
         ),
       ),
       trailingFunction: () {
-        context.pushReplacementNamed(RouteConstants.signIn);
+        context.pushReplacementNamed(RouteConstants.login);
       },
       controllerColor: ColorConst.appBgColorWhite,
       totalPage: 3,
