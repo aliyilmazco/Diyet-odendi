@@ -49,7 +49,7 @@ class LoginButtonWidget extends StatelessWidget {
           Size(width / 1.1, 40),
         ),
       ),
-      onPressed: () {},
+      onPressed: function,
       child: Text(
         text,
         style: GoogleFonts.raleway(
