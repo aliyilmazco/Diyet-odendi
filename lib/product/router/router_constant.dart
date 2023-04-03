@@ -6,4 +6,6 @@ class RouteConstants {
   static String login = 'login';
   static String forgotPass = 'forgotPass';
   static String slider = 'slider';
+  static String welcome = 'welcome';
+  static String addInfo = 'addInfo';
 }

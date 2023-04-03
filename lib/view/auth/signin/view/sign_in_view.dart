@@ -1,6 +1,7 @@
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/product/widget/login_button_widget.dart';
 import 'package:d/product/widget/login_textfield_widget.dart';
+import 'package:d/view/auth/signin/viewmodel/sign_in_viewmodel.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -16,7 +17,7 @@ class SignInView extends StatefulWidget {
   State<SignInView> createState() => _SignInViewState();
 }
 
-class _SignInViewState extends State<SignInView> {
+class _SignInViewState extends SignInViewModel {
   @override
   Widget build(BuildContext context) {
     return BaseView(
@@ -50,18 +51,20 @@ class _SignInViewState extends State<SignInView> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const LoginTextFieldWidget(
+                  LoginTextfieldWidget(
                     labelText: "Email",
                     hintText: "Enter Email",
                     showSuffix: false,
+                    controller: controller1,
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  const LoginTextFieldWidget(
+                  LoginTextfieldWidget(
                     labelText: "Password",
                     hintText: "Enter Password",
                     showSuffix: true,
+                    controller: controller2,
                   ),
                   const SizedBox(
                     height: 10,

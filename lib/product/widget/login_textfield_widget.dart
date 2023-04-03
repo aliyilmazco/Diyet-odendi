@@ -2,25 +2,34 @@ import 'package:flutter/material.dart';
 
 import '../../core/constant/color_constant.dart';
 
-class LoginTextFieldWidget extends StatelessWidget {
-  const LoginTextFieldWidget({
+class LoginTextfieldWidget extends StatefulWidget {
+  LoginTextfieldWidget({
     super.key,
-    required this.labelText,
-    required this.hintText,
-    required this.showSuffix,
+    this.labelText,
+    this.hintText,
+    this.controller,
+    this.showSuffix,
   });
-  final String labelText;
-  final String hintText;
-  final bool showSuffix;
+  final String? labelText;
+  final String? hintText;
+  bool? showSuffix;
+  bool showPassword = false;
+  final TextEditingController? controller;
+  @override
+  State<LoginTextfieldWidget> createState() => _LoginTextfieldWidgetState();
+}
 
+class _LoginTextfieldWidgetState extends State<LoginTextfieldWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: TextField(
-        obscureText: true,
+        key: widget.key,
+        controller: widget.controller,
+        obscureText: widget.showPassword,
         decoration: InputDecoration(
-          border: OutlineInputBorder(
+          border: const OutlineInputBorder(
             borderSide: BorderSide(
               color: ColorConst.textFieldBorder,
               width: 0.1,
@@ -29,9 +38,18 @@ class LoginTextFieldWidget extends StatelessWidget {
               Radius.circular(15),
             ),
           ),
-          labelText: labelText,
-          suffixIcon: showSuffix ? const Icon(Icons.remove_red_eye) : null,
-          hintText: hintText,
+          labelText: widget.labelText,
+          suffixIcon: widget.showSuffix!
+              ? IconButton(
+                  onPressed: () {
+                    setState(() {
+                      widget.showPassword = !widget.showPassword;
+                    });
+                  },
+                  icon: const Icon(Icons.remove_red_eye),
+                )
+              : null,
+          hintText: widget.hintText,
         ),
       ),
     );
