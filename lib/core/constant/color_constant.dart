@@ -14,4 +14,5 @@ class ColorConst {
   static const Color mainBoxBg = Color.fromRGBO(247, 244, 253, 1);
   static const Color targetBg = Color.fromRGBO(171, 141, 229, 1);
   static const Color profileText = Color.fromRGBO(160, 149, 193, 1);
+  static const Color sliderInActive = Color.fromRGBO(6, 20, 40, 0.15);
 }

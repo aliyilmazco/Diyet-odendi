@@ -1,14 +1,13 @@
 import 'package:d/core/base/view/base_view.dart';
-import 'package:d/product/widget/login_button_widget.dart';
-import 'package:d/product/widget/login_textfield_widget.dart';
+import 'package:d/product/widget/login/login_title_widget.dart';
 import 'package:d/view/auth/signin/viewmodel/sign_in_viewmodel.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../core/constant/color_constant.dart';
-import '../../../../product/widget/login_title_widget.dart';
+import '../../../../product/widget/login/login_button_widget.dart';
+import '../../../../product/widget/login/login_textfield_widget.dart';
 
 class SignInView extends StatefulWidget {
   const SignInView({super.key});

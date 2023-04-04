@@ -1,6 +1,6 @@
 import 'package:d/core/base/view/base_view.dart';
-import 'package:d/product/widget/login_textfield_widget.dart';
-import 'package:d/product/widget/login_title_widget.dart';
+import 'package:d/product/widget/login/login_textfield_widget.dart';
+import 'package:d/product/widget/login/login_title_widget.dart';
 import 'package:d/view/auth/signup/viewmodel/sign_up_viewmodel.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/constant/color_constant.dart';
-import '../../../../product/widget/login_button_widget.dart';
+import '../../../../product/widget/login/login_button_widget.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});
