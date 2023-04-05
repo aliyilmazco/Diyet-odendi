@@ -52,12 +52,29 @@ class _HomeViewState extends HomeViewModel {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "ASLA PES ETME",
-                    style: GoogleFonts.glory(
-                      color: ColorConst.sliderTitle,
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
+                  Card(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                    shadowColor: ColorConst.mainBoxBg,
+                    elevation: 3,
+                    clipBehavior: Clip.hardEdge,
+                    child: Container(
+                      color: ColorConst.mainBoxBg,
+                      width: width / 1.2,
+                      height: height / 18,
+                      child: Center(
+                        child: Text(
+                          "Asla pes etme!",
+                          style: GoogleFonts.glory(
+                            color: ColorConst.sliderTitle,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -68,26 +85,78 @@ class _HomeViewState extends HomeViewModel {
               Card(
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(
-                    Radius.circular(25),
+                    Radius.circular(8),
                   ),
                 ),
-                elevation: 5,
+                elevation: 3,
+                shadowColor: ColorConst.mainBoxBg,
                 clipBehavior: Clip.hardEdge,
                 child: Container(
                   color: ColorConst.mainBoxBg,
-                  width: 300,
+                  width: width / 1.2,
                   height: 300,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Image.asset(
-                            'assets/images/breakfast2.png',
-                            width: 200,
+                          Flex(
+                            direction: Axis.horizontal,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 20.0, top: 20),
+                                child: Image.asset(
+                                  'assets/images/breakfast.png',
+                                  width: 90,
+                                ),
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Kahvalti',
+                                    style: GoogleFonts.glory(
+                                      color: ColorConst.createPageText,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10.0),
+                                    child: Text(
+                                      'Tavsiye edilen 365 - 535 Kcal',
+                                      style: GoogleFonts.glory(
+                                        color: ColorConst.createPageText,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                          Text('asdasdasd'),
                         ],
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Card(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),
+                        elevation: 3,
+                        shadowColor: ColorConst.mainBoxBg,
+                        clipBehavior: Clip.hardEdge,
+                        child: Container(
+                          width: width / 1.6,
+                          height: height / 20,
+                        ),
                       ),
                     ],
                   ),
