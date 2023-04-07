@@ -1,5 +1,6 @@
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
+import 'package:d/product/widget/home/home_card_widget.dart';
 import 'package:d/view/home/homePage/viewmodel/home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -47,7 +48,7 @@ class _HomeViewState extends HomeViewModel {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 5,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -69,9 +70,9 @@ class _HomeViewState extends HomeViewModel {
                         child: Text(
                           "Asla pes etme!",
                           style: GoogleFonts.glory(
-                            color: ColorConst.sliderTitle,
+                            color: ColorConst.createPageText,
                             fontSize: 24,
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.normal,
                           ),
                         ),
                       ),
@@ -80,7 +81,7 @@ class _HomeViewState extends HomeViewModel {
                 ],
               ),
               const SizedBox(
-                height: 20,
+                height: 5,
               ),
               Card(
                 shape: const RoundedRectangleBorder(
@@ -94,7 +95,7 @@ class _HomeViewState extends HomeViewModel {
                 child: Container(
                   color: ColorConst.mainBoxBg,
                   width: width / 1.2,
-                  height: 300,
+                  height: height / 2.3,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -144,19 +145,144 @@ class _HomeViewState extends HomeViewModel {
                       const SizedBox(
                         height: 10,
                       ),
-                      Card(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
+                      HomeCardWidget(
+                        width: width,
+                        height: height,
+                        image: 'assets/svg/avocado.svg',
+                        foodNumber: '2 Large',
+                        foodText: 'Egg',
+                        foodCalorie: '143',
+                      ),
+                      HomeCardWidget(
+                        width: width,
+                        height: height,
+                        image: 'assets/svg/egg.svg',
+                        foodNumber: '1 Medium',
+                        foodText: 'Avocado',
+                        foodCalorie: '240',
+                      ),
+                      HomeCardWidget(
+                        width: width,
+                        height: height,
+                        image: 'assets/svg/toast.svg',
+                        foodNumber: '1 Slice',
+                        foodText: 'Whole Grain Toast',
+                        foodCalorie: '100',
+                      ),
+                      const Spacer(),
+                      Container(
+                        width: height / 2.3,
+                        height: 40,
+                        color: ColorConst.mainBoxBottomColor,
+                        child: Center(
+                          child: Text(
+                            'Net Carbs: 16%  Fat 66%  Protein 23%',
+                            style: GoogleFonts.glory(
+                              color: ColorConst.createPageText,
+                              fontSize: 14,
+                            ),
                           ),
                         ),
-                        elevation: 3,
-                        shadowColor: ColorConst.mainBoxBg,
-                        clipBehavior: Clip.hardEdge,
-                        child: Container(
-                          width: width / 1.6,
-                          height: height / 20,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30.0),
+                    child: Text(
+                      'Yaklasan Gorusme',
+                      textAlign: TextAlign.start,
+                      style: GoogleFonts.raleway(
+                        fontSize: 17,
+                        color: ColorConst.createPageText,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Card(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                ),
+                shadowColor: ColorConst.mainBoxBg,
+                elevation: 3,
+                clipBehavior: Clip.hardEdge,
+                child: Container(
+                  color: ColorConst.mainBoxBg,
+                  width: width / 1.2,
+                  height: height / 15,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0),
+                        child: Card(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                          shadowColor: ColorConst.mainBoxBorder,
+                          elevation: 3,
+                          clipBehavior: Clip.hardEdge,
+                          child: Container(
+                            color: ColorConst.mainBoxBorder,
+                            width: width / 7,
+                            height: height / 18,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '12',
+                                  style: GoogleFonts.raleway(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'Tue',
+                                  style: GoogleFonts.raleway(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
+                      ),
+                      const SizedBox(
+                        width: 80,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '09:30 AM',
+                            style: GoogleFonts.glory(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                          Text(
+                            'Dr.Ali',
+                            style: GoogleFonts.glory(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

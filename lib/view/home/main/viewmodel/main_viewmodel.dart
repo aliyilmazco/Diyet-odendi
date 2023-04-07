@@ -1,5 +1,6 @@
 import 'package:d/view/home/homePage/view/home_view.dart';
 import 'package:d/view/home/main/view/main_view.dart';
+import 'package:d/view/home/recipe/view/recipe_view.dart';
 import 'package:flutter/material.dart';
 
 abstract class MainViewModel extends State<MainView> {
@@ -7,10 +8,7 @@ abstract class MainViewModel extends State<MainView> {
 
   static const List<Widget> pages = <Widget>[
     HomeView(),
-    Icon(
-      Icons.camera,
-      size: 150,
-    ),
+    RecipeView(),
     Icon(
       Icons.camera,
       size: 150,
