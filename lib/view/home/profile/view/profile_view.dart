@@ -1,9 +1,11 @@
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
+import 'package:d/view/home/profile/model/chart_data.dart';
 import 'package:d/view/home/profile/viewmodel/profile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -147,6 +149,100 @@ class _ProfileViewState extends ProfileViewModel {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  Positioned(
+                    top: height / 2,
+                    left: width / 15,
+                    child: Card(
+                      elevation: 1,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25)),
+                      child: SizedBox(
+                        height: 170,
+                        width: width / 1.2,
+                        child: Column(
+                          children: [
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              'Kilo Takip Cizelgesi',
+                              style: GoogleFonts.raleway(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: ColorConst.createPageText,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Padding(
+                              padding:
+                                  EdgeInsets.symmetric(horizontal: width / 15),
+                              child: SizedBox(
+                                height: 124,
+                                width: width / 1.2,
+                                child: SfCartesianChart(
+                                  margin: const EdgeInsets.all(0),
+                                  borderWidth: 0,
+                                  plotAreaBorderWidth: 0,
+                                  borderColor: Colors.transparent,
+                                  primaryXAxis: NumericAxis(
+                                    minimum: 1,
+                                    maximum: 7,
+                                    interval: 1,
+                                    isVisible: false,
+                                  ),
+                                  primaryYAxis: NumericAxis(
+                                    minimum: 70,
+                                    maximum: 76,
+                                    interval: 1,
+                                    isVisible: false,
+                                    borderWidth: 0,
+                                    borderColor: Colors.transparent,
+                                  ),
+                                  series: <ChartSeries<ChartData, int>>[
+                                    SplineAreaSeries(
+                                      splineType: SplineType.natural,
+                                      dataSource: data,
+                                      xValueMapper: (ChartData data, _) =>
+                                          data.day,
+                                      yValueMapper: (ChartData data, _) =>
+                                          data.weight,
+                                      gradient: const LinearGradient(
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter,
+                                        colors: [
+                                          ColorConst.appBgColorWhite,
+                                          ColorConst.appBgColorWhite,
+                                          ColorConst.appBgColorWhite,
+                                        ],
+                                      ),
+                                    ),
+                                    SplineSeries(
+                                      color: ColorConst.sliderText,
+                                      width: 1,
+                                      markerSettings: const MarkerSettings(
+                                        color: ColorConst.dotColor,
+                                        borderWidth: 1,
+                                        shape: DataMarkerType.circle,
+                                        isVisible: false,
+                                        borderColor: ColorConst.dotColor,
+                                      ),
+                                      dataSource: data,
+                                      xValueMapper: (ChartData data, _) =>
+                                          data.day,
+                                      yValueMapper: (ChartData data, _) =>
+                                          data.weight,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ],

@@ -17,4 +17,5 @@ class ColorConst {
   static const Color sliderInActive = Color.fromRGBO(6, 20, 40, 0.15);
   static const Color mainBoxBorder = Color.fromRGBO(254, 250, 224, 24);
   static const Color mainBoxBottomColor = Color.fromRGBO(254, 250, 224, 0.4);
+  static const Color dotColor = Color.fromRGBO(181, 139, 252, 1);
 }
