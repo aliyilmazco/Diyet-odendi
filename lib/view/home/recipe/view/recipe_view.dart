@@ -1,9 +1,7 @@
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
-import 'package:d/product/widget/create/selection_card_widget.dart';
+import 'package:d/view/home/recipe/viewmodel/recipe_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,7 +12,7 @@ class RecipeView extends StatefulWidget {
   State<RecipeView> createState() => _RecipeViewState();
 }
 
-class _RecipeViewState extends State<RecipeView> {
+class _RecipeViewState extends RecipeViewModel {
   @override
   Widget build(BuildContext context) {
     return BaseView(
@@ -47,7 +45,7 @@ class _RecipeViewState extends State<RecipeView> {
                   itemBuilder: (context, index) {
                     return Container(
                       color: ColorConst.appBgColorWhite,
-                      width: 150,
+                      width: 180,
                       margin: const EdgeInsets.all(8),
                       child: ElevatedButton(
                         onPressed: () {},
@@ -61,19 +59,26 @@ class _RecipeViewState extends State<RecipeView> {
                         child: Row(
                           children: [
                             SvgPicture.asset(
-                              'assets/svg/ana_ogun.svg',
+                              imageCheck(index),
                               width: 30,
                               height: 30,
                             ),
                             const SizedBox(
                               width: 10,
                             ),
-                            Text(
-                              'Ana Ogun',
-                              style: GoogleFonts.glory(
-                                color: ColorConst.createPageText,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: textCheck(index) == 'Atistirmalik'
+                                    ? 10.0
+                                    : 20.0,
+                              ),
+                              child: Text(
+                                textCheck(index),
+                                style: GoogleFonts.glory(
+                                  color: ColorConst.createPageText,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ],
@@ -83,21 +88,23 @@ class _RecipeViewState extends State<RecipeView> {
                   },
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.only(left: 10),
-                height: height / 2,
-                color: ColorConst.mainBoxBg,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 5,
-                  itemBuilder: ((context, index) {
-                    return Stack(
-                      children: [
-                        Image.asset('assets/images/salad.png',
-                            width: width / 1.3),
-                      ],
-                    );
-                  }),
+              Card(
+                child: Container(
+                  color: ColorConst.appBgColorWhite,
+                  margin: const EdgeInsets.only(left: 10),
+                  height: height / 2,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Stack(
+                        children: [
+                          Image.asset('assets/images/salad.png',
+                              width: width / 1.3),
+                        ],
+                      );
+                    },
+                  ),
                 ),
               ),
             ],
