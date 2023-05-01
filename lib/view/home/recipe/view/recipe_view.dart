@@ -88,25 +88,93 @@ class _RecipeViewState extends RecipeViewModel {
                   },
                 ),
               ),
-              Card(
-                child: Container(
-                  color: ColorConst.appBgColorWhite,
-                  margin: const EdgeInsets.only(left: 10),
-                  height: height / 2,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 5,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Stack(
-                        children: [
-                          Image.asset('assets/images/salad.png',
-                              width: width / 1.3),
-                        ],
-                      );
-                    },
-                  ),
-                ),
+              const SizedBox(
+                height: 30,
               ),
+              SizedBox(
+                height: height / 2.5,
+                width: width,
+                child: ListView.builder(
+                  itemCount: 5,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
+                      elevation: 4,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 200,
+                            width: width / 1.6,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(20)),
+                              image: DecorationImage(
+                                image: AssetImage(
+                                  'assets/images/salad.png',
+                                ),
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'RUS SALATASI',
+                                  style: GoogleFonts.glory(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 3),
+                                Text(
+                                  'Nohut & Makarna',
+                                  style: GoogleFonts.glory(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 15.0),
+                                      child: Text(
+                                        '370 Kcal',
+                                        style: GoogleFonts.glory(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 120,
+                                    ),
+                                    SizedBox(
+                                      width: 30,
+                                      height: 30,
+                                      child: Image.asset(
+                                          'assets/images/hearth.png'),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              )
             ],
           ),
         );

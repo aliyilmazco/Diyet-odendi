@@ -1,4 +1,3 @@
-import 'package:d/view/splash/slider/view/slider_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
