@@ -24,7 +24,7 @@ class _HomeViewState extends HomeViewModel {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(top: height / 40, right: width / 2.2),
+                padding: EdgeInsets.only(top: height / 50, right: width / 2.2),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
