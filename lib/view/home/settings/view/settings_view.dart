@@ -36,7 +36,7 @@ class _SettingsViewState extends SettingsViewModel {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           Center(
@@ -76,8 +76,221 @@ class _SettingsViewState extends SettingsViewModel {
               ],
             ),
           ),
-          SizedBox(
-            height: 40,
+          const SizedBox(
+            height: 100,
+          ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 35,
+              ),
+              const Icon(
+                Icons.person,
+                color: ColorConst.profileText,
+              ),
+              const SizedBox(
+                width: 35,
+              ),
+              Text(
+                'Hesabim',
+                style: GoogleFonts.raleway(
+                  color: ColorConst.profileText,
+                  fontSize: 17,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              const Spacer(
+                flex: 2,
+              ),
+              const Icon(
+                Icons.arrow_forward_ios,
+                size: 15,
+                color: ColorConst.profileText,
+              ),
+              const SizedBox(
+                width: 35,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 35,
+              ),
+              const Icon(
+                Icons.notifications,
+                color: ColorConst.profileText,
+              ),
+              const SizedBox(
+                width: 35,
+              ),
+              Text(
+                'Bildirimler',
+                style: GoogleFonts.raleway(
+                  color: ColorConst.profileText,
+                  fontSize: 17,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              const Spacer(
+                flex: 2,
+              ),
+              const Icon(
+                Icons.arrow_forward_ios,
+                size: 15,
+                color: ColorConst.profileText,
+              ),
+              const SizedBox(
+                width: 35,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 35,
+              ),
+              const Icon(
+                Icons.remove_red_eye,
+                color: ColorConst.profileText,
+              ),
+              const SizedBox(
+                width: 35,
+              ),
+              Text(
+                'Gorunum',
+                style: GoogleFonts.raleway(
+                  color: ColorConst.profileText,
+                  fontSize: 17,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              const Spacer(
+                flex: 2,
+              ),
+              const Icon(
+                Icons.arrow_forward_ios,
+                size: 15,
+                color: ColorConst.profileText,
+              ),
+              const SizedBox(
+                width: 35,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 35,
+              ),
+              const Icon(
+                Icons.security,
+                color: ColorConst.profileText,
+              ),
+              const SizedBox(
+                width: 35,
+              ),
+              Text(
+                'Gizlilik & Guvenlik',
+                style: GoogleFonts.raleway(
+                  color: ColorConst.profileText,
+                  fontSize: 17,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              const Spacer(
+                flex: 2,
+              ),
+              const Icon(
+                Icons.arrow_forward_ios,
+                size: 15,
+                color: ColorConst.profileText,
+              ),
+              const SizedBox(
+                width: 35,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 35,
+              ),
+              const Icon(
+                Icons.volume_down,
+                color: ColorConst.profileText,
+              ),
+              const SizedBox(
+                width: 35,
+              ),
+              Text(
+                'Ses',
+                style: GoogleFonts.raleway(
+                  color: ColorConst.profileText,
+                  fontSize: 17,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              const Spacer(
+                flex: 2,
+              ),
+              const Icon(
+                Icons.arrow_forward_ios,
+                size: 15,
+                color: ColorConst.profileText,
+              ),
+              const SizedBox(
+                width: 35,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              const SizedBox(
+                width: 35,
+              ),
+              const Icon(
+                Icons.language,
+                color: ColorConst.profileText,
+              ),
+              const SizedBox(
+                width: 35,
+              ),
+              Text(
+                'Dil',
+                style: GoogleFonts.raleway(
+                  color: ColorConst.profileText,
+                  fontSize: 17,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              const Spacer(
+                flex: 2,
+              ),
+              const Icon(
+                Icons.arrow_forward_ios,
+                size: 15,
+                color: ColorConst.profileText,
+              ),
+              const SizedBox(
+                width: 35,
+              ),
+            ],
           ),
         ],
       ),
