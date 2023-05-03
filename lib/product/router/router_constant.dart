@@ -8,4 +8,5 @@ class RouteConstants {
   static String slider = 'slider';
   static String welcome = 'welcome';
   static String addInfo = 'addInfo';
+  static String settings = 'settings';
 }

@@ -3,7 +3,6 @@ import 'package:d/core/constant/color_constant.dart';
 import 'package:d/product/widget/home/home_card_widget.dart';
 import 'package:d/view/home/homePage/viewmodel/home_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeView extends StatefulWidget {

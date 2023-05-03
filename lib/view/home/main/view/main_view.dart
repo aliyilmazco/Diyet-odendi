@@ -1,9 +1,12 @@
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
+import 'package:d/product/router/router.dart';
+import 'package:d/product/router/router_constant.dart';
 import 'package:d/view/home/main/viewmodel/main_viewmodel.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -28,7 +31,12 @@ class _MainViewState extends MainViewModel {
                     left: 25,
                     top: 25,
                   ),
-                  child: SvgPicture.asset('assets/svg/ham_menu.svg'),
+                  child: IconButton(
+                    icon: SvgPicture.asset('assets/svg/ham_menu.svg'),
+                    onPressed: () => {
+                      context.pushNamed(RouteConstants.settings),
+                    },
+                  ),
                 ),
                 const Spacer(
                   flex: 3,

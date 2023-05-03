@@ -5,6 +5,7 @@ import 'package:d/view/auth/signup/view/add_info_view.dart';
 import 'package:d/view/auth/signup/view/sign_up_view.dart';
 import 'package:d/view/auth/signup/view/welcome_view.dart';
 import 'package:d/view/home/main/view/main_view.dart';
+import 'package:d/view/home/settings/view/settings_view.dart';
 import 'package:d/view/splash/slider/view/slider_view.dart';
 import 'package:d/view/splash/splashScreen/view/splash_screen_view.dart';
 import 'package:flutter/material.dart';
@@ -82,6 +83,15 @@ class AppRouter {
         pageBuilder: (context, state) {
           return const MaterialPage(
             child: MainView(),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouteConstants.settings,
+        path: '/settings',
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: SettingsView(),
           );
         },
       ),
