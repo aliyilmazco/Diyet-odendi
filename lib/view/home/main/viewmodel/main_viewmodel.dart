@@ -1,3 +1,4 @@
+import 'package:d/view/home/create/date/view/date_view.dart';
 import 'package:d/view/home/homePage/view/home_view.dart';
 import 'package:d/view/home/main/view/main_view.dart';
 import 'package:d/view/home/profile/view/profile_view.dart';
@@ -10,10 +11,7 @@ abstract class MainViewModel extends State<MainView> {
   static const List<Widget> pages = <Widget>[
     HomeView(),
     RecipeView(),
-    Icon(
-      Icons.camera,
-      size: 150,
-    ),
+    DateView(),
     Icon(
       Icons.camera,
       size: 150,
