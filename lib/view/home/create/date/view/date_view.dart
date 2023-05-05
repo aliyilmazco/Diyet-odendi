@@ -1,8 +1,7 @@
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
+import 'package:d/view/home/create/date/viewmodel/date_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,7 +12,7 @@ class DateView extends StatefulWidget {
   State<DateView> createState() => _DateViewState();
 }
 
-class _DateViewState extends State<DateView> {
+class _DateViewState extends DateViewModel {
   @override
   Widget build(BuildContext context) {
     return BaseView(
@@ -212,79 +211,6 @@ class _DateViewState extends State<DateView> {
               ),
               const SizedBox(
                 height: 15,
-              ),
-              Card(
-                elevation: 2,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                color: ColorConst.mainBoxBg,
-                child: Container(
-                  height: 65,
-                  width: width / 1.3,
-                  child: Row(
-                    children: [
-                      const SizedBox(
-                        width: 25,
-                      ),
-                      const Icon(
-                        Icons.chat,
-                        size: 35,
-                      ),
-                      const SizedBox(
-                        width: 25,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Chat with the Doctor',
-                            style: GoogleFonts.raleway(
-                              color: ColorConst.createPageText,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          Text(
-                            'Available 24x7',
-                            style: GoogleFonts.raleway(
-                              color: ColorConst.createPageText,
-                              fontSize: 12,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: <BoxShadow>[
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              blurRadius: 5,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
-                          borderRadius: BorderRadius.circular(100),
-                        ),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.add),
-                          iconSize: 25,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
               ),
             ],
           ),
