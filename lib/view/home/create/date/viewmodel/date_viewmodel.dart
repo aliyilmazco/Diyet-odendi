@@ -2,7 +2,7 @@ import 'package:d/view/home/create/date/view/date_view.dart';
 import 'package:flutter/material.dart';
 
 abstract class DateViewModel extends State<DateView> {
-  void _showSheet() {
+  void showSheet() {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true, // set this to true

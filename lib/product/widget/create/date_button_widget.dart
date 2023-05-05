@@ -37,8 +37,8 @@ class DateButtonWidget extends StatelessWidget {
               const SizedBox(
                 width: 25,
               ),
-              const Icon(
-                Icons.chat,
+              Icon(
+                icon,
                 size: 35,
               ),
               const SizedBox(
