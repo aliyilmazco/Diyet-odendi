@@ -67,7 +67,7 @@ class _DateViewState extends DateViewModel {
                 title: 'Book an appointment',
                 text: 'Available on 12th May 2021',
                 function: () {
-                  showSheet();
+                  showSheet(width, height);
                 },
                 icon: Icons.calendar_today,
               ),
