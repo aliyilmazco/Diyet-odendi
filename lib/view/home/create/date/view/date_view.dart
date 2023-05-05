@@ -106,6 +106,182 @@ class _DateViewState extends State<DateView> {
                           ),
                         ],
                       ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              blurRadius: 5,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.add),
+                          iconSize: 25,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                color: ColorConst.mainBoxBg,
+                child: Container(
+                  height: 65,
+                  width: width / 1.3,
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 25,
+                      ),
+                      const Icon(
+                        Icons.ondemand_video_outlined,
+                        size: 35,
+                      ),
+                      const SizedBox(
+                        width: 25,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Appointment Online',
+                            style: GoogleFonts.raleway(
+                              color: ColorConst.createPageText,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          Text(
+                            'Available on 12th May 2021',
+                            style: GoogleFonts.raleway(
+                              color: ColorConst.createPageText,
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              blurRadius: 5,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.add),
+                          iconSize: 25,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                color: ColorConst.mainBoxBg,
+                child: Container(
+                  height: 65,
+                  width: width / 1.3,
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 25,
+                      ),
+                      const Icon(
+                        Icons.chat,
+                        size: 35,
+                      ),
+                      const SizedBox(
+                        width: 25,
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Chat with the Doctor',
+                            style: GoogleFonts.raleway(
+                              color: ColorConst.createPageText,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          Text(
+                            'Available 24x7',
+                            style: GoogleFonts.raleway(
+                              color: ColorConst.createPageText,
+                              fontSize: 12,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              blurRadius: 5,
+                              offset: const Offset(0, 3),
+                            ),
+                          ],
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.add),
+                          iconSize: 25,
+                          color: Colors.black,
+                        ),
+                      ),
                     ],
                   ),
                 ),
