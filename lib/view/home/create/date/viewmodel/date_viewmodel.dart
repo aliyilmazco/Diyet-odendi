@@ -1,10 +1,21 @@
+import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:d/core/constant/color_constant.dart';
 import 'package:d/view/home/create/date/view/date_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 abstract class DateViewModel extends State<DateView> {
+  late DateTime selectedDate;
+  @override
+  void initState() {
+    super.initState();
+    _resetSelectedDate();
+  }
+
+  void _resetSelectedDate() {
+    selectedDate = DateTime.now().add(const Duration(days: 2));
+  }
+
   void showSheet(
     double width,
     double height,
@@ -27,6 +38,29 @@ abstract class DateViewModel extends State<DateView> {
                 const SizedBox(
                   height: 20,
                 ),
+                CalendarTimeline(
+                  showYears: false,
+                  initialDate: selectedDate,
+                  firstDate: DateTime.now(),
+                  lastDate: DateTime.now().add(
+                    const Duration(days: 365 * 4),
+                  ),
+                  onDateSelected: (date) => setState(
+                    () => {
+                      selectedDate = date,
+                    },
+                  ),
+                  leftMargin: 20,
+                  monthColor: ColorConst.sliderTitle,
+                  dayColor: ColorConst.createPageText,
+                  dayNameColor: ColorConst.appBgColorWhite,
+                  activeDayColor: ColorConst.appBgColorWhite,
+                  activeBackgroundDayColor: ColorConst.createPageText,
+                  dotsColor: ColorConst.appBgColorWhite,
+                  selectableDayPredicate: (date) => date.day != 23,
+                  locale: 'tr',
+                ),
+                const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {},
                   child: Card(
@@ -37,7 +71,7 @@ abstract class DateViewModel extends State<DateView> {
                     ),
                     elevation: 2,
                     color: ColorConst.mainBoxBg,
-                    child: Container(
+                    child: SizedBox(
                       width: width / 1.1,
                       height: 70,
                       child: Row(
@@ -47,7 +81,7 @@ abstract class DateViewModel extends State<DateView> {
                             width: 30,
                             height: 50,
                           ),
-                          Text('Breakfast'),
+                          const Text('Breakfast'),
                         ],
                       ),
                     ),
