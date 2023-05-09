@@ -1,49 +1,54 @@
 import 'package:d/core/constant/color_constant.dart';
 import 'package:d/product/widget/create/add_button_widget.dart';
 import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 
-class DateButtonWidget extends StatelessWidget {
-  DateButtonWidget({
+class LunchContainerWidget extends StatelessWidget {
+  LunchContainerWidget({
     super.key,
     required this.width,
     required this.height,
     required this.title,
     required this.text,
+    required this.image,
     required this.function,
-    required this.icon,
   });
   final double width;
   final double height;
   final String title;
   final String text;
+  final String image;
   VoidCallback function;
-  final IconData icon;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: function,
       child: Card(
-        elevation: 2,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(30),
+          ),
         ),
+        elevation: 2,
         color: ColorConst.mainBoxBg,
         child: SizedBox(
-          height: 65,
-          width: width / 1.3,
+          width: width / 1.1,
+          height: 70,
           child: Row(
             children: [
-              const SizedBox(
-                width: 25,
+              Container(
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  left: 10,
+                ),
+                width: 70,
+                height: 70,
+                child: Image.asset(
+                  image,
+                ),
               ),
-              Icon(
-                icon,
-                size: 35,
-              ),
               const SizedBox(
-                width: 25,
+                width: 30,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -70,9 +75,11 @@ class DateButtonWidget extends StatelessWidget {
                 ],
               ),
               const SizedBox(
-                width: 10,
+                width: 30,
               ),
-              AddButtonWidget(function: function),
+              AddButtonWidget(
+                function: function,
+              ),
             ],
           ),
         ),

@@ -1,8 +1,11 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:d/core/constant/color_constant.dart';
+import 'package:d/product/widget/create/add_button_widget.dart';
+import 'package:d/product/widget/create/lunch_container_widget.dart';
 import 'package:d/view/home/create/date/view/date_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 abstract class DateViewModel extends State<DateView> {
   late DateTime selectedDate;
@@ -31,6 +34,7 @@ abstract class DateViewModel extends State<DateView> {
       isScrollControlled: true, // set this to true
       builder: (_) {
         return DraggableScrollableSheet(
+          initialChildSize: 0.6,
           expand: false,
           builder: (_, controller) {
             return Column(
@@ -38,54 +42,63 @@ abstract class DateViewModel extends State<DateView> {
                 const SizedBox(
                   height: 20,
                 ),
-                CalendarTimeline(
-                  showYears: false,
-                  initialDate: selectedDate,
-                  firstDate: DateTime.now(),
-                  lastDate: DateTime.now().add(
-                    const Duration(days: 365 * 4),
+                SizedBox(
+                  width: width / 1.2,
+                  child: CalendarTimeline(
+                    showYears: false,
+                    initialDate: selectedDate,
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime.now().add(
+                      const Duration(days: 365 * 4),
+                    ),
+                    onDateSelected: (date) => setState(
+                      () => {
+                        selectedDate = date,
+                      },
+                    ),
+                    leftMargin: 10,
+                    monthColor: ColorConst.sliderTitle,
+                    dayColor: ColorConst.createPageText,
+                    dayNameColor: ColorConst.appBgColorWhite,
+                    activeDayColor: ColorConst.appBgColorWhite,
+                    activeBackgroundDayColor: ColorConst.createPageText,
+                    dotsColor: ColorConst.appBgColorWhite,
+                    selectableDayPredicate: (date) => date.day != 23,
+                    locale: 'tr',
                   ),
-                  onDateSelected: (date) => setState(
-                    () => {
-                      selectedDate = date,
-                    },
-                  ),
-                  leftMargin: 20,
-                  monthColor: ColorConst.sliderTitle,
-                  dayColor: ColorConst.createPageText,
-                  dayNameColor: ColorConst.appBgColorWhite,
-                  activeDayColor: ColorConst.appBgColorWhite,
-                  activeBackgroundDayColor: ColorConst.createPageText,
-                  dotsColor: ColorConst.appBgColorWhite,
-                  selectableDayPredicate: (date) => date.day != 23,
-                  locale: 'tr',
                 ),
                 const SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () {},
-                  child: Card(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(30),
-                      ),
-                    ),
-                    elevation: 2,
-                    color: ColorConst.mainBoxBg,
-                    child: SizedBox(
-                      width: width / 1.1,
-                      height: 70,
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/svg/breakfast.svg',
-                            width: 30,
-                            height: 50,
-                          ),
-                          const Text('Breakfast'),
-                        ],
-                      ),
-                    ),
-                  ),
+                LunchContainerWidget(
+                  width: width,
+                  height: height,
+                  title: 'BreakFast',
+                  text: 'Recommended 356-535 Kcal',
+                  image: 'assets/images/breakfast.png',
+                  function: () {},
+                ),
+                LunchContainerWidget(
+                  width: width,
+                  height: height,
+                  title: 'Lunch',
+                  text: 'Recommended 356-731 Kcal',
+                  image: 'assets/images/lunch.png',
+                  function: () {},
+                ),
+                LunchContainerWidget(
+                  width: width,
+                  height: height,
+                  title: 'Dinner',
+                  text: 'Recommended 356-535 Kcal',
+                  image: 'assets/images/dinner.png',
+                  function: () {},
+                ),
+                LunchContainerWidget(
+                  width: width,
+                  height: height,
+                  title: 'Snacks',
+                  text: 'Recommended 89 - 178 Kcal',
+                  image: 'assets/images/snacks.png',
+                  function: () {},
                 ),
               ],
             );
