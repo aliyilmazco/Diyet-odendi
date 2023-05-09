@@ -4,6 +4,7 @@ import 'package:d/view/auth/signin/view/sign_in_view.dart';
 import 'package:d/view/auth/signup/view/add_info_view.dart';
 import 'package:d/view/auth/signup/view/sign_up_view.dart';
 import 'package:d/view/auth/signup/view/welcome_view.dart';
+import 'package:d/view/home/create/eating/view/eating_view.dart';
 import 'package:d/view/home/main/view/main_view.dart';
 import 'package:d/view/home/settings/view/settings_view.dart';
 import 'package:d/view/splash/slider/view/slider_view.dart';
@@ -92,6 +93,15 @@ class AppRouter {
         pageBuilder: (context, state) {
           return const MaterialPage(
             child: SettingsView(),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouteConstants.eating,
+        path: '/eating',
+        pageBuilder: (context, state) {
+          return MaterialPage(
+            child: EatingView(),
           );
         },
       ),

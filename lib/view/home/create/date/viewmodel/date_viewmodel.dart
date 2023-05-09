@@ -1,11 +1,10 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:d/core/constant/color_constant.dart';
-import 'package:d/product/widget/create/add_button_widget.dart';
+import 'package:d/product/router/router_constant.dart';
 import 'package:d/product/widget/create/lunch_container_widget.dart';
 import 'package:d/view/home/create/date/view/date_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:go_router/go_router.dart';
 
 abstract class DateViewModel extends State<DateView> {
   late DateTime selectedDate;
@@ -74,7 +73,9 @@ abstract class DateViewModel extends State<DateView> {
                   title: 'BreakFast',
                   text: 'Recommended 356-535 Kcal',
                   image: 'assets/images/breakfast.png',
-                  function: () {},
+                  function: () {
+                    context.pushNamed(RouteConstants.eating);
+                  },
                 ),
                 LunchContainerWidget(
                   width: width,
