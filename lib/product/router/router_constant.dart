@@ -10,4 +10,5 @@ class RouteConstants {
   static String addInfo = 'addInfo';
   static String settings = 'settings';
   static String eating = 'eating';
+  static String recipeDetail = 'recipeDetail';
 }

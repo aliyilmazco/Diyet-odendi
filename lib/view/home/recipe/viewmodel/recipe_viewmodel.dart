@@ -38,4 +38,29 @@ abstract class RecipeViewModel extends State<RecipeView> {
       return 'Ana Ogun';
     }
   }
+
+  Map<dynamic, dynamic> recipe(int number) {
+    if (number == 0) {
+      return {
+        'name': 'Rus Salatasi',
+        'image': 'assets/images/salad.png',
+        'text': 'Saltali Malzemeler',
+        'calorie': '370 Kcal',
+      };
+    } else if (number == 1) {
+      return {
+        'name': 'Degisik',
+        'image': 'assets/images/meal.png',
+        'text': 'Meyveli Malzemeler',
+        'calorie': '200 Kcal',
+      };
+    } else {
+      return {
+        'name': 'Rus Salatasi',
+        'image': 'assets/images/salad.png',
+        'text': 'Saltali Malzemeler',
+        'calorie': '370 Kcal',
+      };
+    }
+  }
 }

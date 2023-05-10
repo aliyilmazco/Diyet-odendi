@@ -6,6 +6,7 @@ import 'package:d/view/auth/signup/view/sign_up_view.dart';
 import 'package:d/view/auth/signup/view/welcome_view.dart';
 import 'package:d/view/home/create/eating/view/eating_view.dart';
 import 'package:d/view/home/main/view/main_view.dart';
+import 'package:d/view/home/recipe/view/recipe_detail_view.dart';
 import 'package:d/view/home/settings/view/settings_view.dart';
 import 'package:d/view/splash/slider/view/slider_view.dart';
 import 'package:d/view/splash/splashScreen/view/splash_screen_view.dart';
@@ -100,8 +101,17 @@ class AppRouter {
         name: RouteConstants.eating,
         path: '/eating',
         pageBuilder: (context, state) {
-          return MaterialPage(
+          return const MaterialPage(
             child: EatingView(),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouteConstants.recipeDetail,
+        path: '/recipeDetail',
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: RecipeDetailView(),
           );
         },
       ),
