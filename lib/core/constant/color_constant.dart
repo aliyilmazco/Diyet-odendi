@@ -19,4 +19,5 @@ class ColorConst {
   static const Color mainBoxBottomColor = Color.fromRGBO(254, 250, 224, 0.4);
   static const Color dotColor = Color.fromRGBO(181, 139, 252, 1);
   static const Color createButton = Color.fromRGBO(227, 212, 255, 1);
+  static const Color createBox = Color.fromRGBO(240, 238, 244, 1);
 }
