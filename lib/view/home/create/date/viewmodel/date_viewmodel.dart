@@ -83,7 +83,9 @@ abstract class DateViewModel extends State<DateView> {
                   title: 'Lunch',
                   text: 'Recommended 356-731 Kcal',
                   image: 'assets/images/lunch.png',
-                  function: () {},
+                  function: () {
+                    context.pushNamed(RouteConstants.eating);
+                  },
                 ),
                 LunchContainerWidget(
                   width: width,
@@ -91,7 +93,9 @@ abstract class DateViewModel extends State<DateView> {
                   title: 'Dinner',
                   text: 'Recommended 356-535 Kcal',
                   image: 'assets/images/dinner.png',
-                  function: () {},
+                  function: () {
+                    context.pushNamed(RouteConstants.eating);
+                  },
                 ),
                 LunchContainerWidget(
                   width: width,
@@ -99,7 +103,9 @@ abstract class DateViewModel extends State<DateView> {
                   title: 'Snacks',
                   text: 'Recommended 89 - 178 Kcal',
                   image: 'assets/images/snacks.png',
-                  function: () {},
+                  function: () {
+                    context.pushNamed(RouteConstants.eating);
+                  },
                 ),
               ],
             );
