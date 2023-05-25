@@ -51,9 +51,7 @@ abstract class DateViewModel extends State<DateView> {
                       const Duration(days: 365 * 4),
                     ),
                     onDateSelected: (date) => setState(
-                      () => {
-                        selectedDate = date,
-                      },
+                      () => selectedDate = date,
                     ),
                     leftMargin: 10,
                     monthColor: ColorConst.sliderTitle,

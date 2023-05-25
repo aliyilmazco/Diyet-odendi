@@ -6,7 +6,6 @@ import 'package:d/view/home/create/date/viewmodel/date_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class DateView extends StatefulWidget {
   const DateView({super.key});
@@ -47,7 +46,7 @@ class _DateViewState extends DateViewModel {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       color: ColorConst.textFieldBorder,
-                      child: Container(
+                      child: SizedBox(
                         height: height / 3.5,
                         width: width / 1.5,
                         child: Center(

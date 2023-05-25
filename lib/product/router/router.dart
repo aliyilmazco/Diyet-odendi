@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:d/product/router/router_constant.dart';
 import 'package:d/view/auth/signin/view/login_view.dart';
 import 'package:d/view/auth/signin/view/sign_in_view.dart';

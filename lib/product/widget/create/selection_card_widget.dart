@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SelectionGenderCardWidget extends StatefulWidget {
-  SelectionGenderCardWidget({
+  const SelectionGenderCardWidget({
     super.key,
     required this.svgRoot,
     required this.cardText,
@@ -13,8 +13,8 @@ class SelectionGenderCardWidget extends StatefulWidget {
   });
   final String svgRoot;
   final String cardText;
-  bool? isSelected;
-  VoidCallback? function;
+  final bool? isSelected;
+  final VoidCallback? function;
   @override
   State<SelectionGenderCardWidget> createState() =>
       _SelectionGenderCardWidgetState();

@@ -1,6 +1,5 @@
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
-import 'package:d/product/router/router.dart';
 import 'package:d/product/router/router_constant.dart';
 import 'package:d/view/home/main/viewmodel/main_viewmodel.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';

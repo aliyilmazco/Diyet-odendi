@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AddButtonWidget extends StatelessWidget {
-  AddButtonWidget({super.key, required this.function});
-  VoidCallback function;
+  const AddButtonWidget({super.key, required this.function});
+  final VoidCallback function;
   @override
   Widget build(BuildContext context) {
     return Container(

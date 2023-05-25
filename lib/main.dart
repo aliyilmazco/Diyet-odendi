@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_late
+
 import 'package:d/product/router/router.dart';
 import 'package:flutter/material.dart';
 

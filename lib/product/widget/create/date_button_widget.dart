@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DateButtonWidget extends StatelessWidget {
-  DateButtonWidget({
+  const DateButtonWidget({
     super.key,
     required this.width,
     required this.height,
@@ -18,7 +18,7 @@ class DateButtonWidget extends StatelessWidget {
   final double height;
   final String title;
   final String text;
-  VoidCallback function;
+  final VoidCallback function;
   final IconData icon;
   @override
   Widget build(BuildContext context) {

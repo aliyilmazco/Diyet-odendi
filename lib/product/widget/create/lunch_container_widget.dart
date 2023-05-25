@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LunchContainerWidget extends StatelessWidget {
-  LunchContainerWidget({
+  const LunchContainerWidget({
     super.key,
     required this.width,
     required this.height,
@@ -18,7 +18,7 @@ class LunchContainerWidget extends StatelessWidget {
   final String title;
   final String text;
   final String image;
-  VoidCallback function;
+  final VoidCallback function;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

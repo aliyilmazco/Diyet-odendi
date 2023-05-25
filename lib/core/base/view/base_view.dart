@@ -6,7 +6,6 @@ class BaseView extends StatelessWidget {
   // final AppBar? appBar;
 
   const BaseView({super.key, required this.builder});
-  static int _selectedIndex = 0;
 
   static MediaQueryData _mediaQueryData = const MediaQueryData();
   static double screenWidth = 0.0;

@@ -1,4 +1,3 @@
-import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
 import 'package:d/view/home/settings/viewmodel/settings_viewmodel.dart';
 import 'package:flutter/material.dart';

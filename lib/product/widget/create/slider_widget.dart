@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:d/core/constant/color_constant.dart';
 import 'package:flutter/material.dart';
 

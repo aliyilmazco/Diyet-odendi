@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../core/constant/color_constant.dart';
 
 class LoginButtonWidget extends StatelessWidget {
-  LoginButtonWidget({
+  const LoginButtonWidget({
     super.key,
     required this.width,
     required this.height,
@@ -20,7 +20,7 @@ class LoginButtonWidget extends StatelessWidget {
   final Color backgroundColor;
   final Color textColor;
   final Color borderColor;
-  VoidCallback function;
+  final VoidCallback function;
   @override
   Widget build(BuildContext context) {
     return TextButton(

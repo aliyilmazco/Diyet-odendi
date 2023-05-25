@@ -1,7 +1,5 @@
 import 'package:d/core/constant/color_constant.dart';
 import 'package:d/product/router/router_constant.dart';
-import 'package:d/view/splash/splashScreen/view/splash_screen_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:flutter_svg/svg.dart';
@@ -82,10 +80,10 @@ class _SliderViewState extends State<SliderView> {
           alignment: Alignment.center,
           width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const <Widget>[
+            children: <Widget>[
               SizedBox(
                 height: 480,
               ),
@@ -117,10 +115,10 @@ class _SliderViewState extends State<SliderView> {
           alignment: Alignment.center,
           width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const <Widget>[
+            children: <Widget>[
               SizedBox(
                 height: 480,
               ),
@@ -152,10 +150,10 @@ class _SliderViewState extends State<SliderView> {
           alignment: Alignment.center,
           width: MediaQuery.of(context).size.width,
           padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: const <Widget>[
+            children: <Widget>[
               SizedBox(
                 height: 480,
               ),
