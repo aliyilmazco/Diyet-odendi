@@ -131,7 +131,7 @@ class AppRouter {
     redirect: (context, state) {
       bool isAuthenticated = false;
       if (!isAuthenticated && state.subloc == '/') {
-        return state.namedLocation(RouteConstants.home);
+        return state.namedLocation(RouteConstants.splash);
       }
       return null;
     },
