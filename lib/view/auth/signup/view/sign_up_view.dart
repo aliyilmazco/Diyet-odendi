@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'package:d/core/base/view/base_view.dart';
+import 'package:d/product/router/router_constant.dart';
 import 'package:d/product/widget/login/login_textfield_widget.dart';
 import 'package:d/product/widget/login/login_title_widget.dart';
 import 'package:d/view/auth/signup/viewmodel/sign_up_viewmodel.dart';
@@ -25,129 +28,190 @@ class _SignUpViewState extends SignUpViewModel {
       builder: (context, width, height, appBar) {
         return Scaffold(
           resizeToAvoidBottomInset: false,
-          body: SingleChildScrollView(
-            child: Center(
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: height / 10,
+          body: isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.blue,
                   ),
-                  Stack(
-                    alignment: AlignmentDirectional.topCenter,
-                    children: [
-                      const LoginTitleWidget(
-                        smallText: 'DIYETISYENE',
-                        bigText: 'HOSGELDINIZ',
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: width / 6),
-                        child: SvgPicture.asset(
-                          'assets/svg/login.svg',
-                          width: width / 2,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  LoginTextfieldWidget(
-                    labelText: 'Tum Isim',
-                    hintText: "Isim Giriniz",
-                    showSuffix: false,
-                    controller: controller1,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  LoginTextfieldWidget(
-                    labelText: 'Email',
-                    hintText: "Email Giriniz",
-                    showSuffix: false,
-                    controller: controller2,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  LoginTextfieldWidget(
-                    labelText: 'Sifre',
-                    hintText: "Sifre Giriniz",
-                    showSuffix: true,
-                    controller: controller3,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  LoginTextfieldWidget(
-                    labelText: 'Sifre Onay',
-                    hintText: "Sifre Giriniz",
-                    showSuffix: true,
-                    controller: controller4,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        onTap: () {},
-                        child: Text(
-                          textAlign: TextAlign.end,
-                          "Sifremi Unuttum?",
-                          style: GoogleFonts.raleway(
-                            fontSize: 15,
-                            color: ColorConst.sliderTitle,
-                            fontWeight: FontWeight.w600,
+                )
+              : SingleChildScrollView(
+                  child: Center(
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: height / 10,
                           ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  LoginButtonWidget(
-                    width: width,
-                    height: height,
-                    text: "Kayit Ol",
-                    backgroundColor: ColorConst.sliderTitle,
-                    textColor: ColorConst.appBgColorWhite,
-                    borderColor: ColorConst.sliderTitle,
-                    function: () {
-                      context.pushReplacement("/welcome");
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  RichText(
-                    text: TextSpan(
-                      recognizer: TapGestureRecognizer()..onTap = () {},
-                      text: 'Zaten bir hesabin var mi? ',
-                      style: GoogleFonts.raleway(
-                        color: ColorConst.noAccountText,
-                        fontSize: 16,
-                      ),
-                      children: [
-                        TextSpan(
-                          recognizer: TapGestureRecognizer()..onTap = () {},
-                          text: ' Kayit Ol',
-                          style: GoogleFonts.raleway(
-                            color: ColorConst.sliderTitle,
-                            fontSize: 16,
+                          Stack(
+                            alignment: AlignmentDirectional.topCenter,
+                            children: [
+                              const LoginTitleWidget(
+                                smallText: 'DIYETISYENE',
+                                bigText: 'HOSGELDINIZ',
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: width / 6),
+                                child: SvgPicture.asset(
+                                  'assets/svg/login.svg',
+                                  width: width / 2,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          LoginTextfieldWidget(
+                            labelText: 'Tum Isim',
+                            hintText: "Isim Giriniz",
+                            showSuffix: false,
+                            controller: controller1,
+                            functionCallBack: (value) {
+                              setState(
+                                () {
+                                  fullName = value;
+                                  print(fullName);
+                                },
+                              );
+                            },
+                            validator: (value) {
+                              if (value!.isNotEmpty) {
+                                return null;
+                              } else {
+                                return "Lutfen isim giriniz!";
+                              }
+                            },
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          LoginTextfieldWidget(
+                            labelText: 'Email',
+                            hintText: "Email Giriniz",
+                            showSuffix: false,
+                            controller: controller2,
+                            functionCallBack: (value) {
+                              setState(
+                                () {
+                                  email = value;
+                                  print(email);
+                                },
+                              );
+                            },
+                            validator: (value) {
+                              return RegExp(
+                                          r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                                      .hasMatch(value!)
+                                  ? null
+                                  : "Dogru email giriniz!";
+                            },
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          LoginTextfieldWidget(
+                            labelText: 'Sifre',
+                            hintText: "Sifre Giriniz",
+                            showSuffix: true,
+                            controller: controller3,
+                            functionCallBack: (value) {
+                              setState(
+                                () {
+                                  password = value;
+                                  print(password);
+                                },
+                              );
+                            },
+                            validator: (value) {
+                              return value!.length > 6
+                                  ? null
+                                  : "6 Karakterden uzun sifre giriniz!";
+                            },
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          LoginTextfieldWidget(
+                            labelText: 'Sifre Onay',
+                            hintText: "Sifre Giriniz",
+                            showSuffix: true,
+                            controller: controller4,
+                            validator: (value) {
+                              return value! == password
+                                  ? null
+                                  : "Sifreler eslesmiyor";
+                            },
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              GestureDetector(
+                                onTap: () {},
+                                child: Text(
+                                  textAlign: TextAlign.end,
+                                  "Sifremi Unuttum?",
+                                  style: GoogleFonts.raleway(
+                                    fontSize: 15,
+                                    color: ColorConst.sliderTitle,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          LoginButtonWidget(
+                            width: width,
+                            height: height,
+                            text: "Kayit Ol",
+                            backgroundColor: ColorConst.sliderTitle,
+                            textColor: ColorConst.appBgColorWhite,
+                            borderColor: ColorConst.sliderTitle,
+                            function: () {
+                              register();
+                            },
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          RichText(
+                            text: TextSpan(
+                              recognizer: TapGestureRecognizer()..onTap = () {},
+                              text: 'Zaten bir hesabin var mi? ',
+                              style: GoogleFonts.raleway(
+                                color: ColorConst.noAccountText,
+                                fontSize: 16,
+                              ),
+                              children: [
+                                TextSpan(
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      context.pushReplacementNamed(
+                                          RouteConstants.signIn);
+                                    },
+                                  text: 'Giris Yap',
+                                  style: GoogleFonts.raleway(
+                                    color: ColorConst.sliderTitle,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
+                ),
         );
       },
     );

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "917892931213",
+    "firebase_url": "https://diyet-dcb4e-default-rtdb.firebaseio.com",
+    "project_id": "diyet-dcb4e",
+    "storage_bucket": "diyet-dcb4e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917892931213:android:aeeab426dd1c5663a80cc4",
+        "android_client_info": {
+          "package_name": "com.example.d"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917892931213-5dqjsr1op4dngsa9ovmos1iqrpmep929.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.d",
+            "certificate_hash": "1b994818206ccf8d7d07c260794f4a4b046be7a0"
+          }
+        },
+        {
+          "client_id": "917892931213-t011jqclf9bm3054g4grqgnbac7ounv2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBs2vKeXaZswRvgKXG_ML8GGvf_3E-y8fQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917892931213-t011jqclf9bm3054g4grqgnbac7ounv2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

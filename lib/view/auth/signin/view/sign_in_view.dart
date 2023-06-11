@@ -1,9 +1,11 @@
 import 'package:d/core/base/view/base_view.dart';
+import 'package:d/product/router/router_constant.dart';
 import 'package:d/product/widget/login/login_title_widget.dart';
 import 'package:d/view/auth/signin/viewmodel/sign_in_viewmodel.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/constant/color_constant.dart';
 import '../../../../product/widget/login/login_button_widget.dart';
@@ -113,7 +115,11 @@ class _SignInViewState extends SignInViewModel {
                       ),
                       children: [
                         TextSpan(
-                          recognizer: TapGestureRecognizer()..onTap = () {},
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              context
+                                  .pushReplacementNamed(RouteConstants.singUp);
+                            },
                           text: ' Kayit Ol',
                           style: GoogleFonts.raleway(
                             color: ColorConst.sliderTitle,

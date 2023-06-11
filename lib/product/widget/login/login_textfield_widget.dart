@@ -11,12 +11,17 @@ class LoginTextfieldWidget extends StatefulWidget {
     this.hintText,
     this.controller,
     this.showSuffix,
+    this.functionCallBack,
+    this.validator,
   });
   final String? labelText;
   final String? hintText;
   bool? showSuffix;
   bool showPassword = false;
   final TextEditingController? controller;
+  Function(String)? functionCallBack;
+  String? Function(String?)? validator;
+
   @override
   State<LoginTextfieldWidget> createState() => _LoginTextfieldWidgetState();
 }
@@ -26,7 +31,7 @@ class _LoginTextfieldWidgetState extends State<LoginTextfieldWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: TextField(
+      child: TextFormField(
         key: widget.key,
         controller: widget.controller,
         obscureText: widget.showPassword,
@@ -53,6 +58,8 @@ class _LoginTextfieldWidgetState extends State<LoginTextfieldWidget> {
               : null,
           hintText: widget.hintText,
         ),
+        onChanged: widget.functionCallBack,
+        validator: widget.validator,
       ),
     );
   }
