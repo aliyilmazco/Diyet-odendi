@@ -1,9 +1,12 @@
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
 import 'package:d/product/widget/home/home_card_widget.dart';
+import 'package:d/view/auth/signup/model/sign_up_model.dart';
+
 import 'package:d/view/home/homePage/viewmodel/home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -36,7 +39,8 @@ class _HomeViewState extends HomeViewModel {
                       ),
                     ),
                     Text(
-                      'Serdem',
+                      Provider.of<UserModelProvider>(context, listen: false)
+                          .fullName,
                       style: GoogleFonts.glory(
                         color: ColorConst.createPageText,
                         fontSize: 32,

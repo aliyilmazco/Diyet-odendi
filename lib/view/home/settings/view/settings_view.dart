@@ -291,6 +291,47 @@ class _SettingsViewState extends SettingsViewModel {
               ),
             ],
           ),
+          const SizedBox(
+            height: 20,
+          ),
+          GestureDetector(
+            onTap: () {
+              logOut();
+            },
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 35,
+                ),
+                const Icon(
+                  Icons.login,
+                  color: ColorConst.profileText,
+                ),
+                const SizedBox(
+                  width: 35,
+                ),
+                Text(
+                  'Cikis Yap',
+                  style: GoogleFonts.raleway(
+                    color: ColorConst.profileText,
+                    fontSize: 17,
+                    fontWeight: FontWeight.normal,
+                  ),
+                ),
+                const Spacer(
+                  flex: 2,
+                ),
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  size: 15,
+                  color: ColorConst.profileText,
+                ),
+                const SizedBox(
+                  width: 35,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

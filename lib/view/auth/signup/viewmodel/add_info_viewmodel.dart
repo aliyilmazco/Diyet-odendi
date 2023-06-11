@@ -1,10 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:d/product/helper/helper_function.dart';
 import 'package:d/product/service/auth_service.dart';
 import 'package:d/product/service/database_service.dart';
+import 'package:d/view/auth/signup/model/sign_up_model.dart';
 import 'package:d/view/auth/signup/view/add_info_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 abstract class AddInfoViewModel extends State<AddInfoView> {
   @override
@@ -27,9 +31,9 @@ abstract class AddInfoViewModel extends State<AddInfoView> {
     }
   }
 
-  String email = "";
-  String password = '';
-  String fullName = '';
+  String email = "empty email";
+  String password = 'empty password';
+  String fullName = 'empty fullName';
   bool isLoading = false;
 
   AuthService authService = AuthService();
@@ -63,6 +67,30 @@ abstract class AddInfoViewModel extends State<AddInfoView> {
     await HelperFunctions.saveUserLoggedInStatus(true);
     await HelperFunctions.saveUserEmail(email);
     await HelperFunctions.saveUserName(fullName);
+    await HelperFunctions.saveUserHeight(boy);
+    await HelperFunctions.saveUserTargetWeight(targetWeight);
+    await HelperFunctions.saveUserWeight(kilo);
+    await HelperFunctions.saveUserAge(yas);
+    await HelperFunctions.saveUserDietation('');
+    await HelperFunctions.saveUserDisease('');
+    await HelperFunctions.saveUserGender(genderCheck(isSelectedGender));
+    await HelperFunctions.saveUserNote('');
+    await HelperFunctions.saveUserPicture('');
+
+    Provider.of<UserModelProvider>(context, listen: false).setUser(
+      age: yas,
+      dietationId: '',
+      diseases: '',
+      email: email,
+      fullName: fullName,
+      gender: genderCheck(isSelectedGender),
+      height: boy,
+      note: '',
+      profilePic: '',
+      targetWeight: targetWeight,
+      uid: uid,
+      weight: kilo,
+    );
 
     context.pushReplacement('/main');
   }
@@ -71,11 +99,13 @@ abstract class AddInfoViewModel extends State<AddInfoView> {
     await HelperFunctions.getUserEmailSharedPreference().then((value) {
       setState(() {
         email = value;
+        print('Email: $email');
       });
     });
     await HelperFunctions.getUserNameSharedPreference().then((value) {
       setState(() {
         fullName = value;
+        print('Full Name: $fullName');
       });
     });
   }

@@ -1,10 +1,12 @@
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
+import 'package:d/view/auth/signup/model/sign_up_model.dart';
 import 'package:d/view/home/profile/model/chart_data.dart';
 import 'package:d/view/home/profile/viewmodel/profile_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ProfileView extends StatefulWidget {
@@ -44,12 +46,13 @@ class _ProfileViewState extends ProfileViewModel {
                     ),
                   ),
                   Positioned(
-                    right: width / 2.7,
+                    right: width / 2.5,
                     top: height / 5,
                     child: Column(
                       children: [
                         Text(
-                          'SERDEM',
+                          Provider.of<UserModelProvider>(context, listen: false)
+                              .fullName,
                           style: GoogleFonts.raleway(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
@@ -94,7 +97,12 @@ class _ProfileViewState extends ProfileViewModel {
                                   height: 10,
                                 ),
                                 Text(
-                                  '53',
+                                  double.parse(Provider.of<UserModelProvider>(
+                                              context,
+                                              listen: false)
+                                          .targetWeight)
+                                      .toInt()
+                                      .toString(),
                                   style: GoogleFonts.raleway(
                                     color: ColorConst.createPageText,
                                     fontSize: 14,

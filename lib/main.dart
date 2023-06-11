@@ -1,12 +1,35 @@
 // ignore_for_file: unnecessary_late
 import 'package:d/product/router/router.dart';
+import 'package:d/view/auth/signup/model/sign_up_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<UserModelProvider>(
+          create: (BuildContext context) => UserModelProvider(
+              age: '',
+              email: '',
+              fullName: '',
+              uid: '',
+              dietationId: '',
+              diseases: '',
+              gender: '',
+              height: '',
+              note: '',
+              profilePic: '',
+              targetWeight: '',
+              weight: ''),
+        ),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 late final appRoutes = AppRouter();
