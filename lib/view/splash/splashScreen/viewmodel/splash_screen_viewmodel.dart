@@ -6,19 +6,24 @@ import '../view/splash_screen_view.dart';
 
 abstract class SplashScreenViewModel extends State<SplashScreenView> {
   bool isLoggedIn = false;
+  bool isLoaded = false;
+
   @override
   void initState() {
     super.initState();
     getUserLoggedInStatus();
-    if (isLoggedIn) {
-      Future.delayed(const Duration(seconds: 3), () async {
-        context.pushReplacement('/main');
-      });
-    } else {
-      Future.delayed(const Duration(seconds: 3), () async {
-        context.pushReplacement('/slider');
-      });
-    }
+
+    Future.delayed(const Duration(seconds: 5), () async {
+      if (isLoggedIn) {
+        Future.delayed(const Duration(seconds: 10), () async {
+          context.pushReplacement('/main');
+        });
+      } else {
+        Future.delayed(const Duration(seconds: 3), () async {
+          context.pushReplacement('/login');
+        });
+      }
+    });
   }
 
   getUserLoggedInStatus() async {
@@ -28,6 +33,7 @@ abstract class SplashScreenViewModel extends State<SplashScreenView> {
           isLoggedIn = value;
         });
       }
+      isLoaded = true;
     });
   }
 }

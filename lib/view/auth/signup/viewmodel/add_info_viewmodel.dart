@@ -60,6 +60,9 @@ abstract class AddInfoViewModel extends State<AddInfoView> {
     setState(() {
       isLoading = false;
     });
+    await HelperFunctions.saveUserLoggedInStatus(true);
+    await HelperFunctions.saveUserEmail(email);
+    await HelperFunctions.saveUserName(fullName);
 
     context.pushReplacement('/main');
   }
