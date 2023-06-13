@@ -65,7 +65,7 @@ class AuthService {
       Provider.of<UserModelProvider>(
         context,
         listen: false,
-      ).dispose();
+      ).resetUser();
 
       return await firebaseAuth.signOut();
     } catch (e) {

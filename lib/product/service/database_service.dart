@@ -13,6 +13,9 @@ class DatabaseService {
   final CollectionReference groupCollection =
       FirebaseFirestore.instance.collection("groups");
 
+  final CollectionReference foodsCollection =
+      FirebaseFirestore.instance.collection('foods');
+
   Future savingUserData(
     String fullName,
     String email,
@@ -79,6 +82,12 @@ class DatabaseService {
   Future gettingUserData(String email) async {
     QuerySnapshot snapshot =
         await userCollection.where("email", isEqualTo: email).get();
+    return snapshot;
+  }
+
+  Future getFoods() async {
+    QuerySnapshot snapshot =
+        await FirebaseFirestore.instance.collection('foods').get();
     return snapshot;
   }
 

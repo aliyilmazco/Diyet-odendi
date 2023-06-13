@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:d/product/helper/helper_function.dart';
 import 'package:flutter/material.dart';
 
@@ -72,5 +74,21 @@ class UserModelProvider with ChangeNotifier {
     }
 
     notifyListeners();
+  }
+
+  resetUser() {
+    age = "";
+    email = "";
+    fullName = "";
+    uid = "";
+    dietationId = "";
+    diseases = '';
+    weight = '';
+    targetWeight = '';
+    profilePic = '';
+    note = '';
+    uid = '';
+    height = '';
+    print("basarili temizleme");
   }
 }

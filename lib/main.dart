@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_late
 import 'package:d/product/router/router.dart';
 import 'package:d/view/auth/signup/model/sign_up_model.dart';
+import 'package:d/view/home/create/eating/model/eating_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +12,14 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider<FoodsModel>(
+          create: (BuildContext context) => FoodsModel(
+            foodsCalorie: '',
+            foodsName: '',
+            foodsTitles: [],
+            object: [],
+          ),
+        ),
         ChangeNotifierProvider<UserModelProvider>(
           create: (BuildContext context) => UserModelProvider(
               age: '',

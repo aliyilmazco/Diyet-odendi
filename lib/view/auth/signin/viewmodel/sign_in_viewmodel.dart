@@ -6,6 +6,7 @@ import 'package:d/product/router/router_constant.dart';
 import 'package:d/product/service/database_service.dart';
 import 'package:d/product/widget/login/snackbar_widget.dart';
 import 'package:d/view/auth/signup/model/sign_up_model.dart';
+import 'package:d/view/home/create/eating/model/eating_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -48,6 +49,17 @@ abstract class SignInViewModel extends State<SignInView> {
           QuerySnapshot snapshot =
               await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
                   .gettingUserData(email);
+          print("=========================================================");
+          print("=========================================================");
+          QuerySnapshot snapshot2 =
+              await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
+                  .getFoods();
+          Provider.of<FoodsModel>(context, listen: false)
+              .setFoods(object: snapshot2.docs);
+          print("=========================================================");
+          print("=========================================================");
+
+          print(Provider.of<FoodsModel>(context, listen: false).foodsTitles);
           await HelperFunctions.saveUserLoggedInStatus(true);
           await HelperFunctions.saveUserEmail(email);
           await HelperFunctions.saveUserName(snapshot.docs[0]['fullName']);
