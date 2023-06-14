@@ -1,9 +1,12 @@
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
 import 'package:d/product/widget/create/dropdown_widget.dart';
+import 'package:d/product/widget/create/eating_widget.dart';
+import 'package:d/view/home/create/eating/model/eating_model.dart';
 import 'package:d/view/home/create/eating/viewmodel/eating_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class EatingView extends StatefulWidget {
   const EatingView({super.key});
@@ -50,6 +53,7 @@ class _EatingViewState extends EatingViewModel {
                         height: 30,
                       ),
                       DropDownWidget(
+                        selectedTitle: selectedValue,
                         selectedValue: selectedValue,
                         width: width,
                         items: dropdownItems,
@@ -58,7 +62,10 @@ class _EatingViewState extends EatingViewModel {
                         height: 30,
                       ),
                       DropDownWidget(
-                        selectedValue: selectedValue,
+                        selectedTitle: selectedValue,
+                        selectedValue:
+                            Provider.of<FoodsModel>(context, listen: false)
+                                .selectedValue2,
                         width: width,
                         items: dropdownItems2,
                       ),
@@ -89,7 +96,10 @@ class _EatingViewState extends EatingViewModel {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Provider.of<FoodsModel>(context, listen: false)
+                                  .counterDecrease();
+                            },
                             icon: const Icon(
                               Icons.remove,
                             ),
@@ -100,7 +110,7 @@ class _EatingViewState extends EatingViewModel {
                           ),
                           Center(
                             child: Text(
-                              '1',
+                              Provider.of<FoodsModel>(context).count.toString(),
                               style: GoogleFonts.raleway(
                                 color: ColorConst.createPageText,
                                 fontSize: 20,
@@ -109,7 +119,10 @@ class _EatingViewState extends EatingViewModel {
                             ),
                           ),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Provider.of<FoodsModel>(context, listen: false)
+                                  .counterIncrease();
+                            },
                             icon: const Icon(
                               Icons.add,
                             ),
@@ -174,94 +187,17 @@ class _EatingViewState extends EatingViewModel {
                       ),
                     ],
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            'Kahvalti',
-                            style: GoogleFonts.raleway(
-                              color: ColorConst.createPageText,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            '1',
-                            style: GoogleFonts.raleway(
-                              color: ColorConst.createPageText,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            'Ogle',
-                            style: GoogleFonts.raleway(
-                              color: ColorConst.createPageText,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            '1',
-                            style: GoogleFonts.raleway(
-                              color: ColorConst.createPageText,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            'Aksam',
-                            style: GoogleFonts.raleway(
-                              color: ColorConst.createPageText,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            '1',
-                            style: GoogleFonts.raleway(
-                              color: ColorConst.createPageText,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            'Ara Ogun',
-                            style: GoogleFonts.raleway(
-                              color: ColorConst.createPageText,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            '1',
-                            style: GoogleFonts.raleway(
-                              color: ColorConst.createPageText,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        EatingRowWidget(
+                            title: 'Test',
+                            value: Provider.of<FoodsModel>(context)
+                                .selectedValue2),
+                        EatingRowWidget(title: 'Value1', value: '100'),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(

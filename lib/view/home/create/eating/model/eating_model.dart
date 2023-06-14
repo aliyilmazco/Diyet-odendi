@@ -6,7 +6,16 @@ class FoodsModel extends ChangeNotifier {
   String foodsName;
   String foodsCalorie;
   List<QueryDocumentSnapshot<Object?>> object;
+  int count = 0;
+  String selectedValue;
+  String selectedValue2;
+  List<Text> menuItems1;
+  List<Text> menuItems2;
   FoodsModel({
+    required this.menuItems1,
+    required this.menuItems2,
+    required this.selectedValue,
+    required this.selectedValue2,
     required this.foodsCalorie,
     required this.foodsName,
     required this.foodsTitles,
@@ -36,6 +45,22 @@ class FoodsModel extends ChangeNotifier {
 
   foodsCalorieFunction() {
     foodsCalorie = object[0].get('calorie');
+    notifyListeners();
+  }
+
+  counterIncrease() {
+    if (count < 51) {
+      count++;
+    }
+
+    notifyListeners();
+  }
+
+  counterDecrease() {
+    if (count > 0) {
+      count--;
+    }
+
     notifyListeners();
   }
 }

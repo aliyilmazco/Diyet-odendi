@@ -97,13 +97,20 @@ class _ProfileViewState extends ProfileViewModel {
                                   height: 10,
                                 ),
                                 Text(
-                                  double.parse(Provider.of<UserModelProvider>(
-                                                  context,
-                                                  listen: false)
-                                              .targetWeight)
+                                  double.tryParse(
+                                              Provider.of<UserModelProvider>(
+                                                      context,
+                                                      listen: false)
+                                                  .targetWeight) !=
+                                          null
+                                      ? double.tryParse(
+                                              Provider.of<UserModelProvider>(
+                                                      context,
+                                                      listen: false)
+                                                  .targetWeight)!
                                           .toInt()
-                                          .toString() ??
-                                      '100',
+                                          .toString()
+                                      : 'undefined',
                                   style: GoogleFonts.raleway(
                                     color: ColorConst.createPageText,
                                     fontSize: 14,

@@ -8,9 +8,11 @@ class DropDownWidget extends StatefulWidget {
       {super.key,
       required this.selectedValue,
       required this.width,
+      required this.selectedTitle,
       required,
       required this.items});
   final String selectedValue;
+  final String selectedTitle;
   final double width;
   final List<DropdownMenuItem<String>>? items;
   @override
