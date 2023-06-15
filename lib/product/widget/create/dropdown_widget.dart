@@ -12,11 +12,13 @@ class DropDownWidget extends StatefulWidget {
       required this.width,
       required this.selectedTitle,
       required,
+      required this.isItFirst,
       required this.items});
   final String selectedValue;
   final String selectedTitle;
   final double width;
   final List<DropdownMenuItem<String>> items;
+  final bool isItFirst;
   @override
   State<DropDownWidget> createState() => _DropDownWidgetState(selectedValue);
 }
@@ -56,10 +58,18 @@ class _DropDownWidgetState extends State<DropDownWidget> {
         onChanged: (newValue) {
           setState(() {
             selectedValue = newValue.toString();
-            Provider.of<FoodsModel>(context, listen: false).selectedValue =
-                selectedValue;
-            Provider.of<FoodsModel>(context, listen: false).menuItems1 =
-                widget.items;
+
+            if (widget.isItFirst) {
+              Provider.of<FoodsModel>(context, listen: false).selectedValue =
+                  selectedValue;
+              Provider.of<FoodsModel>(context, listen: false).menuItems1 =
+                  widget.items;
+            } else {
+              Provider.of<FoodsModel>(context, listen: false).selectedValue2 =
+                  selectedValue;
+              Provider.of<FoodsModel>(context, listen: false).menuItems2 =
+                  widget.items;
+            }
           });
         },
         value: selectedValue,

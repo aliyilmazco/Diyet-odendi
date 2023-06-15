@@ -12,7 +12,7 @@ class FoodsModel extends ChangeNotifier {
   String selectedValue;
   String selectedValue2;
   List<DropdownMenuItem<String>>? menuItems1;
-  List<Text> menuItems2;
+  List<DropdownMenuItem<String>>? menuItems2;
   List<Widget> widgetList = [];
   FoodsModel({
     required this.menuItems1,
