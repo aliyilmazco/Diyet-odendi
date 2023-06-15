@@ -53,8 +53,10 @@ class _EatingViewState extends EatingViewModel {
                         height: 30,
                       ),
                       DropDownWidget(
-                        selectedTitle: selectedValue,
-                        selectedValue: selectedValue,
+                        selectedTitle:
+                            Provider.of<FoodsModel>(context).selectedValue,
+                        selectedValue:
+                            Provider.of<FoodsModel>(context).selectedValue,
                         width: width,
                         items: dropdownItems,
                       ),
@@ -135,7 +137,17 @@ class _EatingViewState extends EatingViewModel {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Provider.of<FoodsModel>(context, listen: false)
+                            .addToWidgetList(EatingRowWidget(
+                          title: Provider.of<FoodsModel>(context, listen: false)
+                              .selectedValue
+                              .toString(),
+                          value: Provider.of<FoodsModel>(context, listen: false)
+                              .selectedValue
+                              .toString(),
+                        ));
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorConst.createButton,
                         shadowColor: Colors.black.withOpacity(0.7),
@@ -191,11 +203,12 @@ class _EatingViewState extends EatingViewModel {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        EatingRowWidget(
-                            title: 'Test',
-                            value: Provider.of<FoodsModel>(context)
-                                .selectedValue2),
-                        EatingRowWidget(title: 'Value1', value: '100'),
+                        Provider.of<FoodsModel>(context).widgetList.length == 0
+                            ? const Text('Liste bos')
+                            : Column(
+                                children:
+                                    Provider.of<FoodsModel>(context).widgetList,
+                              ),
                       ],
                     ),
                   ),

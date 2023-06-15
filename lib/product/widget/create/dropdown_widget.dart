@@ -1,7 +1,9 @@
 // ignore_for_file: no_logic_in_create_state
 
 import 'package:d/core/constant/color_constant.dart';
+import 'package:d/view/home/create/eating/model/eating_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DropDownWidget extends StatefulWidget {
   const DropDownWidget(
@@ -54,6 +56,8 @@ class _DropDownWidgetState extends State<DropDownWidget> {
         onChanged: (newValue) {
           setState(() {
             selectedValue = newValue.toString();
+            Provider.of<FoodsModel>(context, listen: false).selectedValue =
+                selectedValue;
           });
         },
         value: selectedValue,

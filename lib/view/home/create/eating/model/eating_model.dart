@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +13,7 @@ class FoodsModel extends ChangeNotifier {
   String selectedValue2;
   List<Text> menuItems1;
   List<Text> menuItems2;
+  List<Widget> widgetList = [];
   FoodsModel({
     required this.menuItems1,
     required this.menuItems2,
@@ -62,5 +65,16 @@ class FoodsModel extends ChangeNotifier {
     }
 
     notifyListeners();
+  }
+
+  void addToWidgetList(Widget widget) {
+    widgetList.add(widget);
+    notifyListeners();
+  }
+
+  void getWidgetList(List<Widget> widgets) {
+    for (var widget in widgets) {
+      print(widget);
+    }
   }
 }
