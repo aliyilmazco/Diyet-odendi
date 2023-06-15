@@ -161,6 +161,11 @@ class _EatingViewState extends EatingViewModel {
                               .selectedValue2
                               .toString(),
                         ));
+
+                        Provider.of<FoodsModel>(context, listen: false).count =
+                            1;
+                        Provider.of<FoodsModel>(context, listen: false)
+                            .addCalculateCalorie();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorConst.createButton,
@@ -181,6 +186,8 @@ class _EatingViewState extends EatingViewModel {
                       onPressed: () {
                         Provider.of<FoodsModel>(context, listen: false)
                             .deleteWidgetList();
+                        Provider.of<FoodsModel>(context, listen: false)
+                            .deleteCalculateCalorie();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorConst.createButton,
@@ -220,7 +227,7 @@ class _EatingViewState extends EatingViewModel {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Provider.of<FoodsModel>(context).widgetList.length == 0
+                        Provider.of<FoodsModel>(context).widgetList.isEmpty
                             ? const Text('Liste bos')
                             : Column(
                                 children:
@@ -234,7 +241,7 @@ class _EatingViewState extends EatingViewModel {
                   height: 30,
                 ),
                 Text(
-                  'Toplam Kalori: 1000',
+                  "Toplam Kalori : ${Provider.of<FoodsModel>(context).total.toString()}",
                   style: GoogleFonts.raleway(
                     color: ColorConst.createPageText,
                     fontSize: 20,

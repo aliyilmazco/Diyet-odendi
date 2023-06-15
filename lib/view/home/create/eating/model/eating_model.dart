@@ -14,6 +14,7 @@ class FoodsModel extends ChangeNotifier {
   List<DropdownMenuItem<String>>? menuItems1;
   List<DropdownMenuItem<String>>? menuItems2;
   List<Widget> widgetList = [];
+  int total = 0;
   FoodsModel({
     required this.menuItems1,
     required this.menuItems2,
@@ -83,6 +84,18 @@ class FoodsModel extends ChangeNotifier {
 
   void deleteWidgetList() {
     widgetList = [];
+    notifyListeners();
+  }
+
+  addCalculateCalorie() {
+    for (int i = 0; i < count; i++) {
+      total += int.parse(selectedValue2);
+    }
+    notifyListeners();
+  }
+
+  deleteCalculateCalorie() {
+    total = 0;
     notifyListeners();
   }
 }
