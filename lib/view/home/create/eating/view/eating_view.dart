@@ -7,6 +7,7 @@ import 'package:d/view/home/create/eating/viewmodel/eating_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:collection/collection.dart';
 
 class EatingView extends StatefulWidget {
   const EatingView({super.key});
@@ -138,11 +139,22 @@ class _EatingViewState extends EatingViewModel {
                     ),
                     ElevatedButton(
                       onPressed: () {
+                        final selectedItem = Provider.of<FoodsModel>(context,
+                                listen: false)
+                            .menuItems1!
+                            .firstWhereOrNull((element) =>
+                                element.value ==
+                                Provider.of<FoodsModel>(context, listen: false)
+                                    .selectedValue);
+                        String? text;
+                        if (selectedItem!.child is Text) {
+                          final textWidget = selectedItem.child as Text;
+                          text = textWidget.data.toString();
+                        }
+
                         Provider.of<FoodsModel>(context, listen: false)
                             .addToWidgetList(EatingRowWidget(
-                          title: Provider.of<FoodsModel>(context, listen: false)
-                              .selectedValue
-                              .toString(),
+                          title: text ?? "empty",
                           value: Provider.of<FoodsModel>(context, listen: false)
                               .selectedValue
                               .toString(),
@@ -164,7 +176,10 @@ class _EatingViewState extends EatingViewModel {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Provider.of<FoodsModel>(context, listen: false)
+                            .deleteWidgetList();
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorConst.createButton,
                         shadowColor: Colors.black.withOpacity(0.7),
@@ -173,7 +188,7 @@ class _EatingViewState extends EatingViewModel {
                         ),
                       ),
                       child: Text(
-                        'Cikar',
+                        'Temizle',
                         style: GoogleFonts.raleway(
                           color: ColorConst.createPageText,
                           fontWeight: FontWeight.bold,

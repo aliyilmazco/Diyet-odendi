@@ -16,7 +16,7 @@ class DropDownWidget extends StatefulWidget {
   final String selectedValue;
   final String selectedTitle;
   final double width;
-  final List<DropdownMenuItem<String>>? items;
+  final List<DropdownMenuItem<String>> items;
   @override
   State<DropDownWidget> createState() => _DropDownWidgetState(selectedValue);
 }
@@ -58,6 +58,8 @@ class _DropDownWidgetState extends State<DropDownWidget> {
             selectedValue = newValue.toString();
             Provider.of<FoodsModel>(context, listen: false).selectedValue =
                 selectedValue;
+            Provider.of<FoodsModel>(context, listen: false).menuItems1 =
+                widget.items;
           });
         },
         value: selectedValue,

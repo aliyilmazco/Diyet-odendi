@@ -8,10 +8,10 @@ class FoodsModel extends ChangeNotifier {
   String foodsName;
   String foodsCalorie;
   List<QueryDocumentSnapshot<Object?>> object;
-  int count = 0;
+  int count = 1;
   String selectedValue;
   String selectedValue2;
-  List<Text> menuItems1;
+  List<DropdownMenuItem<String>>? menuItems1;
   List<Text> menuItems2;
   List<Widget> widgetList = [];
   FoodsModel({
@@ -68,7 +68,10 @@ class FoodsModel extends ChangeNotifier {
   }
 
   void addToWidgetList(Widget widget) {
-    widgetList.add(widget);
+    for (int i = 0; i < count; i++) {
+      widgetList.add(widget);
+    }
+
     notifyListeners();
   }
 
@@ -76,5 +79,10 @@ class FoodsModel extends ChangeNotifier {
     for (var widget in widgets) {
       print(widget);
     }
+  }
+
+  void deleteWidgetList() {
+    widgetList = [];
+    notifyListeners();
   }
 }
