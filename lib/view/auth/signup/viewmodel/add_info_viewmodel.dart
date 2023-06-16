@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, avoid_print
 
 import 'package:d/product/helper/helper_function.dart';
 import 'package:d/product/service/auth_service.dart';

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:d/product/helper/helper_function.dart';
 import 'package:d/view/auth/signup/model/sign_up_model.dart';
 import 'package:flutter/material.dart';

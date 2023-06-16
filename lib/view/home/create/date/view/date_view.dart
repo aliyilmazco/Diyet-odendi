@@ -1,11 +1,17 @@
+// ignore_for_file: avoid_print, use_build_context_synchronously
+
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
 import 'package:d/product/router/router_constant.dart';
+import 'package:d/product/service/database_service.dart';
 import 'package:d/product/widget/create/date_button_widget.dart';
 import 'package:d/view/home/create/date/viewmodel/date_viewmodel.dart';
+import 'package:d/view/home/create/eating/model/eating_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class DateView extends StatefulWidget {
   const DateView({super.key});
@@ -67,8 +73,24 @@ class _DateViewState extends DateViewModel {
                 height: height,
                 title: 'Book an appointment',
                 text: 'Available on 12th May 2021',
-                function: () {
+                function: () async {
                   showSheet(width, height);
+                  print(
+                      "=========================================================1");
+                  print(
+                      "=========================================================1.2");
+                  List<Map<String, dynamic>> listFoods = await DatabaseService(
+                          uid: FirebaseAuth.instance.currentUser!.uid)
+                      .getFoods2();
+                  Provider.of<FoodsModel>(context, listen: false)
+                      .getFoods(listFoods: listFoods);
+                  print(
+                      "=========================================================2.1");
+                  print(
+                      "=========================================================2.2");
+
+                  print(Provider.of<FoodsModel>(context, listen: false)
+                      .foodsTitles);
                 },
                 icon: Icons.calendar_today,
               ),

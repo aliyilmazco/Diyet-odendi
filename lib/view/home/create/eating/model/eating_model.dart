@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
 
 class FoodsModel extends ChangeNotifier {
@@ -15,6 +16,7 @@ class FoodsModel extends ChangeNotifier {
   List<DropdownMenuItem<String>>? menuItems2;
   List<Widget> widgetList = [];
   int total = 0;
+  List<Map<String, dynamic>> object2;
   FoodsModel({
     required this.menuItems1,
     required this.menuItems2,
@@ -24,7 +26,32 @@ class FoodsModel extends ChangeNotifier {
     required this.foodsName,
     required this.foodsTitles,
     required this.object,
+    required this.object2,
   });
+
+  getFoods({
+    required List<Map<String, dynamic>> listFoods,
+  }) {
+    object2 = listFoods;
+
+    Map<String, dynamic>? dairiesMap;
+
+    for (Map<String, dynamic> data in listFoods) {
+      if (data.containsKey('dairies')) {
+        dairiesMap = data['dairies'];
+
+        break;
+      }
+    }
+    if (dairiesMap != null) {
+      List<dynamic> values = dairiesMap.values.toList();
+      print('Values: $values');
+    }
+
+    print('dairies map: $dairiesMap');
+
+    notifyListeners();
+  }
 
   Future<void> setFoods({
     required List<QueryDocumentSnapshot<Object?>> object,

@@ -82,12 +82,60 @@ class DatabaseService {
   Future gettingUserData(String email) async {
     QuerySnapshot snapshot =
         await userCollection.where("email", isEqualTo: email).get();
+
     return snapshot;
   }
 
+  Future getFoods2() async {
+    QuerySnapshot snapshot = await FirebaseFirestore.instance
+        .collection('foods')
+        .where("name", isEqualTo: 'breakfast')
+        .get();
+    List<QueryDocumentSnapshot> documents = snapshot.docs;
+    List<Map<String, dynamic>> dataList = [];
+    for (QueryDocumentSnapshot document in documents) {
+      Object? rawData = document.data();
+      if (rawData is Map<String, dynamic>) {
+        Map<String, dynamic> data = rawData;
+        dataList.add(data);
+      }
+    }
+    print('Database service get : foods/breakfast datalist: $dataList[0]');
+
+    return dataList;
+  }
+
   Future getFoods() async {
-    QuerySnapshot snapshot =
-        await FirebaseFirestore.instance.collection('foods').get();
+    QuerySnapshot snapshot = await FirebaseFirestore.instance
+        .collection('foods')
+        .where("name", isEqualTo: 'breakfast')
+        .get();
+    List<QueryDocumentSnapshot> documents = snapshot.docs;
+    List<Map<String, dynamic>> dataList = [];
+    for (QueryDocumentSnapshot document in documents) {
+      Object? rawData = document.data();
+      if (rawData is Map<String, dynamic>) {
+        Map<String, dynamic> data = rawData;
+        dataList.add(data);
+      }
+    }
+    print(dataList[0]);
+    Map<String, dynamic>? dairiesMap;
+
+    for (Map<String, dynamic> data in dataList) {
+      if (data.containsKey('dairies')) {
+        dairiesMap = data['dairies'];
+
+        break;
+      }
+    }
+    if (dairiesMap != null) {
+      List<dynamic> values = dairiesMap.values.toList();
+      print('Values: $values');
+    }
+
+    print('dairies map: $dairiesMap');
+
     return snapshot;
   }
 

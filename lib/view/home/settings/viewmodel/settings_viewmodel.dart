@@ -11,6 +11,8 @@ abstract class SettingsViewModel extends State<SettingsView> {
 
   logOut() async {
     await authService.signOut(context);
+    context.pop();
+
     context.pushReplacementNamed(RouteConstants.login);
   }
 }

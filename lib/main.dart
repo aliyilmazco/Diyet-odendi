@@ -22,6 +22,7 @@ Future<void> main() async {
             foodsName: '',
             foodsTitles: [],
             object: [],
+            object2: [],
           ),
         ),
         ChangeNotifierProvider<UserModelProvider>(

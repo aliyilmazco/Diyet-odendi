@@ -31,7 +31,7 @@ dependencies:
   calendar_date_picker2: ^0.5.2
   calendar_timeline: ^1.1.2
   cloud_firestore: ^4.8.0
-  collection: ^1.17.2
+  collection: ^1.17.1
   cupertino_icons: ^1.0.2
   dot_navigation_bar: ^1.0.1+4
   easy_localization: ^3.0.1
