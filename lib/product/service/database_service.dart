@@ -86,10 +86,10 @@ class DatabaseService {
     return snapshot;
   }
 
-  Future getFoods2() async {
+  Future getFoods2(String title) async {
     QuerySnapshot snapshot = await FirebaseFirestore.instance
         .collection('foods')
-        .where("name", isEqualTo: 'breakfast')
+        .where("name", isEqualTo: title)
         .get();
     List<QueryDocumentSnapshot> documents = snapshot.docs;
     List<Map<String, dynamic>> dataList = [];
@@ -103,40 +103,6 @@ class DatabaseService {
     print('Database service get : foods/breakfast datalist: $dataList[0]');
 
     return dataList;
-  }
-
-  Future getFoods() async {
-    QuerySnapshot snapshot = await FirebaseFirestore.instance
-        .collection('foods')
-        .where("name", isEqualTo: 'breakfast')
-        .get();
-    List<QueryDocumentSnapshot> documents = snapshot.docs;
-    List<Map<String, dynamic>> dataList = [];
-    for (QueryDocumentSnapshot document in documents) {
-      Object? rawData = document.data();
-      if (rawData is Map<String, dynamic>) {
-        Map<String, dynamic> data = rawData;
-        dataList.add(data);
-      }
-    }
-    print(dataList[0]);
-    Map<String, dynamic>? dairiesMap;
-
-    for (Map<String, dynamic> data in dataList) {
-      if (data.containsKey('dairies')) {
-        dairiesMap = data['dairies'];
-
-        break;
-      }
-    }
-    if (dairiesMap != null) {
-      List<dynamic> values = dairiesMap.values.toList();
-      print('Values: $values');
-    }
-
-    print('dairies map: $dairiesMap');
-
-    return snapshot;
   }
 
   Future getUserGroups(String email) async {

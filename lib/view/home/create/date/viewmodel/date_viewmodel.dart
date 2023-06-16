@@ -1,10 +1,16 @@
+// ignore_for_file: avoid_print, use_build_context_synchronously
+
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:d/core/constant/color_constant.dart';
 import 'package:d/product/router/router_constant.dart';
+import 'package:d/product/service/database_service.dart';
 import 'package:d/product/widget/create/lunch_container_widget.dart';
 import 'package:d/view/home/create/date/view/date_view.dart';
+import 'package:d/view/home/create/eating/model/eating_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 abstract class DateViewModel extends State<DateView> {
   late DateTime selectedDate;
@@ -14,14 +20,26 @@ abstract class DateViewModel extends State<DateView> {
     _resetSelectedDate();
   }
 
+  void callFunction(String title) async {
+    Provider.of<FoodsModel>(context, listen: false).selectedOgun = title;
+    print("=========================================================1");
+    print("=========================================================1.2");
+    List<Map<String, dynamic>> listFoods =
+        await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
+            .getFoods2(title);
+    Provider.of<FoodsModel>(context, listen: false)
+        .getFoods(listFoods: listFoods);
+    context.pushNamed(RouteConstants.eating);
+  }
+
   void _resetSelectedDate() {
     selectedDate = DateTime.now().add(const Duration(days: 2));
   }
 
-  void showSheet(
+  Future<void> showSheet(
     double width,
     double height,
-  ) {
+  ) async {
     showModalBottomSheet(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
@@ -71,8 +89,8 @@ abstract class DateViewModel extends State<DateView> {
                   title: 'BreakFast',
                   text: 'Recommended 356-535 Kcal',
                   image: 'assets/images/breakfast.png',
-                  function: () {
-                    context.pushNamed(RouteConstants.eating);
+                  function: () async {
+                    callFunction('breakfast');
                   },
                 ),
                 LunchContainerWidget(
@@ -81,8 +99,8 @@ abstract class DateViewModel extends State<DateView> {
                   title: 'Lunch',
                   text: 'Recommended 356-731 Kcal',
                   image: 'assets/images/lunch.png',
-                  function: () {
-                    context.pushNamed(RouteConstants.eating);
+                  function: () async {
+                    callFunction('lunch');
                   },
                 ),
                 LunchContainerWidget(
@@ -92,7 +110,7 @@ abstract class DateViewModel extends State<DateView> {
                   text: 'Recommended 356-535 Kcal',
                   image: 'assets/images/dinner.png',
                   function: () {
-                    context.pushNamed(RouteConstants.eating);
+                    callFunction('dinner');
                   },
                 ),
                 LunchContainerWidget(
@@ -101,8 +119,8 @@ abstract class DateViewModel extends State<DateView> {
                   title: 'Snacks',
                   text: 'Recommended 89 - 178 Kcal',
                   image: 'assets/images/snacks.png',
-                  function: () {
-                    context.pushNamed(RouteConstants.eating);
+                  function: () => {
+                    callFunction('snack'),
                   },
                 ),
               ],

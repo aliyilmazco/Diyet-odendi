@@ -3,8 +3,9 @@ import 'package:d/product/widget/create/add_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// ignore: must_be_immutable
 class LunchContainerWidget extends StatelessWidget {
-  const LunchContainerWidget({
+  LunchContainerWidget({
     super.key,
     required this.width,
     required this.height,
@@ -18,7 +19,7 @@ class LunchContainerWidget extends StatelessWidget {
   final String title;
   final String text;
   final String image;
-  final VoidCallback function;
+  VoidCallback? function;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -78,7 +79,7 @@ class LunchContainerWidget extends StatelessWidget {
                 width: 30,
               ),
               AddButtonWidget(
-                function: function,
+                function: function!,
               ),
             ],
           ),

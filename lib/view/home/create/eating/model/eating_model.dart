@@ -17,6 +17,7 @@ class FoodsModel extends ChangeNotifier {
   List<Widget> widgetList = [];
   int total = 0;
   List<Map<String, dynamic>> object2;
+  String selectedOgun = '';
   FoodsModel({
     required this.menuItems1,
     required this.menuItems2,
