@@ -48,7 +48,20 @@ class FoodsModel extends ChangeNotifier {
       List<dynamic> values = dairiesMap.values.toList();
       print('Values: $values');
     }
+    if (dairiesMap != null) {
+      List<dynamic> values = dairiesMap.keys.toList();
+      print('Keys: $values');
+    }
 
+    for (var foodMap in listFoods) {
+      var foodNames = foodMap.keys.toList();
+      print('foodNames: $foodNames');
+    }
+
+    for (var foodMap in listFoods) {
+      var foodNames = foodMap.values.toList();
+      print('foodValues: $foodNames');
+    }
     print('dairies map: $dairiesMap');
 
     notifyListeners();
