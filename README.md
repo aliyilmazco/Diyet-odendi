@@ -1,3 +1,3 @@
 # dwffp23
 
-dietitian app
+Diyetisyen uygulamasi - Flutter - Firebase
