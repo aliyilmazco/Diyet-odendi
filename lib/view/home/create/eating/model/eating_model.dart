@@ -54,17 +54,29 @@ class FoodsModel extends ChangeNotifier {
     }
 
     for (var foodMap in listFoods) {
-      var foodNames = foodMap.keys.toList();
-      print('foodNames: $foodNames');
-    }
-
-    for (var foodMap in listFoods) {
       var foodNames = foodMap.values.toList();
       print('foodValues: $foodNames');
     }
     print('dairies map: $dairiesMap');
 
     notifyListeners();
+  }
+
+  getFoodsNamesNumber() {
+    List<String> foodNames = [];
+    for (var foodMap in object2) {
+      foodNames = foodMap.keys.toList();
+    }
+    return foodNames.length;
+  }
+
+  getFoodNames(int number) {
+    List<String> foodNames = [];
+    for (var foodMap in object2) {
+      foodNames = foodMap.keys.toList();
+    }
+
+    return foodNames[number];
   }
 
   Future<void> setFoods({

@@ -6,26 +6,34 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class DropDownWidget extends StatefulWidget {
-  const DropDownWidget(
-      {super.key,
-      required this.selectedValue,
-      required this.width,
-      required this.selectedTitle,
-      required,
-      required this.isItFirst,
-      required this.items});
+  const DropDownWidget({
+    Key? key,
+    required this.selectedValue,
+    required this.width,
+    required this.selectedTitle,
+    required this.isItFirst,
+    required this.items,
+  }) : super(key: key);
+
   final String selectedValue;
   final String selectedTitle;
   final double width;
   final List<DropdownMenuItem<String>> items;
   final bool isItFirst;
+
   @override
-  State<DropDownWidget> createState() => _DropDownWidgetState(selectedValue);
+  State<DropDownWidget> createState() => _DropDownWidgetState();
 }
 
 class _DropDownWidgetState extends State<DropDownWidget> {
-  _DropDownWidgetState(this.selectedValue);
-  String selectedValue;
+  late String selectedValue;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedValue = widget.selectedValue;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +50,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
         borderRadius: BorderRadius.circular(30),
       ),
       width: widget.width / 1.15,
-      child: DropdownButton(
+      child: DropdownButton<String>(
         icon: const Icon(
           Icons.keyboard_arrow_down,
           color: Colors.black,
@@ -55,22 +63,24 @@ class _DropDownWidgetState extends State<DropDownWidget> {
         underline: Container(
           height: 0,
         ),
-        onChanged: (newValue) {
-          setState(() {
-            selectedValue = newValue.toString();
+        onChanged: (String? newValue) {
+          if (newValue != null) {
+            setState(() {
+              selectedValue = newValue;
 
-            if (widget.isItFirst) {
-              Provider.of<FoodsModel>(context, listen: false).selectedValue =
-                  selectedValue;
-              Provider.of<FoodsModel>(context, listen: false).menuItems1 =
-                  widget.items;
-            } else {
-              Provider.of<FoodsModel>(context, listen: false).selectedValue2 =
-                  selectedValue;
-              Provider.of<FoodsModel>(context, listen: false).menuItems2 =
-                  widget.items;
-            }
-          });
+              if (widget.isItFirst) {
+                Provider.of<FoodsModel>(context, listen: false).selectedValue =
+                    selectedValue;
+                Provider.of<FoodsModel>(context, listen: false).menuItems1 =
+                    widget.items;
+              } else {
+                Provider.of<FoodsModel>(context, listen: false).selectedValue2 =
+                    selectedValue;
+                Provider.of<FoodsModel>(context, listen: false).menuItems2 =
+                    widget.items;
+              }
+            });
+          }
         },
         value: selectedValue,
         dropdownColor: ColorConst.mainBoxBg,

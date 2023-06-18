@@ -29,6 +29,7 @@ abstract class DateViewModel extends State<DateView> {
             .getFoods2(title);
     Provider.of<FoodsModel>(context, listen: false)
         .getFoods(listFoods: listFoods);
+
     context.pushNamed(RouteConstants.eating);
   }
 
