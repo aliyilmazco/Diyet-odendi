@@ -54,7 +54,7 @@ class _EatingViewState extends EatingViewModel {
                         height: 30,
                       ),
                       DropDownWidget(
-                        isItFirst: false,
+                        isItFirst: true,
                         selectedTitle:
                             Provider.of<FoodsModel>(context).selectedValue2,
                         selectedValue: Provider.of<FoodsModel>(
@@ -67,7 +67,7 @@ class _EatingViewState extends EatingViewModel {
                         height: 30,
                       ),
                       DropDownWidget(
-                        isItFirst: true,
+                        isItFirst: false,
                         selectedTitle:
                             Provider.of<FoodsModel>(context).selectedValue,
                         selectedValue:

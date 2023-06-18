@@ -38,8 +38,11 @@ abstract class EatingViewModel extends State<EatingView> {
           DropdownMenuItem(
             value: i.toString(),
             child: Text(
-              Provider.of<FoodsModel>(context)
-                  .getSecondFoodNames('dairies', i - 100),
+              Provider.of<FoodsModel>(context).getSecondFoodNames(
+                  Provider.of<FoodsModel>(
+                    context,
+                  ).firstSelectedOgun,
+                  i - 100),
               style: GoogleFonts.roboto(
                 color: Colors.black,
                 fontSize: 15,
@@ -47,56 +50,6 @@ abstract class EatingViewModel extends State<EatingView> {
               ),
             ),
           ),
-    ];
-    return menuItems;
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItems {
-    List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(
-        value: "100",
-        child: Text(
-          "Et",
-          style: GoogleFonts.roboto(
-            color: Colors.black,
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-      DropdownMenuItem(
-        value: "200",
-        child: Text(
-          "Sut",
-          style: GoogleFonts.roboto(
-            color: Colors.black,
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-      DropdownMenuItem(
-        value: "300",
-        child: Text(
-          "Meyve",
-          style: GoogleFonts.roboto(
-            color: Colors.black,
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-      DropdownMenuItem(
-        value: "400",
-        child: Text(
-          "Cikolata",
-          style: GoogleFonts.roboto(
-            color: Colors.black,
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
     ];
     return menuItems;
   }

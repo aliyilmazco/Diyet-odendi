@@ -18,6 +18,7 @@ class FoodsModel extends ChangeNotifier {
   int total = 0;
   List<Map<String, dynamic>> object2;
   String selectedOgun = '';
+  String firstSelectedOgun = 'dairies';
   FoodsModel({
     required this.menuItems1,
     required this.menuItems2,
@@ -78,12 +79,17 @@ class FoodsModel extends ChangeNotifier {
     return foodNames[number];
   }
 
+  updateSelectedFood(String selectedFood) {
+    firstSelectedOgun = selectedFood;
+    notifyListeners();
+  }
+
   getSecondFoodNames(String selectedFood, int number) {
     Map<String, dynamic>? dairiesMap;
     List<dynamic> values = [];
     for (Map<String, dynamic> data in object2) {
-      if (data.containsKey('dairies')) {
-        dairiesMap = data['dairies'];
+      if (data.containsKey(selectedFood)) {
+        dairiesMap = data[selectedFood];
         break;
       }
     }
