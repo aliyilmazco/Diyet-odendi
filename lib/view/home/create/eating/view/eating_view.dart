@@ -73,7 +73,7 @@ class _EatingViewState extends EatingViewModel {
                         selectedValue:
                             Provider.of<FoodsModel>(context).selectedValue,
                         width: width,
-                        items: dropdownItems,
+                        items: dropdownItems3.toSet().toList(),
                       ),
                     ],
                   ),
@@ -144,11 +144,11 @@ class _EatingViewState extends EatingViewModel {
                       onPressed: () {
                         final selectedItem = Provider.of<FoodsModel>(context,
                                 listen: false)
-                            .menuItems2!
+                            .menuItems1!
                             .firstWhereOrNull((element) =>
                                 element.value ==
                                 Provider.of<FoodsModel>(context, listen: false)
-                                    .selectedValue2);
+                                    .selectedValue);
                         String? text;
                         if (selectedItem!.child is Text) {
                           final textWidget = selectedItem.child as Text;
@@ -159,7 +159,7 @@ class _EatingViewState extends EatingViewModel {
                             .addToWidgetList(EatingRowWidget(
                           title: text ?? "empty",
                           value: Provider.of<FoodsModel>(context, listen: false)
-                              .selectedValue2
+                              .selectedValue
                               .toString(),
                         ));
 

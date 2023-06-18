@@ -40,7 +40,6 @@ class FoodsModel extends ChangeNotifier {
     for (Map<String, dynamic> data in listFoods) {
       if (data.containsKey('dairies')) {
         dairiesMap = data['dairies'];
-
         break;
       }
     }
@@ -77,6 +76,38 @@ class FoodsModel extends ChangeNotifier {
     }
 
     return foodNames[number];
+  }
+
+  getSecondFoodNames(String selectedFood, int number) {
+    Map<String, dynamic>? dairiesMap;
+    List<dynamic> values = [];
+    for (Map<String, dynamic> data in object2) {
+      if (data.containsKey('dairies')) {
+        dairiesMap = data['dairies'];
+        break;
+      }
+    }
+    if (dairiesMap != null) {
+      values = dairiesMap.keys.toList();
+    }
+
+    return values[number];
+  }
+
+  getSecondFoodNumber() {
+    Map<String, dynamic>? dairiesMap;
+    List<dynamic> values = [];
+    for (Map<String, dynamic> data in object2) {
+      if (data.containsKey('dairies')) {
+        dairiesMap = data['dairies'];
+        break;
+      }
+    }
+    if (dairiesMap != null) {
+      values = dairiesMap.keys.toList();
+    }
+
+    return values.length;
   }
 
   Future<void> setFoods({
@@ -142,7 +173,7 @@ class FoodsModel extends ChangeNotifier {
 
   addCalculateCalorie() {
     for (int i = 0; i < count; i++) {
-      total += int.parse(selectedValue2);
+      total += int.parse(selectedValue);
     }
     notifyListeners();
   }

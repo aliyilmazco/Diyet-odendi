@@ -29,6 +29,28 @@ abstract class EatingViewModel extends State<EatingView> {
     return menuItems;
   }
 
+  List<DropdownMenuItem<String>> get dropdownItems3 {
+    List<DropdownMenuItem<String>> menuItems = [
+      for (int i = 100;
+          i < Provider.of<FoodsModel>(context).getSecondFoodNumber() + 100;
+          i++)
+        if (Provider.of<FoodsModel>(context).getFoodNames(i - 100) != "name")
+          DropdownMenuItem(
+            value: i.toString(),
+            child: Text(
+              Provider.of<FoodsModel>(context)
+                  .getSecondFoodNames('dairies', i - 100),
+              style: GoogleFonts.roboto(
+                color: Colors.black,
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+    ];
+    return menuItems;
+  }
+
   List<DropdownMenuItem<String>> get dropdownItems {
     List<DropdownMenuItem<String>> menuItems = [
       DropdownMenuItem(
@@ -68,56 +90,6 @@ abstract class EatingViewModel extends State<EatingView> {
         value: "400",
         child: Text(
           "Cikolata",
-          style: GoogleFonts.roboto(
-            color: Colors.black,
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-    ];
-    return menuItems;
-  }
-
-  List<DropdownMenuItem<String>> get dropdownItems3 {
-    List<DropdownMenuItem<String>> menuItems = [
-      DropdownMenuItem(
-        value: "100",
-        child: Text(
-          "Yiyecek",
-          style: GoogleFonts.roboto(
-            color: Colors.black,
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-      DropdownMenuItem(
-        value: "200",
-        child: Text(
-          "Yiyecek2",
-          style: GoogleFonts.roboto(
-            color: Colors.black,
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-      DropdownMenuItem(
-        value: "300",
-        child: Text(
-          "Yiyecek3",
-          style: GoogleFonts.roboto(
-            color: Colors.black,
-            fontSize: 15,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-      DropdownMenuItem(
-        value: "400",
-        child: Text(
-          "Yiyecek4",
           style: GoogleFonts.roboto(
             color: Colors.black,
             fontSize: 15,
