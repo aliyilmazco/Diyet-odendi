@@ -34,22 +34,21 @@ abstract class EatingViewModel extends State<EatingView> {
       for (int i = 0;
           i < Provider.of<FoodsModel>(context).getSecondFoodNumber();
           i++)
-        if (Provider.of<FoodsModel>(context).getFoodNames(i) != "name")
-          DropdownMenuItem(
-            value: i.toString(),
-            child: Text(
-              Provider.of<FoodsModel>(context).getSecondFoodNames(
-                  Provider.of<FoodsModel>(
-                    context,
-                  ).selectedOgun,
-                  i),
-              style: GoogleFonts.roboto(
-                color: Colors.black,
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-              ),
+        DropdownMenuItem(
+          value: i.toString(),
+          child: Text(
+            Provider.of<FoodsModel>(context).getSecondFoodNames(
+                Provider.of<FoodsModel>(
+                  context,
+                ).selectedOgun,
+                i),
+            style: GoogleFonts.roboto(
+              color: Colors.black,
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
             ),
           ),
+        ),
     ];
     return menuItems;
   }
