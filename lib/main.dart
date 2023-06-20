@@ -16,8 +16,8 @@ Future<void> main() async {
           create: (BuildContext context) => FoodsModel(
             menuItems1: [],
             menuItems2: [],
-            selectedValue2: '100',
-            selectedValue: '100',
+            selectedValue2: '0',
+            selectedValue: '0',
             foodsCalorie: '',
             foodsName: '',
             foodsTitles: [],

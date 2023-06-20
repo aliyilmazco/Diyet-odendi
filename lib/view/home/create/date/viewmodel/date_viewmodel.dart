@@ -23,8 +23,8 @@ abstract class DateViewModel extends State<DateView> {
   void callFunction(String title) async {
     Provider.of<FoodsModel>(context, listen: false).selectedOgun =
         title.toLowerCase();
-    Provider.of<FoodsModel>(context, listen: false).selectedValue = '100';
-    Provider.of<FoodsModel>(context, listen: false).selectedValue2 = '100';
+    Provider.of<FoodsModel>(context, listen: false).selectedValue = '0';
+    Provider.of<FoodsModel>(context, listen: false).selectedValue2 = '0';
     print("=========================================================1");
     print("=========================================================1.2");
     List<Map<String, dynamic>> listFoods =

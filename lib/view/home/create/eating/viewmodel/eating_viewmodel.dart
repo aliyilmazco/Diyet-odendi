@@ -6,18 +6,18 @@ import 'package:provider/provider.dart';
 
 abstract class EatingViewModel extends State<EatingView> {
   final dropdownFormKey = GlobalKey<FormState>();
-  final String selectedValue = "100";
+  final String selectedValue = "0";
   final String selectedValue2 = "0";
   List<DropdownMenuItem<String>> get dropdownItems2 {
     List<DropdownMenuItem<String>> menuItems = [
-      for (int i = 100;
-          i < Provider.of<FoodsModel>(context).getFoodsNamesNumber() + 100;
+      for (int i = 0;
+          i < Provider.of<FoodsModel>(context).getFoodsNamesNumber();
           i++)
-        if (Provider.of<FoodsModel>(context).getFoodNames(i - 100) != "name")
+        if (Provider.of<FoodsModel>(context).getFoodNames(i) != "name")
           DropdownMenuItem(
             value: i.toString(),
             child: Text(
-              Provider.of<FoodsModel>(context).getFoodNames(i - 100),
+              Provider.of<FoodsModel>(context).getFoodNames(i),
               style: GoogleFonts.roboto(
                 color: Colors.black,
                 fontSize: 15,
@@ -31,10 +31,10 @@ abstract class EatingViewModel extends State<EatingView> {
 
   List<DropdownMenuItem<String>> get dropdownItems3 {
     List<DropdownMenuItem<String>> menuItems = [
-      for (int i = 100;
-          i < Provider.of<FoodsModel>(context).getSecondFoodNumber() + 100;
+      for (int i = 0;
+          i < Provider.of<FoodsModel>(context).getSecondFoodNumber();
           i++)
-        if (Provider.of<FoodsModel>(context).getFoodNames(i - 100) != "name")
+        if (Provider.of<FoodsModel>(context).getFoodNames(i) != "name")
           DropdownMenuItem(
             value: i.toString(),
             child: Text(
@@ -42,7 +42,7 @@ abstract class EatingViewModel extends State<EatingView> {
                   Provider.of<FoodsModel>(
                     context,
                   ).selectedOgun,
-                  i - 100),
+                  i),
               style: GoogleFonts.roboto(
                 color: Colors.black,
                 fontSize: 15,

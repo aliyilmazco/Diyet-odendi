@@ -78,7 +78,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                       .updateSelectedFood(
                     Provider.of<FoodsModel>(context, listen: false)
                         .getFoodNames(
-                      (int.parse(selectedValue) - 100),
+                      (int.parse(selectedValue)),
                     ),
                   );
                 } else {

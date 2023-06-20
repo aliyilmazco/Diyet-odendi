@@ -94,7 +94,7 @@ class FoodsModel extends ChangeNotifier {
     if (dairiesMap != null) {
       values = dairiesMap.keys.toList();
     }
-
+    print("second food number: ${values.length}");
     return values.length;
   }
 
