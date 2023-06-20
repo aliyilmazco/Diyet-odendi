@@ -17,8 +17,8 @@ class FoodsModel extends ChangeNotifier {
   List<Widget> widgetList = [];
   int total = 0;
   List<Map<String, dynamic>> object2;
-  String selectedOgun = '';
-  String firstSelectedOgun = 'dairies';
+  String selectedOgun = 'dairies';
+
   FoodsModel({
     required this.menuItems1,
     required this.menuItems2,
@@ -36,28 +36,10 @@ class FoodsModel extends ChangeNotifier {
   }) {
     object2 = listFoods;
 
-    Map<String, dynamic>? dairiesMap;
-
-    for (Map<String, dynamic> data in listFoods) {
-      if (data.containsKey('dairies')) {
-        dairiesMap = data['dairies'];
-        break;
-      }
-    }
-    if (dairiesMap != null) {
-      List<dynamic> values = dairiesMap.values.toList();
-      print('Values: $values');
-    }
-    if (dairiesMap != null) {
-      List<dynamic> values = dairiesMap.keys.toList();
-      print('Keys: $values');
-    }
-
     for (var foodMap in listFoods) {
       var foodNames = foodMap.values.toList();
       print('foodValues: $foodNames');
     }
-    print('dairies map: $dairiesMap');
 
     notifyListeners();
   }
@@ -80,7 +62,7 @@ class FoodsModel extends ChangeNotifier {
   }
 
   updateSelectedFood(String selectedFood) {
-    firstSelectedOgun = selectedFood;
+    selectedOgun = selectedFood;
     notifyListeners();
   }
 
@@ -104,8 +86,8 @@ class FoodsModel extends ChangeNotifier {
     Map<String, dynamic>? dairiesMap;
     List<dynamic> values = [];
     for (Map<String, dynamic> data in object2) {
-      if (data.containsKey('dairies')) {
-        dairiesMap = data['dairies'];
+      if (data.containsKey(selectedOgun)) {
+        dairiesMap = data[selectedOgun];
         break;
       }
     }

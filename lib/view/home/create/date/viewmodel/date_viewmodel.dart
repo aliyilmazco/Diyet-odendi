@@ -21,7 +21,10 @@ abstract class DateViewModel extends State<DateView> {
   }
 
   void callFunction(String title) async {
-    Provider.of<FoodsModel>(context, listen: false).selectedOgun = title;
+    Provider.of<FoodsModel>(context, listen: false).selectedOgun =
+        title.toLowerCase();
+    Provider.of<FoodsModel>(context, listen: false).selectedValue = '100';
+    Provider.of<FoodsModel>(context, listen: false).selectedValue2 = '100';
     print("=========================================================1");
     print("=========================================================1.2");
     List<Map<String, dynamic>> listFoods =
@@ -117,7 +120,7 @@ abstract class DateViewModel extends State<DateView> {
                 LunchContainerWidget(
                   width: width,
                   height: height,
-                  title: 'Snacks',
+                  title: 'Snack',
                   text: 'Recommended 89 - 178 Kcal',
                   image: 'assets/images/snacks.png',
                   function: () => {

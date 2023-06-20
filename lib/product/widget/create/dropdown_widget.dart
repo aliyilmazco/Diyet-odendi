@@ -65,25 +65,30 @@ class _DropDownWidgetState extends State<DropDownWidget> {
         ),
         onChanged: (String? newValue) {
           if (newValue != null) {
-            setState(() {
-              selectedValue = newValue;
+            setState(
+              () {
+                selectedValue = newValue;
 
-              if (widget.isItFirst) {
-                Provider.of<FoodsModel>(context, listen: false).selectedValue2 =
-                    selectedValue;
-                Provider.of<FoodsModel>(context, listen: false).menuItems2 =
-                    widget.items;
-                Provider.of<FoodsModel>(context, listen: false)
-                    .updateSelectedFood(
-                        Provider.of<FoodsModel>(context, listen: false)
-                            .getFoodNames((int.parse(selectedValue) - 100)));
-              } else {
-                Provider.of<FoodsModel>(context, listen: false).selectedValue =
-                    selectedValue;
-                Provider.of<FoodsModel>(context, listen: false).menuItems1 =
-                    widget.items;
-              }
-            });
+                if (widget.isItFirst) {
+                  Provider.of<FoodsModel>(context, listen: false)
+                      .selectedValue2 = selectedValue;
+                  Provider.of<FoodsModel>(context, listen: false).menuItems2 =
+                      widget.items;
+                  Provider.of<FoodsModel>(context, listen: false)
+                      .updateSelectedFood(
+                    Provider.of<FoodsModel>(context, listen: false)
+                        .getFoodNames(
+                      (int.parse(selectedValue) - 100),
+                    ),
+                  );
+                } else {
+                  Provider.of<FoodsModel>(context, listen: false)
+                      .selectedValue = selectedValue;
+                  Provider.of<FoodsModel>(context, listen: false).menuItems1 =
+                      widget.items;
+                }
+              },
+            );
           }
         },
         value: selectedValue,

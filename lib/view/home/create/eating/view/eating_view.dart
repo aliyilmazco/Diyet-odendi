@@ -53,27 +53,32 @@ class _EatingViewState extends EatingViewModel {
                       const SizedBox(
                         height: 30,
                       ),
-                      DropDownWidget(
-                        isItFirst: true,
-                        selectedTitle:
-                            Provider.of<FoodsModel>(context).selectedValue2,
-                        selectedValue: Provider.of<FoodsModel>(
-                          context,
-                        ).selectedValue2,
-                        width: width,
-                        items: dropdownItems2.toSet().toList(),
+                      Consumer<FoodsModel>(
+                        builder: (context, foodsModel, _) {
+                          return DropDownWidget(
+                            isItFirst: true,
+                            selectedTitle: foodsModel.selectedValue2,
+                            selectedValue: foodsModel.selectedValue2,
+                            width: width,
+                            items: dropdownItems2.toSet().toList(),
+                          );
+                        },
                       ),
                       const SizedBox(
                         height: 30,
                       ),
-                      DropDownWidget(
-                        isItFirst: false,
-                        selectedTitle:
-                            Provider.of<FoodsModel>(context).selectedValue,
-                        selectedValue:
-                            Provider.of<FoodsModel>(context).selectedValue,
-                        width: width,
-                        items: dropdownItems3.toSet().toList(),
+                      Consumer<FoodsModel>(
+                        builder: (context, foodsModel, _) {
+                          return DropDownWidget(
+                            isItFirst: false,
+                            selectedTitle:
+                                Provider.of<FoodsModel>(context).selectedValue,
+                            selectedValue:
+                                Provider.of<FoodsModel>(context).selectedValue,
+                            width: width,
+                            items: dropdownItems3.toSet().toList(),
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -163,10 +168,11 @@ class _EatingViewState extends EatingViewModel {
                               .toString(),
                         ));
 
-                        Provider.of<FoodsModel>(context, listen: false).count =
-                            1;
+                        
                         Provider.of<FoodsModel>(context, listen: false)
                             .addCalculateCalorie();
+                            Provider.of<FoodsModel>(context, listen: false).count =
+                            1;
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorConst.createButton,

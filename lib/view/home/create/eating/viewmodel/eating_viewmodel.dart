@@ -41,7 +41,7 @@ abstract class EatingViewModel extends State<EatingView> {
               Provider.of<FoodsModel>(context).getSecondFoodNames(
                   Provider.of<FoodsModel>(
                     context,
-                  ).firstSelectedOgun,
+                  ).selectedOgun,
                   i - 100),
               style: GoogleFonts.roboto(
                 color: Colors.black,
