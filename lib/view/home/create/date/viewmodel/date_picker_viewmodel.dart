@@ -3,6 +3,8 @@ import 'package:d/core/constant/color_constant.dart';
 import 'package:d/view/home/create/date/view/date_picker_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import '../model/date_model.dart';
 
 final today = DateUtils.dateOnly(DateTime.now());
 
@@ -164,6 +166,12 @@ abstract class DatePickerViewModel extends State<DatePickerView> {
                 ));
                 setState(() {
                   dialogCalendarPickerValue = values;
+                  Provider.of<DateModel>(context, listen: false)
+                      .setDate(dialogCalendarPickerValue);
+
+                  Provider.of<DateModel>(context, listen: false).splitDate();
+                  Provider.of<DateModel>(context, listen: false).createDate();
+                  Provider.of<DateModel>(context, listen: false).getDates();
                 });
               }
             },

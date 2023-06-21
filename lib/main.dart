@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_late
 import 'package:d/product/router/router.dart';
 import 'package:d/view/auth/signup/model/sign_up_model.dart';
+import 'package:d/view/home/create/date/model/date_model.dart';
 import 'package:d/view/home/create/eating/model/eating_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,9 @@ Future<void> main() async {
               profilePic: '',
               targetWeight: '',
               weight: ''),
+        ),
+        ChangeNotifierProvider<DateModel>(
+          create: (BuildContext context) => DateModel(),
         ),
       ],
       child: const MyApp(),

@@ -15,6 +15,8 @@ class DatabaseService {
 
   final CollectionReference foodsCollection =
       FirebaseFirestore.instance.collection('foods');
+  final CollectionReference dateCollection =
+      FirebaseFirestore.instance.collection('date');
 
   Future savingUserData(
     String fullName,
@@ -107,6 +109,38 @@ class DatabaseService {
 
   Future getUserGroups(String email) async {
     return userCollection.doc(uid).snapshots();
+  }
+
+  Future createDate(
+      String userName,
+      String id,
+      String firstMonth,
+      String firstDay,
+      String lastMonth,
+      String lastDay,
+      String dietationID) async {
+    try {
+      await dateCollection.doc().set({
+        "firstMonth": firstMonth,
+        "firstDay": firstDay,
+        "lastMonth": lastMonth,
+        "lastDay": lastDay,
+        "uid": uid,
+        "dietationID": "",
+        "isConfirmed": 'false',
+        'doctorName': 'Not assigned yet',
+        'confirmedDate': 'none',
+      });
+    } catch (e) {
+      return "Date olusturulurken bir hata olustu: $e";
+    }
+  }
+
+  Future getDate() async {
+    QuerySnapshot snapshot =
+        await dateCollection.where("uid", isEqualTo: uid).get();
+
+    return snapshot;
   }
 
   Future createGroup(String userName, String id, String groupName) async {
