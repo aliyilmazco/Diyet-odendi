@@ -164,14 +164,13 @@ class _EatingViewState extends EatingViewModel {
                             .addToWidgetList(EatingRowWidget(
                           title: text ?? "empty",
                           value: Provider.of<FoodsModel>(context, listen: false)
-                              .selectedValue
+                              .calorie
                               .toString(),
                         ));
 
-                        
                         Provider.of<FoodsModel>(context, listen: false)
                             .addCalculateCalorie();
-                            Provider.of<FoodsModel>(context, listen: false).count =
+                        Provider.of<FoodsModel>(context, listen: false).count =
                             1;
                       },
                       style: ElevatedButton.styleFrom(

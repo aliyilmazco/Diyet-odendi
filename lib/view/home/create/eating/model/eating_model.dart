@@ -18,7 +18,7 @@ class FoodsModel extends ChangeNotifier {
   int total = 0;
   List<Map<String, dynamic>> object2;
   String selectedOgun = 'dairies';
-
+  String calorie = '0';
   FoodsModel({
     required this.menuItems1,
     required this.menuItems2,
@@ -82,6 +82,22 @@ class FoodsModel extends ChangeNotifier {
     return values[number];
   }
 
+  getSecondFoodValues(String selectedFood, int number) {
+    Map<String, dynamic>? dairiesMap;
+    List<dynamic> values = [];
+    for (Map<String, dynamic> data in object2) {
+      if (data.containsKey(selectedFood)) {
+        dairiesMap = data[selectedFood];
+        break;
+      }
+    }
+    if (dairiesMap != null) {
+      values = dairiesMap.values.toList();
+    }
+    print('selected food: $selectedFood and number: $number');
+    return values[number];
+  }
+
   getSecondFoodNumber() {
     Map<String, dynamic>? dairiesMap;
     List<dynamic> values = [];
@@ -140,7 +156,7 @@ class FoodsModel extends ChangeNotifier {
 
   addCalculateCalorie() {
     for (int i = 0; i < count; i++) {
-      total += int.parse(selectedValue);
+      total += int.parse(calorie);
     }
     notifyListeners();
   }

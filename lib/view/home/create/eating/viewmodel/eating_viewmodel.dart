@@ -6,8 +6,8 @@ import 'package:provider/provider.dart';
 
 abstract class EatingViewModel extends State<EatingView> {
   final dropdownFormKey = GlobalKey<FormState>();
-  final String selectedValue = "0";
-  final String selectedValue2 = "0";
+  String selectedValue = "0";
+  String selectedValue2 = "0";
   List<DropdownMenuItem<String>> get dropdownItems2 {
     List<DropdownMenuItem<String>> menuItems = [
       for (int i = 0;

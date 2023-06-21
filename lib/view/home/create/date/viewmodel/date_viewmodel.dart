@@ -23,8 +23,7 @@ abstract class DateViewModel extends State<DateView> {
   void callFunction(String title) async {
     Provider.of<FoodsModel>(context, listen: false).selectedOgun =
         title.toLowerCase();
-    Provider.of<FoodsModel>(context, listen: false).selectedValue = '0';
-    Provider.of<FoodsModel>(context, listen: false).selectedValue2 = '0';
+
     print("=========================================================1");
     print("=========================================================1.2");
     List<Map<String, dynamic>> listFoods =
@@ -32,6 +31,9 @@ abstract class DateViewModel extends State<DateView> {
             .getFoods2(title);
     Provider.of<FoodsModel>(context, listen: false)
         .getFoods(listFoods: listFoods);
+    Provider.of<FoodsModel>(context, listen: false).selectedValue = '0';
+
+    Provider.of<FoodsModel>(context, listen: false).selectedValue2 = '0';
 
     context.pushNamed(RouteConstants.eating);
   }
@@ -67,7 +69,7 @@ abstract class DateViewModel extends State<DateView> {
                   width: width / 1.2,
                   child: CalendarTimeline(
                     showYears: false,
-                    initialDate: selectedDate,
+                    initialDate: DateTime.now(),
                     firstDate: DateTime.now(),
                     lastDate: DateTime.now().add(
                       const Duration(days: 365 * 4),
