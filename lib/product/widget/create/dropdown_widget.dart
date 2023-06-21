@@ -84,12 +84,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
                 } else {
                   Provider.of<FoodsModel>(context, listen: false)
                       .selectedValue = selectedValue;
-                  Provider.of<FoodsModel>(context, listen: false).calorie =
-                      Provider.of<FoodsModel>(context, listen: false)
-                          .getSecondFoodValues(
-                              Provider.of<FoodsModel>(context, listen: false)
-                                  .getFoodNames((int.parse(selectedValue))),
-                              1);
+
                   Provider.of<FoodsModel>(context, listen: false).menuItems1 =
                       widget.items;
                 }

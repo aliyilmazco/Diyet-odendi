@@ -154,18 +154,28 @@ class _EatingViewState extends EatingViewModel {
                                 element.value ==
                                 Provider.of<FoodsModel>(context, listen: false)
                                     .selectedValue);
+
                         String? text;
                         if (selectedItem!.child is Text) {
                           final textWidget = selectedItem.child as Text;
                           text = textWidget.data.toString();
                         }
+                        String? valueFoods;
 
+                        valueFoods = Provider.of<FoodsModel>(context,
+                                listen: false)
+                            .getSecondFoodValues(
+                                Provider.of<FoodsModel>(context, listen: false)
+                                    .selectedOgun,
+                                int.parse(Provider.of<FoodsModel>(context,
+                                        listen: false)
+                                    .selectedValue));
+                        Provider.of<FoodsModel>(context, listen: false)
+                            .calorie = valueFoods!;
                         Provider.of<FoodsModel>(context, listen: false)
                             .addToWidgetList(EatingRowWidget(
-                          title: text ?? "empty",
-                          value: Provider.of<FoodsModel>(context, listen: false)
-                              .calorie
-                              .toString(),
+                          title: text!,
+                          value: valueFoods,
                         ));
 
                         Provider.of<FoodsModel>(context, listen: false)
