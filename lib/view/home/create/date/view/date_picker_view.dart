@@ -1,10 +1,13 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
-import 'package:d/product/widget/create/date_container_widget.dart';
+import 'package:d/view/home/create/date/model/date_model.dart';
 import 'package:d/view/home/create/date/viewmodel/date_picker_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 class DatePickerView extends StatefulWidget {
   const DatePickerView({super.key});
@@ -14,6 +17,11 @@ class DatePickerView extends StatefulWidget {
 }
 
 class _DatePickerViewState extends DatePickerViewModel {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseView(
@@ -78,44 +86,24 @@ class _DatePickerViewState extends DatePickerViewModel {
                 ],
               ),
               const SizedBox(
-                height: 20,
-              ),
-              DateContainerWidget(
-                width: width,
-                height: height,
-                time: '09:30 AM',
-                doctor: 'Dr.Serdem Islamoglu',
-                status: "Onaylandi",
-              ),
-              const SizedBox(
                 height: 10,
               ),
-              DateContainerWidget(
-                width: width,
-                height: height,
-                time: '09:30 AM',
-                doctor: 'Dr.Serdem Islamoglu',
-                status: "Onaylandi",
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              DateContainerWidget(
-                width: width,
-                height: height,
-                time: '09:30 AM',
-                doctor: 'Dr.Serdem Islamoglu',
-                status: "Onaylandi",
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              DateContainerWidget(
-                width: width,
-                height: height,
-                time: '09:30 AM',
-                doctor: 'Dr.Serdem Islamoglu',
-                status: "Onaylandi",
+              SizedBox(
+                width: width / 1.1,
+                height: height / 3.5,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Provider.of<DateModel>(context).widgetList.isEmpty
+                          ? const Text('Liste bos')
+                          : Column(
+                              children:
+                                  Provider.of<DateModel>(context).widgetList,
+                            ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:d/product/service/database_service.dart';
+import 'package:d/product/widget/create/date_container_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +10,54 @@ class DateModel extends ChangeNotifier {
   String lastDay = '';
   String firstMonth = '';
   String lastMonth = '';
-
+  QuerySnapshot? snapshot;
+  int snapshotLength = 0;
+  List<Widget> widgetList = [];
   setDate(List<DateTime?> value) {
     date = value;
     notifyListeners();
+  }
+
+  addToWidgetList(
+    double width,
+    double height,
+  ) {
+    for (int i = 0; i < snapshotLength; i++) {
+      bool widgetExists = false;
+      for (Widget widget in widgetList) {
+        if (widget is Padding &&
+            widget.child is DateContainerWidget &&
+            (widget.child as DateContainerWidget).time == getDateForWidget(i)) {
+          widgetExists = true;
+          break;
+        }
+      }
+
+      if (widgetExists) {
+        continue;
+      }
+
+      widgetList.add(
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: DateContainerWidget(
+            width: width,
+            height: height,
+            time: getDateForWidget(i),
+            doctor: getDoctorForWidget(i),
+            status: getStatusForWidget(i),
+          ),
+        ),
+      );
+    }
+
+    notifyListeners();
+  }
+
+  void getWidgetList(List<Widget> widgets) {
+    for (var widget in widgets) {
+      print(widget);
+    }
   }
 
   splitDate() {
@@ -46,20 +91,28 @@ class DateModel extends ChangeNotifier {
     );
   }
 
-  getDates() async {
-    QuerySnapshot snapshot =
+  String getDateForWidget(int number) {
+    String firstDayWidget = snapshot!.docs[number]['firstDay'];
+    String lastDayWidget = snapshot!.docs[number]['firstMonth'];
+    return "$firstDayWidget . $lastDayWidget";
+  }
+
+  String getDoctorForWidget(int number) {
+    String doctorName = snapshot!.docs[number]['doctorName'];
+    return doctorName;
+  }
+
+  String getStatusForWidget(int number) {
+    String status = snapshot!.docs[number]['isConfirmed'];
+    return status;
+  }
+
+  getDates(double width, double height) async {
+    snapshot =
         await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
             .getDate();
-    print("firstDay: ${snapshot.docs[0]['firstDay']}");
-    print("lastDay: ${snapshot.docs[0]['lastDay']}");
-    print("firstMonth: ${snapshot.docs[0]['firstMonth']}");
-    print("lastMonth: ${snapshot.docs[0]['lastMonth']}");
-    print("uid: ${snapshot.docs[0]['uid']}");
-    print("isConfirmed ${snapshot.docs[0]['isConfirmed']}");
-    print("confirmedDate ${snapshot.docs[0]['confirmedDate']}");
-    print("doctorName ${snapshot.docs[0]['doctorName']}");
 
-    int value = snapshot.docs.length;
-    print("value degeri: $value");
+    snapshotLength = snapshot!.docs.length;
+    print("value degeri: $snapshotLength");
   }
 }

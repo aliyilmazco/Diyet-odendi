@@ -48,7 +48,7 @@ class DateContainerWidget extends StatelessWidget {
             status,
             style: GoogleFonts.inter(
               color: ColorConst.createPageText,
-              fontSize: 14,
+              fontSize: 12,
               fontWeight: FontWeight.bold,
             ),
           ),

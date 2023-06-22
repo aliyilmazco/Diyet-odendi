@@ -4,10 +4,12 @@ import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
 import 'package:d/product/router/router_constant.dart';
 import 'package:d/product/widget/create/date_button_widget.dart';
+import 'package:d/view/home/create/date/model/date_model.dart';
 import 'package:d/view/home/create/date/viewmodel/date_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class DateView extends StatefulWidget {
   const DateView({super.key});
@@ -82,8 +84,15 @@ class _DateViewState extends DateViewModel {
                 height: height,
                 title: 'Appointment Online',
                 text: 'Available on 12th May 2021',
-                function: () {
+                function: () async {
                   context.pushNamed(RouteConstants.appointment);
+
+                  Provider.of<DateModel>(context, listen: false)
+                      .getDates(width, height);
+                  await Future.delayed(Duration(milliseconds: 500));
+                  Provider.of<DateModel>(context, listen: false)
+                      .addToWidgetList(MediaQuery.of(context).size.width,
+                          MediaQuery.of(context).size.height);
                 },
                 icon: Icons.ondemand_video_outlined,
               ),
