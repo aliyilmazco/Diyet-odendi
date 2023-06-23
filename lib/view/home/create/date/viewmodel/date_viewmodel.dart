@@ -69,7 +69,7 @@ abstract class DateViewModel extends State<DateView> {
                   width: width / 1.2,
                   child: CalendarTimeline(
                     showYears: false,
-                    initialDate: DateTime.now(),
+                    initialDate: DateTime.now().add(const Duration(days: 2)),
                     firstDate: DateTime.now(),
                     lastDate: DateTime.now().add(
                       const Duration(days: 365 * 4),
@@ -84,7 +84,8 @@ abstract class DateViewModel extends State<DateView> {
                     activeDayColor: ColorConst.appBgColorWhite,
                     activeBackgroundDayColor: ColorConst.createPageText,
                     dotsColor: ColorConst.appBgColorWhite,
-                    selectableDayPredicate: (date) => date.day != 23,
+                    selectableDayPredicate: (date) =>
+                        date.isAfter(DateTime.now()),
                     locale: 'tr',
                   ),
                 ),

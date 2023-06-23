@@ -95,12 +95,15 @@ class _DatePickerViewState extends DatePickerViewModel {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Provider.of<DateModel>(context).widgetList.isEmpty
-                          ? const Text('Liste bos')
-                          : Column(
-                              children:
-                                  Provider.of<DateModel>(context).widgetList,
-                            ),
+                      Consumer<DateModel>(
+                        builder: (context, dateModel, _) {
+                          return dateModel.widgetList.isEmpty
+                              ? const Text('Liste bos')
+                              : Column(
+                                  children: dateModel.widgetList,
+                                );
+                        },
+                      ),
                     ],
                   ),
                 ),

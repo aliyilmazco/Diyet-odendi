@@ -89,7 +89,7 @@ class _DateViewState extends DateViewModel {
 
                   Provider.of<DateModel>(context, listen: false)
                       .getDates(width, height);
-                  await Future.delayed(Duration(milliseconds: 500));
+                  await Future.delayed(const Duration(milliseconds: 650));
                   Provider.of<DateModel>(context, listen: false)
                       .addToWidgetList(MediaQuery.of(context).size.width,
                           MediaQuery.of(context).size.height);

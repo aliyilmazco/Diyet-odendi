@@ -43,9 +43,7 @@ class _SettingsViewState extends SettingsViewModel {
               children: [
                 const CircleAvatar(
                   radius: 60,
-                  backgroundImage: AssetImage(
-                    'assets/images/profile.png',
-                  ),
+                  backgroundImage: AssetImage('assets/images/profile.png'),
                 ),
                 Positioned(
                   right: 0,
@@ -65,7 +63,9 @@ class _SettingsViewState extends SettingsViewModel {
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        pickImage();
+                      },
                       icon: const Icon(Icons.edit),
                       iconSize: 17,
                       color: Colors.black,

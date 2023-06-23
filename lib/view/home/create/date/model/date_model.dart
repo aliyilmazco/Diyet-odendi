@@ -13,6 +13,7 @@ class DateModel extends ChangeNotifier {
   QuerySnapshot? snapshot;
   int snapshotLength = 0;
   List<Widget> widgetList = [];
+  bool isLoaded = false;
   setDate(List<DateTime?> value) {
     date = value;
     notifyListeners();
