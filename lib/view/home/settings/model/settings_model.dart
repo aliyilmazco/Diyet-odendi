@@ -12,7 +12,7 @@ import 'package:image_picker/image_picker.dart';
 class SettingsModel extends ChangeNotifier {
   File? image;
   String? downloadUrl;
-  bool isLoading = true;
+  bool isLoading = false;
 
   getImage() {
     return image;
