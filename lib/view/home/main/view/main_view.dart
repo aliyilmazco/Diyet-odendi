@@ -27,8 +27,8 @@ class _MainViewState extends MainViewModel {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(
-                    left: 25,
-                    top: 25,
+                    left: 15,
+                    top: 5,
                   ),
                   child: IconButton(
                     icon: SvgPicture.asset('assets/svg/ham_menu.svg'),
@@ -43,7 +43,7 @@ class _MainViewState extends MainViewModel {
                 Padding(
                   padding: const EdgeInsets.only(
                     right: 25,
-                    top: 25,
+                    top: 5,
                   ),
                   child: SvgPicture.asset('assets/svg/search.svg'),
                 ),

@@ -21,7 +21,8 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('foods');
   final CollectionReference dateCollection =
       FirebaseFirestore.instance.collection('date');
-
+  final CollectionReference motivationCollection =
+      FirebaseFirestore.instance.collection('motivation');
   Future savingUserData(
     String fullName,
     String email,
@@ -273,5 +274,12 @@ class DatabaseService {
       print('Dosya indirme hatası: $e');
       return null;
     }
+  }
+
+  Future getMotivation() async {
+    QuerySnapshot snapshot =
+        await FirebaseFirestore.instance.collection('motivation').get();
+
+    return snapshot;
   }
 }

@@ -26,7 +26,7 @@ class _HomeViewState extends HomeViewModel {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.only(top: height / 50, right: width / 2.2),
+                padding: EdgeInsets.only(top: 5, right: width / 2),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -34,7 +34,7 @@ class _HomeViewState extends HomeViewModel {
                       'Hosgeldin',
                       style: GoogleFonts.glory(
                         color: ColorConst.createPageText,
-                        fontSize: 35,
+                        fontSize: 25,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -43,7 +43,7 @@ class _HomeViewState extends HomeViewModel {
                           .fullName,
                       style: GoogleFonts.glory(
                         color: ColorConst.createPageText,
-                        fontSize: 32,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -68,13 +68,14 @@ class _HomeViewState extends HomeViewModel {
                     child: Container(
                       color: ColorConst.mainBoxBg,
                       width: width / 1.2,
-                      height: height / 18,
+                      height: height / 13,
                       child: Center(
                         child: Text(
-                          "Asla pes etme!",
+                          textAlign: TextAlign.center,
+                          motivation.toUpperCase(),
                           style: GoogleFonts.glory(
                             color: ColorConst.createPageText,
-                            fontSize: 24,
+                            fontSize: motivation.length > 20 ? 17 : 30,
                             fontWeight: FontWeight.normal,
                           ),
                         ),
