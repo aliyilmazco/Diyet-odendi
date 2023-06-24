@@ -3,6 +3,7 @@ import 'package:d/core/constant/color_constant.dart';
 import 'package:d/view/auth/signup/model/sign_up_model.dart';
 import 'package:d/view/home/profile/model/chart_data.dart';
 import 'package:d/view/home/profile/viewmodel/profile_viewmodel.dart';
+import 'package:d/view/home/settings/model/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,11 +39,14 @@ class _ProfileViewState extends ProfileViewModel {
                   Positioned(
                     right: width / 2.9,
                     top: height / 40,
-                    child: const CircleAvatar(
+                    child: CircleAvatar(
                       radius: 60,
-                      backgroundImage: AssetImage(
-                        'assets/images/profile.png',
-                      ),
+                      backgroundImage:
+                          Provider.of<SettingsModel>(context).downloadUrl !=
+                                  null
+                              ? NetworkImage(Provider.of<SettingsModel>(context)
+                                  .downloadUrl!) as ImageProvider<Object>
+                              : const AssetImage('assets/images/profile.png'),
                     ),
                   ),
                   Positioned(

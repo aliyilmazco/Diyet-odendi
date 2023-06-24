@@ -22,7 +22,7 @@ class DateModel extends ChangeNotifier {
   addToWidgetList(
     double width,
     double height,
-  ) {
+  ) async {
     for (int i = 0; i < snapshotLength; i++) {
       bool widgetExists = false;
       for (Widget widget in widgetList) {
@@ -55,7 +55,7 @@ class DateModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getWidgetList(List<Widget> widgets) {
+  void getWidgetList(List<Widget> widgets) async {
     for (var widget in widgets) {
       print(widget);
     }

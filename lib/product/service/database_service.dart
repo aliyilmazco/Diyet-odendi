@@ -1,6 +1,10 @@
 // ignore_for_file: avoid_print
 
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:d/product/helper/helper_function.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class DatabaseService {
   final String? uid;
@@ -243,5 +247,31 @@ class DatabaseService {
       "recentMessageSender": chatMessageData['sender'],
       "recentMessageTime": chatMessageData['time'].toString(),
     });
+  }
+
+  Future<void> uploadFile(Uint8List fileData) async {
+    String fullName = await HelperFunctions.getUserEmailSharedPreference();
+    String fileName = "$fullName.jpg";
+
+    try {
+      await firebase_storage.FirebaseStorage.instance
+          .ref('profileImages/$fileName')
+          .putData(fileData);
+      print('Dosya Firestore\'a yüklendi.');
+    } catch (e) {
+      print('Dosya yükleme hatası: $e');
+    }
+  }
+
+  Future<String?> getFileUrl(String fileName) async {
+    try {
+      String downloadUrl = await firebase_storage.FirebaseStorage.instance
+          .ref('profileImages/$fileName')
+          .getDownloadURL();
+      return downloadUrl;
+    } catch (e) {
+      print('Dosya indirme hatası: $e');
+      return null;
+    }
   }
 }

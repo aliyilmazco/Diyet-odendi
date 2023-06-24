@@ -2,6 +2,7 @@
 
 import 'package:d/product/helper/helper_function.dart';
 import 'package:d/view/auth/signup/model/sign_up_model.dart';
+import 'package:d/view/home/settings/model/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -50,6 +51,10 @@ abstract class SplashScreenViewModel extends State<SplashScreenView> {
               "Full name from splash: ${Provider.of<UserModelProvider>(context, listen: false).fullName} ..");
           print(fullName);
         });
+        Provider.of<SettingsModel>(
+          context,
+          listen: false,
+        ).downloadImage();
       } else {
         Future.delayed(const Duration(seconds: 3), () async {
           context.pushReplacement('/login');
