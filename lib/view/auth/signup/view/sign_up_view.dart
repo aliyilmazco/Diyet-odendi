@@ -66,7 +66,6 @@ class _SignUpViewState extends SignUpViewModel {
                             labelText: 'Tum Isim',
                             hintText: "Isim Giriniz",
                             showSuffix: false,
-                            controller: controller1,
                             functionCallBack: (value) {
                               setState(
                                 () {
@@ -90,7 +89,6 @@ class _SignUpViewState extends SignUpViewModel {
                             labelText: 'Email',
                             hintText: "Email Giriniz",
                             showSuffix: false,
-                            controller: controller2,
                             functionCallBack: (value) {
                               setState(
                                 () {
@@ -114,7 +112,6 @@ class _SignUpViewState extends SignUpViewModel {
                             labelText: 'Sifre',
                             hintText: "Sifre Giriniz",
                             showSuffix: true,
-                            controller: controller3,
                             functionCallBack: (value) {
                               setState(
                                 () {
@@ -136,7 +133,6 @@ class _SignUpViewState extends SignUpViewModel {
                             labelText: 'Sifre Onay',
                             hintText: "Sifre Giriniz",
                             showSuffix: true,
-                            controller: controller4,
                             validator: (value) {
                               return value! == password
                                   ? null

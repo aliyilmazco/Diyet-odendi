@@ -40,13 +40,6 @@ class _MainViewState extends MainViewModel {
                 const Spacer(
                   flex: 3,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    right: 25,
-                    top: 5,
-                  ),
-                  child: SvgPicture.asset('assets/svg/search.svg'),
-                ),
               ],
             ),
           ),

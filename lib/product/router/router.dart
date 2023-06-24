@@ -11,6 +11,7 @@ import 'package:d/view/home/create/eating/view/eating_view.dart';
 import 'package:d/view/home/main/view/main_view.dart';
 import 'package:d/view/home/recipe/view/recipe_detail_view.dart';
 import 'package:d/view/home/settings/view/settings_view.dart';
+import 'package:d/view/home/settings/view/update_profile_view.dart';
 import 'package:d/view/splash/slider/view/slider_view.dart';
 import 'package:d/view/splash/splashScreen/view/splash_screen_view.dart';
 import 'package:flutter/material.dart';
@@ -124,6 +125,15 @@ class AppRouter {
         pageBuilder: (context, state) {
           return const MaterialPage(
             child: DatePickerView(),
+          );
+        },
+      ),
+      GoRoute(
+        name: RouteConstants.updateProfile,
+        path: '/updateProfile',
+        pageBuilder: (context, state) {
+          return const MaterialPage(
+            child: UpdateProfileView(),
           );
         },
       ),

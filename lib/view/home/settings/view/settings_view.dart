@@ -1,7 +1,9 @@
 import 'package:d/core/constant/color_constant.dart';
+import 'package:d/product/router/router_constant.dart';
 import 'package:d/view/home/settings/model/settings_model.dart';
 import 'package:d/view/home/settings/viewmodel/settings_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -107,12 +109,17 @@ class _SettingsViewState extends SettingsViewModel {
                     const SizedBox(
                       width: 35,
                     ),
-                    Text(
-                      'Hesabim',
-                      style: GoogleFonts.raleway(
-                        color: ColorConst.profileText,
-                        fontSize: 17,
-                        fontWeight: FontWeight.normal,
+                    GestureDetector(
+                      onTap: () {
+                        context.pushNamed(RouteConstants.updateProfile);
+                      },
+                      child: Text(
+                        'Hesabim',
+                        style: GoogleFonts.raleway(
+                          color: ColorConst.profileText,
+                          fontSize: 17,
+                          fontWeight: FontWeight.normal,
+                        ),
                       ),
                     ),
                     const Spacer(

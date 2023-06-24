@@ -25,30 +25,27 @@ class _HomeViewState extends HomeViewModel {
           body: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(top: 5, right: width / 2.5),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Hosgeldin',
-                      style: GoogleFonts.glory(
-                        color: ColorConst.createPageText,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'Hosgeldin',
+                    style: GoogleFonts.glory(
+                      color: ColorConst.createPageText,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
                     ),
-                    Text(
-                      Provider.of<UserModelProvider>(context, listen: false)
-                          .fullName,
-                      style: GoogleFonts.glory(
-                        color: ColorConst.createPageText,
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  ),
+                  Text(
+                    Provider.of<UserModelProvider>(context, listen: false)
+                        .fullName,
+                    style: GoogleFonts.glory(
+                      color: ColorConst.createPageText,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 5,

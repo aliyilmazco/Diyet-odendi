@@ -66,7 +66,6 @@ class _SignInViewState extends SignInViewModel {
                             labelText: "Email",
                             hintText: "Enter Email",
                             showSuffix: false,
-                            controller: controller1,
                             functionCallBack: (value) {
                               setState(() {
                                 email = value;
@@ -88,7 +87,6 @@ class _SignInViewState extends SignInViewModel {
                             labelText: "Password",
                             hintText: "Enter Password",
                             showSuffix: true,
-                            controller: controller2,
                             functionCallBack: (value) {
                               setState(() {
                                 password = value;
