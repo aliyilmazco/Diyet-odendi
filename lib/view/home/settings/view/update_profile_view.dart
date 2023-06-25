@@ -5,6 +5,7 @@ import 'package:d/core/constant/color_constant.dart';
 import 'package:d/product/widget/login/login_button_widget.dart';
 import 'package:d/product/widget/login/login_textfield_widget.dart';
 import 'package:d/view/home/settings/viewmodel/update_profile_viewmodel.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -185,8 +186,15 @@ class _UpdateProfileViewState extends UpdateProfileViewModel {
                           textColor: ColorConst.appBgColorWhite,
                           borderColor: ColorConst.sliderTitle,
                           function: () {
-                            updateProfile(uid, fullName, email,
-                                isSelectedGender, boy, kilo, yas, targetWeight);
+                            updateProfile(
+                                FirebaseAuth.instance.currentUser!.uid,
+                                fullName,
+                                email,
+                                isSelectedGender,
+                                boy,
+                                kilo,
+                                yas,
+                                targetWeight);
                           },
                         ),
                       ],

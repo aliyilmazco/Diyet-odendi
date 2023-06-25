@@ -91,4 +91,34 @@ class UserModelProvider with ChangeNotifier {
     height = '';
     print("basarili temizleme");
   }
+
+  Future<void> updateUser({
+    required String fullName,
+    required String email,
+    required String age,
+    required String uid,
+    required String dietationId,
+    required String diseases,
+    required String gender,
+    required String height,
+    required String note,
+    required String profilePic,
+    required String targetWeight,
+    required String weight,
+  }) async {
+    this.age = await HelperFunctions.getUserAgeSharedPreference();
+    this.email = await HelperFunctions.getUserEmailSharedPreference();
+    this.fullName = fullName;
+    this.uid = uid;
+    this.dietationId = dietationId;
+    this.diseases = diseases;
+    this.gender = gender;
+    this.height = await HelperFunctions.getUserHeightSharedPreference();
+    this.note = note;
+    this.profilePic = profilePic;
+    this.targetWeight = targetWeight;
+    this.weight = await HelperFunctions.getUserWeightSharedPreference();
+
+    notifyListeners();
+  }
 }

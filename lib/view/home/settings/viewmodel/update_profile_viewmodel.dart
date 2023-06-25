@@ -3,12 +3,13 @@
 import 'package:d/product/helper/helper_function.dart';
 import 'package:d/product/service/auth_service.dart';
 import 'package:d/product/service/database_service.dart';
-import 'package:d/view/auth/signup/model/sign_up_model.dart';
 import 'package:d/view/home/settings/view/update_profile_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+
+import '../../../auth/signup/model/sign_up_model.dart';
 
 abstract class UpdateProfileViewModel extends State<UpdateProfileView> {
   @override
@@ -58,19 +59,18 @@ abstract class UpdateProfileViewModel extends State<UpdateProfileView> {
     setState(() {
       isLoading = false;
     });
-
-    Provider.of<UserModelProvider>(context, listen: false).setUser(
+    Provider.of<UserModelProvider>(context, listen: false).updateUser(
+      fullName: fullName,
+      email: email,
       age: yas,
+      uid: uid,
       dietationId: '',
       diseases: diseases,
-      email: email,
-      fullName: fullName,
       gender: gender,
       height: boy,
       note: note,
       profilePic: '',
       targetWeight: targetWeight,
-      uid: uid,
       weight: kilo,
     );
     context.pop();
@@ -87,19 +87,19 @@ abstract class UpdateProfileViewModel extends State<UpdateProfileView> {
     await HelperFunctions.getUserGenderSharedPreference().then((value) {
       setState(() {
         gender = value;
-        print('gender: $fullName');
+        print('gender: $gender');
       });
     });
     await HelperFunctions.getUserAgeSharedPreference().then((value) {
       setState(() {
         yas = value;
-        print('yas: $fullName');
+        print('yas: $yas');
       });
     });
     await HelperFunctions.getUserHeightSharedPreference().then((value) {
       setState(() {
         boy = value;
-        print('yas: $fullName');
+        print('boy: $boy');
       });
     });
   }
