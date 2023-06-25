@@ -187,14 +187,15 @@ class _UpdateProfileViewState extends UpdateProfileViewModel {
                           borderColor: ColorConst.sliderTitle,
                           function: () {
                             updateProfile(
-                                FirebaseAuth.instance.currentUser!.uid,
-                                fullName,
-                                email,
-                                isSelectedGender,
-                                boy,
-                                kilo,
-                                yas,
-                                targetWeight);
+                              FirebaseAuth.instance.currentUser!.uid,
+                              fullName,
+                              email,
+                              isSelectedGender,
+                              boy,
+                              kilo,
+                              yas,
+                              targetWeight,
+                            );
                           },
                         ),
                       ],

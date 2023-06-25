@@ -14,15 +14,15 @@ class DatabaseService {
   final CollectionReference userCollection =
       FirebaseFirestore.instance.collection("users");
 
-  final CollectionReference groupCollection =
-      FirebaseFirestore.instance.collection("groups");
-
   final CollectionReference foodsCollection =
       FirebaseFirestore.instance.collection('foods');
   final CollectionReference dateCollection =
       FirebaseFirestore.instance.collection('date');
   final CollectionReference motivationCollection =
       FirebaseFirestore.instance.collection('motivation');
+  final CollectionReference chatCollection =
+      FirebaseFirestore.instance.collection('chats');
+
   Future savingUserData(
     String fullName,
     String email,
@@ -39,7 +39,6 @@ class DatabaseService {
       {
         "fullName": fullName,
         "email": email,
-        "groups": [],
         "profilePic": "",
         "uid": uid,
         "dietationId": dietationId,
@@ -112,10 +111,6 @@ class DatabaseService {
     return dataList;
   }
 
-  Future getUserGroups(String email) async {
-    return userCollection.doc(uid).snapshots();
-  }
-
   Future createDate(
       String userName,
       String id,
@@ -148,102 +143,38 @@ class DatabaseService {
     return snapshot;
   }
 
-  Future createGroup(String userName, String id, String groupName) async {
-    DocumentReference groupDocumentReference = await groupCollection.add(
+  getChats(String userId) async {
+    return chatCollection
+        .doc(userId)
+        .collection("messages")
+        .orderBy("time")
+        .snapshots();
+  }
+
+  Future createChat(String userName, String id) async {
+    DocumentReference chatDocumentReference = await chatCollection.add(
       {
-        "groupName": groupName,
-        "groupIcon": "",
-        "admin": "${id}_$userName",
-        "members": [],
-        "groupId": "",
+        "patientID": id,
+        "recentMessageTime": '',
         "recentMessage": "",
         "recentMessageSender": "",
       },
     );
-    await groupDocumentReference.update({
-      "members": FieldValue.arrayUnion(["${uid}_$userName"]),
-      "groupId": groupDocumentReference.id,
-    });
-
     DocumentReference userDocumentReference = userCollection.doc(uid);
     return await userDocumentReference.update(
       {
-        "groups": FieldValue.arrayUnion(
+        "chats": FieldValue.arrayUnion(
           [
-            "${groupDocumentReference.id}_$groupName",
+            "$chatDocumentReference.id",
           ],
         ),
       },
     );
   }
 
-  getChats(String groupId) async {
-    return groupCollection
-        .doc(groupId)
-        .collection("messages")
-        .orderBy("time")
-        .snapshots();
-  }
-
-  Future getGroupAdmin(String groupId) async {
-    DocumentReference d = groupCollection.doc(groupId);
-    DocumentSnapshot documentSnapshot = await d.get();
-    return documentSnapshot.get("admin");
-  }
-
-  getGroupMembers(groupId) async {
-    return groupCollection.doc(groupId).snapshots();
-  }
-
-  searchByName(String groupName) {
-    return groupCollection.where("groupName", isEqualTo: groupName).get();
-  }
-
-  Future<bool> isUserJoined(
-      String groupName, String groupId, String userName) async {
-    DocumentReference userDocumentReference = userCollection.doc(uid);
-    DocumentSnapshot documentSnapshot = await userDocumentReference.get();
-
-    List<dynamic> groups = await documentSnapshot['groups'];
-    if (groups.contains("${groupId}_$groupName")) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  Future toggleGroupJoin(
-    String groupId,
-    String userName,
-    String groupName,
-  ) async {
-    DocumentReference userDocumentReference = userCollection.doc(uid);
-    DocumentReference groupDocumentReference = groupCollection.doc(groupId);
-
-    DocumentSnapshot userDocumentSnapshot = await userDocumentReference.get();
-
-    List<dynamic> groups = userDocumentSnapshot['groups'];
-
-    if (groups.contains("${groupId}_$groupName")) {
-      await userDocumentReference.update({
-        "groups": FieldValue.arrayRemove(["${groupId}_$groupName"]),
-      });
-      await groupDocumentReference.update({
-        "members": FieldValue.arrayRemove(["${uid}_$userName"]),
-      });
-    } else {
-      await userDocumentReference.update({
-        "groups": FieldValue.arrayUnion(["${groupId}_$groupName"]),
-      });
-      await groupDocumentReference.update({
-        "members": FieldValue.arrayUnion(["${uid}_$userName"]),
-      });
-    }
-  }
-
-  sendMessage(String groupId, Map<String, dynamic> chatMessageData) async {
-    groupCollection.doc(groupId).collection("messages").add(chatMessageData);
-    groupCollection.doc(groupId).update({
+  sendMessage(String patientId, Map<String, dynamic> chatMessageData) async {
+    chatCollection.doc(patientId).collection("messages").add(chatMessageData);
+    chatCollection.doc(patientId).update({
       "recentMessage": chatMessageData['message'],
       "recentMessageSender": chatMessageData['sender'],
       "recentMessageTime": chatMessageData['time'].toString(),

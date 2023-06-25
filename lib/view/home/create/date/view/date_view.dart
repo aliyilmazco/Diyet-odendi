@@ -86,10 +86,11 @@ class _DateViewState extends DateViewModel {
                 text: 'Available on 12th May 2021',
                 function: () async {
                   context.pushNamed(RouteConstants.appointment);
-
                   Provider.of<DateModel>(context, listen: false)
                       .getDates(width, height);
-                  await Future.delayed(const Duration(milliseconds: 650));
+                  await Future.delayed(
+                    const Duration(milliseconds: 650),
+                  );
                   Provider.of<DateModel>(context, listen: false)
                       .addToWidgetList(MediaQuery.of(context).size.width,
                           MediaQuery.of(context).size.height);
@@ -104,7 +105,9 @@ class _DateViewState extends DateViewModel {
                 height: height,
                 title: 'Chat with the Doctor',
                 text: 'Available 24x7',
-                function: () {},
+                function: () {
+                  context.pushNamed(RouteConstants.chat);
+                },
                 icon: Icons.chat,
               ),
             ],

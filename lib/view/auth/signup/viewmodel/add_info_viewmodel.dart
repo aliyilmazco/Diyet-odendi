@@ -38,6 +38,11 @@ abstract class AddInfoViewModel extends State<AddInfoView> {
 
   AuthService authService = AuthService();
 
+  createChat() {
+    DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
+        .createChat(fullName, FirebaseAuth.instance.currentUser!.uid);
+  }
+
   updateProfile(
     String uid,
     String fullName,
@@ -91,7 +96,7 @@ abstract class AddInfoViewModel extends State<AddInfoView> {
       uid: uid,
       weight: kilo,
     );
-
+    createChat();
     context.pushReplacement('/main');
   }
 
