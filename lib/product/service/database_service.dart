@@ -77,8 +77,8 @@ class DatabaseService {
         "height": height,
         "weight": weight,
         "targetWeight": targetWeight,
-        "diseases": '',
-        "note": '',
+        "diseases": diseases,
+        "note": note,
       });
       print("Kullanici verileri güncellendi.");
     } catch (e) {
