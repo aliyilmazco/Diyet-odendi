@@ -124,8 +124,7 @@ class RecipeDetailView extends RecipeDetailViewModel {
                   width: width / 1.5,
                   height: height / 5,
                   decoration: BoxDecoration(
-                    borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(20)),
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
                     image: DecorationImage(
                       image: Provider.of<RecipeModel>(context).recipeImages[
                                   Provider.of<RecipeModel>(context,
@@ -135,7 +134,7 @@ class RecipeDetailView extends RecipeDetailViewModel {
                           ? NetworkImage(Provider.of<RecipeModel>(context)
                                   .recipeImages[
                               Provider.of<RecipeModel>(context, listen: false)
-                                  .recipeNumber]!) as ImageProvider<Object>
+                                  .selectedIndex]!) as ImageProvider<Object>
                           : const AssetImage('assets/images/profile.png'),
                       fit: BoxFit.fitWidth,
                     ),
