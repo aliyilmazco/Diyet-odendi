@@ -32,7 +32,7 @@ class _ChatViewState extends ChatViewModel {
       ),
       body: Stack(
         children: <Widget>[
-          chatMessages(),
+          chatMessages(isItLastMessage),
           Container(
             alignment: Alignment.bottomCenter,
             width: MediaQuery.of(context).size.width,

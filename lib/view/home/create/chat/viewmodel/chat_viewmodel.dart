@@ -11,6 +11,7 @@ abstract class ChatViewModel extends State<ChatView> {
   Stream<QuerySnapshot>? chats;
 
   String chatId = '';
+  bool isItLastMessage = false;
   TextEditingController messageController = TextEditingController();
   @override
   void initState() {
@@ -39,23 +40,33 @@ abstract class ChatViewModel extends State<ChatView> {
     });
   }
 
-  chatMessages() {
+  chatMessages(bool isItLastMessage) {
     return StreamBuilder(
       stream: chats,
       builder: (context, AsyncSnapshot snapshot) {
-        return snapshot.hasData
-            ? ListView.builder(
-                reverse: false,
-                itemCount: snapshot.data.docs.length,
-                itemBuilder: (context, index) {
-                  return MessageTile(
+        if (snapshot.hasData) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 80.0),
+            child: ListView.builder(
+              reverse: false,
+              itemCount: snapshot.data.docs.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 0),
+                  child: MessageTile(
                     message: snapshot.data.docs[index]['message'],
                     sender: snapshot.data.docs[index]['sender'],
-                    sentByMe: '' == snapshot.data.docs[index]['sender'],
-                  );
-                },
-              )
-            : Container();
+                    sentByMe:
+                        Provider.of<UserModelProvider>(context).fullName ==
+                            snapshot.data.docs[index]['sender'],
+                  ),
+                );
+              },
+            ),
+          );
+        } else {
+          return Container();
+        }
       },
     );
   }
