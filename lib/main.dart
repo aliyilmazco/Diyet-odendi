@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_late
 import 'package:d/product/router/router.dart';
 import 'package:d/view/auth/signup/model/sign_up_model.dart';
+import 'package:d/view/home/create/chat/model/chat_model.dart';
 import 'package:d/view/home/create/date/model/date_model.dart';
 import 'package:d/view/home/create/eating/model/eating_model.dart';
 import 'package:d/view/home/settings/model/settings_model.dart';
@@ -38,6 +39,7 @@ Future<void> main() async {
               gender: '',
               height: '',
               note: '',
+              chatId: '',
               profilePic: '',
               targetWeight: '',
               weight: ''),
@@ -47,6 +49,9 @@ Future<void> main() async {
         ),
         ChangeNotifierProvider<SettingsModel>(
           create: (BuildContext context) => SettingsModel(),
+        ),
+        ChangeNotifierProvider<ChatModel>(
+          create: (BuildContext context) => ChatModel(),
         ),
       ],
       child: const MyApp(),

@@ -16,6 +16,7 @@ class UserModelProvider with ChangeNotifier {
   String profilePic;
   String targetWeight;
   String weight;
+  String chatId;
 
   UserModelProvider({
     required this.age,
@@ -30,6 +31,7 @@ class UserModelProvider with ChangeNotifier {
     required this.profilePic,
     required this.targetWeight,
     required this.weight,
+    required this.chatId,
   });
 
   Future<void> setUser({
@@ -45,6 +47,7 @@ class UserModelProvider with ChangeNotifier {
     required String profilePic,
     required String targetWeight,
     required String weight,
+    required String chatId,
   }) async {
     bool isLoggedIn = await HelperFunctions.getUserLoggedInSharedPreference();
 
@@ -56,6 +59,8 @@ class UserModelProvider with ChangeNotifier {
       this.targetWeight =
           await HelperFunctions.getUserTargetWeightSharedPreference();
       this.weight = await HelperFunctions.getUserWeightSharedPreference();
+      this.chatId = await HelperFunctions.getUserChatSharedPreference();
+
       print("isLoggedIn true");
     } else {
       this.age = age;
@@ -70,6 +75,7 @@ class UserModelProvider with ChangeNotifier {
       this.profilePic = profilePic;
       this.targetWeight = targetWeight;
       this.weight = weight;
+      this.chatId = chatId;
       print("isLoggedIn false");
     }
 
@@ -89,6 +95,7 @@ class UserModelProvider with ChangeNotifier {
     note = '';
     uid = '';
     height = '';
+    chatId = '';
     print("basarili temizleme");
   }
 

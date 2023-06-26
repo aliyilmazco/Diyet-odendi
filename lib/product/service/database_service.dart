@@ -43,6 +43,7 @@ class DatabaseService {
         "uid": uid,
         "dietationId": dietationId,
         "gender": gender,
+        "chats": [],
         "age": age,
         "height": height,
         "weight": weight,
@@ -73,6 +74,7 @@ class DatabaseService {
         "dietationId": dietationId,
         "gender": gender,
         "age": age,
+        "chats": [],
         "height": height,
         "weight": weight,
         "targetWeight": targetWeight,
@@ -143,44 +145,6 @@ class DatabaseService {
     return snapshot;
   }
 
-  getChats(String userId) async {
-    return chatCollection
-        .doc(userId)
-        .collection("messages")
-        .orderBy("time")
-        .snapshots();
-  }
-
-  Future createChat(String userName, String id) async {
-    DocumentReference chatDocumentReference = await chatCollection.add(
-      {
-        "patientID": id,
-        "recentMessageTime": '',
-        "recentMessage": "",
-        "recentMessageSender": "",
-      },
-    );
-    DocumentReference userDocumentReference = userCollection.doc(uid);
-    return await userDocumentReference.update(
-      {
-        "chats": FieldValue.arrayUnion(
-          [
-            "$chatDocumentReference.id",
-          ],
-        ),
-      },
-    );
-  }
-
-  sendMessage(String patientId, Map<String, dynamic> chatMessageData) async {
-    chatCollection.doc(patientId).collection("messages").add(chatMessageData);
-    chatCollection.doc(patientId).update({
-      "recentMessage": chatMessageData['message'],
-      "recentMessageSender": chatMessageData['sender'],
-      "recentMessageTime": chatMessageData['time'].toString(),
-    });
-  }
-
   Future<void> uploadFile(Uint8List fileData) async {
     String fullName = await HelperFunctions.getUserEmailSharedPreference();
     String fileName = "$fullName.jpg";
@@ -212,5 +176,50 @@ class DatabaseService {
         await FirebaseFirestore.instance.collection('motivation').get();
 
     return snapshot;
+  }
+
+  Future createChat(String userName, String id, String chatName) async {
+    DocumentReference chatDocumentReference = await chatCollection.add(
+      {
+        "chatName": chatName,
+        "admin": id,
+        "members": [],
+        "chatId": "",
+        "recentMessage": "",
+        "recentMessageSender": "",
+      },
+    );
+    await chatDocumentReference.update({
+      "members": FieldValue.arrayUnion(["$uid"]),
+      "chatId": chatDocumentReference.id,
+    });
+
+    DocumentReference userDocumentReference = userCollection.doc(uid);
+    return await userDocumentReference.update(
+      {
+        "chats": FieldValue.arrayUnion(
+          [
+            (chatDocumentReference.id),
+          ],
+        ),
+      },
+    );
+  }
+
+  getChats(String chatId) async {
+    return chatCollection
+        .doc(chatId)
+        .collection("messages")
+        .orderBy("time")
+        .snapshots();
+  }
+
+  sendMessage(String chatId, Map<String, dynamic> chatMessageData) async {
+    chatCollection.doc(chatId).collection("messages").add(chatMessageData);
+    chatCollection.doc(chatId).update({
+      "recentMessage": chatMessageData['message'],
+      "recentMessageSender": chatMessageData['sender'],
+      "recentMessageTime": chatMessageData['time'].toString(),
+    });
   }
 }

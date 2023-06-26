@@ -1,29 +1,17 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:d/core/constant/color_constant.dart';
-import 'package:d/product/service/database_service.dart';
-import 'package:d/product/widget/create/message_tile.dart';
-import 'package:d/view/auth/signup/model/sign_up_model.dart';
 import 'package:d/view/home/create/chat/viewmodel/chat_viewmodel.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class ChatView extends StatefulWidget {
-  const ChatView({super.key});
+  const ChatView({
+    super.key,
+  });
 
   @override
   State<ChatView> createState() => _ChatViewState();
 }
 
 class _ChatViewState extends ChatViewModel {
-  Stream<QuerySnapshot>? chats;
-  TextEditingController messageController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,47 +90,5 @@ class _ChatViewState extends ChatViewModel {
         ],
       ),
     );
-  }
-
-  chatMessages() {
-    return StreamBuilder(
-      stream: chats,
-      builder: (context, AsyncSnapshot snapshot) {
-        return snapshot.hasData
-            ? ListView.builder(
-                reverse: false,
-                itemCount: snapshot.data.docs.length,
-                itemBuilder: (context, index) {
-                  return MessageTile(
-                    message: snapshot.data.docs[index]['message'],
-                    sender: snapshot.data.docs[index]['sender'],
-                    sentByMe: '' == snapshot.data.docs[index]['sender'],
-                  );
-                },
-              )
-            : Container();
-      },
-    );
-  }
-
-  sendMessage() {
-    if (messageController.text.isNotEmpty) {
-      Map<String, dynamic> chatMessageMap = {
-        "message": messageController.text,
-        "sender":
-            Provider.of<UserModelProvider>(context, listen: false).fullName,
-        "time": DateTime.now().millisecondsSinceEpoch,
-      };
-
-      DatabaseService(
-        uid: FirebaseAuth.instance.currentUser!.uid,
-      ).sendMessage(
-        Provider.of<UserModelProvider>(context, listen: false).fullName,
-        chatMessageMap,
-      );
-      setState(() {
-        messageController.clear();
-      });
-    }
   }
 }

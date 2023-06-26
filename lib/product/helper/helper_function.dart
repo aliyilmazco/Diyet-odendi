@@ -13,6 +13,7 @@ class HelperFunctions {
   static String userDietationKey = "USERDIEATATIONKEY";
   static String userPictureKey = "USERPICTUREKEY";
   static String userDiseaseKey = "USERDISEASEKEY";
+  static String userChatKey = 'USERCHATKEY';
 
   static Future<bool> saveUserLoggedInStatus(bool isUserLoggedIn) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -52,6 +53,11 @@ class HelperFunctions {
   static Future<bool> saveUserName(String userName) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.setString(userNameKey, userName);
+  }
+
+  static Future<bool> saveUserChat(String userChat) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setString(userChatKey, userChat);
   }
 
   static Future<bool> saveUserEmail(String userEmail) async {
@@ -132,5 +138,10 @@ class HelperFunctions {
   static Future<String> getUserDiseaseSharedPreference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString(userDiseaseKey) ?? '';
+  }
+
+  static Future<String> getUserChatSharedPreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(userChatKey) ?? '';
   }
 }

@@ -19,6 +19,7 @@ abstract class SplashScreenViewModel extends State<SplashScreenView> {
   String boy = '';
   String kilo = '';
   String yas = '';
+  String chatId = '';
   String targetWeight = '';
   String dietation = '';
   String note = '';
@@ -39,6 +40,7 @@ abstract class SplashScreenViewModel extends State<SplashScreenView> {
               email: email,
               age: yas,
               uid: uid,
+              chatId: chatId,
               dietationId: dietation,
               diseases: diseases,
               gender: gender,
@@ -78,6 +80,7 @@ abstract class SplashScreenViewModel extends State<SplashScreenView> {
     gender = await HelperFunctions.getUserGenderSharedPreference();
     note = await HelperFunctions.getUserNoteSharedPreference();
     picture = await HelperFunctions.getUserPictureSharedPreference();
+    chatId = await HelperFunctions.getUserChatSharedPreference();
 
     setState(() {
       fullName = fullName;
@@ -90,6 +93,7 @@ abstract class SplashScreenViewModel extends State<SplashScreenView> {
       diseases = diseases;
       gender = gender;
       note = note;
+      chatId = chatId;
       picture = picture;
     });
   }

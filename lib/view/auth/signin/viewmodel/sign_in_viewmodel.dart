@@ -63,6 +63,7 @@ abstract class SignInViewModel extends State<SignInView> {
           await HelperFunctions.saveUserGender(snapshot.docs[0]['gender']);
           await HelperFunctions.saveUserNote(snapshot.docs[0]['note']);
           await HelperFunctions.saveUserPicture(snapshot.docs[0]['profilePic']);
+          await HelperFunctions.saveUserChat(snapshot.docs[0]['chatId']);
 
           Provider.of<UserModelProvider>(context, listen: false).setUser(
             age: snapshot.docs[0]['age'],
@@ -76,6 +77,7 @@ abstract class SignInViewModel extends State<SignInView> {
             profilePic: snapshot.docs[0]['profilePic'],
             targetWeight: snapshot.docs[0]['targetWeight'],
             uid: uid,
+            chatId: snapshot.docs[0]['chatId'],
             weight: snapshot.docs[0]['weight'],
           );
           context.pushReplacementNamed(RouteConstants.home);

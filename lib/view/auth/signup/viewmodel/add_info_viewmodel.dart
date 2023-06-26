@@ -35,12 +35,15 @@ abstract class AddInfoViewModel extends State<AddInfoView> {
   String password = 'empty password';
   String fullName = 'empty fullName';
   bool isLoading = false;
-
+  String chatId = '';
   AuthService authService = AuthService();
 
   createChat() {
     DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
-        .createChat(fullName, FirebaseAuth.instance.currentUser!.uid);
+        .createChat(fullName, FirebaseAuth.instance.currentUser!.uid, fullName)
+        .whenComplete(() {
+      isLoading = false;
+    });
   }
 
   updateProfile(
@@ -85,6 +88,7 @@ abstract class AddInfoViewModel extends State<AddInfoView> {
     Provider.of<UserModelProvider>(context, listen: false).setUser(
       age: yas,
       dietationId: '',
+      chatId: chatId,
       diseases: '',
       email: email,
       fullName: fullName,
@@ -111,6 +115,12 @@ abstract class AddInfoViewModel extends State<AddInfoView> {
       setState(() {
         fullName = value;
         print('Full Name: $fullName');
+      });
+    });
+    await HelperFunctions.getUserChatSharedPreference().then((value) {
+      setState(() {
+        chatId = value;
+        print('chatId: $chatId');
       });
     });
   }
