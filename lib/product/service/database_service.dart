@@ -22,6 +22,8 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('motivation');
   final CollectionReference chatCollection =
       FirebaseFirestore.instance.collection('chats');
+  final CollectionReference recipeCollection =
+      FirebaseFirestore.instance.collection('recipe');
 
   Future savingUserData(
     String fullName,
@@ -221,5 +223,24 @@ class DatabaseService {
       "recentMessageSender": chatMessageData['sender'],
       "recentMessageTime": chatMessageData['time'].toString(),
     });
+  }
+
+  Future getRecipe() async {
+    QuerySnapshot snapshot =
+        await FirebaseFirestore.instance.collection('recipe').get();
+
+    return snapshot;
+  }
+
+  Future<String?> getRecipeUrl(String recipeName) async {
+    try {
+      String downloadUrl = await firebase_storage.FirebaseStorage.instance
+          .ref('recipeImages/$recipeName.jpg')
+          .getDownloadURL();
+      return downloadUrl;
+    } catch (e) {
+      print('Recipe resim indirme hatasi: $e');
+      return null;
+    }
   }
 }

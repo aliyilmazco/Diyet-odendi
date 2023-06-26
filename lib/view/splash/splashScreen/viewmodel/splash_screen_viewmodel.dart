@@ -2,6 +2,7 @@
 
 import 'package:d/product/helper/helper_function.dart';
 import 'package:d/view/auth/signup/model/sign_up_model.dart';
+import 'package:d/view/home/recipe/model/recipe_model.dart';
 import 'package:d/view/home/settings/model/settings_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -57,6 +58,7 @@ abstract class SplashScreenViewModel extends State<SplashScreenView> {
           context,
           listen: false,
         ).downloadImage();
+        Provider.of<RecipeModel>(context, listen: false).getRecipe();
       } else {
         Future.delayed(const Duration(seconds: 3), () async {
           context.pushReplacement('/login');
@@ -83,6 +85,7 @@ abstract class SplashScreenViewModel extends State<SplashScreenView> {
     chatId = await HelperFunctions.getUserChatSharedPreference();
 
     setState(() {
+      Provider.of<RecipeModel>(context, listen: false).getRecipe();
       fullName = fullName;
       email = email;
       yas = yas;

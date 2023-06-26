@@ -4,6 +4,7 @@ import 'package:d/view/auth/signup/model/sign_up_model.dart';
 import 'package:d/view/home/create/chat/model/chat_model.dart';
 import 'package:d/view/home/create/date/model/date_model.dart';
 import 'package:d/view/home/create/eating/model/eating_model.dart';
+import 'package:d/view/home/recipe/model/recipe_model.dart';
 import 'package:d/view/home/settings/model/settings_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +53,9 @@ Future<void> main() async {
         ),
         ChangeNotifierProvider<ChatModel>(
           create: (BuildContext context) => ChatModel(),
+        ),
+        ChangeNotifierProvider<RecipeModel>(
+          create: (BuildContext context) => RecipeModel(),
         ),
       ],
       child: const MyApp(),
