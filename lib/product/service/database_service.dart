@@ -24,6 +24,8 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('chats');
   final CollectionReference recipeCollection =
       FirebaseFirestore.instance.collection('recipe');
+  final CollectionReference diyetListCollection =
+      FirebaseFirestore.instance.collection('diyetList');
 
   Future savingUserData(
     String fullName,
@@ -241,6 +243,23 @@ class DatabaseService {
     } catch (e) {
       print('Recipe resim indirme hatasi: $e');
       return null;
+    }
+  }
+
+  Future getDiyetList(String uid) async {
+    QuerySnapshot diyetListSnapshot = await FirebaseFirestore.instance
+        .collection('diyetList')
+        .where('uid', isEqualTo: uid)
+        .get();
+
+    for (QueryDocumentSnapshot doc in diyetListSnapshot.docs) {
+      CollectionReference innerCollectionRef = doc.reference.collection('List');
+      QuerySnapshot innerCollectionSnapshot = await innerCollectionRef.get();
+      for (QueryDocumentSnapshot innerDoc in innerCollectionSnapshot.docs) {
+        Map<String, dynamic>? innerData =
+            innerDoc.data() as Map<String, dynamic>?;
+        print(innerData);
+      }
     }
   }
 }

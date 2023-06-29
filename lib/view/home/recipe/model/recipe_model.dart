@@ -45,6 +45,7 @@ class RecipeModel extends ChangeNotifier {
       ingredients.add(snapshot!.docs[i]['ingredients']);
       calories.add(snapshot!.docs[i]['calories']);
       print("${recipeName[i]!.trim()}.jpg");
+      getRecipeNumber();
     }
   }
 

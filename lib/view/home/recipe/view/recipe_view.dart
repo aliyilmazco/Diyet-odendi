@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
 import 'package:d/product/router/router_constant.dart';

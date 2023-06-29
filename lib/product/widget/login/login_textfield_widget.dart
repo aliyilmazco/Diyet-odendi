@@ -31,7 +31,7 @@ class _LoginTextfieldWidgetState extends State<LoginTextfieldWidget> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Container(
+      child: SizedBox(
         height: widget.height,
         child: TextFormField(
           key: widget.key,

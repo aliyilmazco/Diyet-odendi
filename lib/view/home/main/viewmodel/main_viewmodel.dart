@@ -3,6 +3,7 @@ import 'package:d/view/home/homePage/view/home_view.dart';
 import 'package:d/view/home/main/view/main_view.dart';
 import 'package:d/view/home/profile/view/profile_view.dart';
 import 'package:d/view/home/recipe/view/recipe_view.dart';
+import 'package:d/view/home/target/view/diyetList_view.dart';
 import 'package:flutter/material.dart';
 
 abstract class MainViewModel extends State<MainView> {
@@ -12,10 +13,7 @@ abstract class MainViewModel extends State<MainView> {
     HomeView(),
     RecipeView(),
     DateView(),
-    Icon(
-      Icons.camera,
-      size: 150,
-    ),
+    DiyetListView(),
     ProfileView(),
   ];
   void onItemTapped(int index) {

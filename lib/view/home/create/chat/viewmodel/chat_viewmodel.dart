@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:d/product/service/database_service.dart';
 import 'package:d/product/widget/create/message_tile.dart';
