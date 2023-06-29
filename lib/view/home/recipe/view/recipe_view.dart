@@ -5,6 +5,7 @@ import 'package:d/core/constant/color_constant.dart';
 import 'package:d/product/router/router_constant.dart';
 import 'package:d/view/home/recipe/model/recipe_model.dart';
 import 'package:d/view/home/recipe/viewmodel/recipe_viewmodel.dart';
+import 'package:d/view/home/target/model/diyetList_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -54,6 +55,8 @@ class _RecipeViewState extends RecipeViewModel {
                         context.pushNamed(RouteConstants.recipeDetail);
                         Provider.of<RecipeModel>(context, listen: false)
                             .selectedIndex = index;
+                        Provider.of<DiyetListModel>(context, listen: false)
+                            .getDayList();
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(top: 8.0),

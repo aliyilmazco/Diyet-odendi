@@ -4,6 +4,7 @@ import 'package:d/product/helper/helper_function.dart';
 import 'package:d/view/auth/signup/model/sign_up_model.dart';
 import 'package:d/view/home/recipe/model/recipe_model.dart';
 import 'package:d/view/home/settings/model/settings_model.dart';
+import 'package:d/view/home/target/model/diyetList_model.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -59,6 +60,7 @@ abstract class SplashScreenViewModel extends State<SplashScreenView> {
           listen: false,
         ).downloadImage();
         Provider.of<RecipeModel>(context, listen: false).getRecipe();
+        Provider.of<DiyetListModel>(context, listen: false).getData();
       } else {
         Future.delayed(const Duration(seconds: 3), () async {
           context.pushReplacement('/login');
@@ -86,6 +88,7 @@ abstract class SplashScreenViewModel extends State<SplashScreenView> {
 
     setState(() {
       Provider.of<RecipeModel>(context, listen: false).getRecipe();
+      Provider.of<DiyetListModel>(context, listen: false).getData();
       fullName = fullName;
       email = email;
       yas = yas;

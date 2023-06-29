@@ -246,20 +246,23 @@ class DatabaseService {
     }
   }
 
-  Future getDiyetList(String uid) async {
+  Future<List<Map<String, dynamic>>> getDiyetList(String uid) async {
     QuerySnapshot diyetListSnapshot = await FirebaseFirestore.instance
         .collection('diyetList')
         .where('uid', isEqualTo: uid)
         .get();
 
+    List<Map<String, dynamic>> innerDataList = [];
+
     for (QueryDocumentSnapshot doc in diyetListSnapshot.docs) {
       CollectionReference innerCollectionRef = doc.reference.collection('List');
       QuerySnapshot innerCollectionSnapshot = await innerCollectionRef.get();
+
       for (QueryDocumentSnapshot innerDoc in innerCollectionSnapshot.docs) {
-        Map<String, dynamic>? innerData =
-            innerDoc.data() as Map<String, dynamic>?;
-        print(innerData);
+        innerDataList.add(innerDoc.data() as Map<String, dynamic>);
       }
     }
+
+    return innerDataList;
   }
 }

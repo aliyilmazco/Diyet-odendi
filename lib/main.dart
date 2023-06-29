@@ -6,6 +6,7 @@ import 'package:d/view/home/create/date/model/date_model.dart';
 import 'package:d/view/home/create/eating/model/eating_model.dart';
 import 'package:d/view/home/recipe/model/recipe_model.dart';
 import 'package:d/view/home/settings/model/settings_model.dart';
+import 'package:d/view/home/target/model/diyetList_model.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -56,6 +57,9 @@ Future<void> main() async {
         ),
         ChangeNotifierProvider<RecipeModel>(
           create: (BuildContext context) => RecipeModel(),
+        ),
+        ChangeNotifierProvider<DiyetListModel>(
+          create: (BuildContext context) => DiyetListModel(),
         ),
       ],
       child: const MyApp(),
