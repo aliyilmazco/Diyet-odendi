@@ -1,9 +1,12 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
 import 'package:d/product/widget/home/home_card_widget.dart';
 import 'package:d/view/auth/signup/model/sign_up_model.dart';
 
 import 'package:d/view/home/homePage/viewmodel/home_viewmodel.dart';
+import 'package:d/view/home/target/model/diyetList_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -110,14 +113,16 @@ class _HomeViewState extends HomeViewModel {
                                 padding:
                                     const EdgeInsets.only(left: 20.0, top: 20),
                                 child: Image.asset(
-                                  'assets/images/breakfast.png',
+                                  'assets/images/${Provider.of<DiyetListModel>(context).ogun}.png',
                                   width: 90,
                                 ),
                               ),
                               Column(
                                 children: [
                                   Text(
-                                    'Kahvalti',
+                                    Provider.of<DiyetListModel>(context)
+                                        .ogun
+                                        .toUpperCase(),
                                     style: GoogleFonts.glory(
                                       color: ColorConst.createPageText,
                                       fontSize: 18,
@@ -130,7 +135,7 @@ class _HomeViewState extends HomeViewModel {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
                                     child: Text(
-                                      'Tavsiye edilen 365 - 535 Kcal',
+                                      'Tavsiye edilen ${totalCalories()} Kcal',
                                       style: GoogleFonts.glory(
                                         color: ColorConst.createPageText,
                                         fontSize: 16,
@@ -149,27 +154,66 @@ class _HomeViewState extends HomeViewModel {
                       HomeCardWidget(
                         width: width,
                         height: height,
-                        image: 'assets/svg/avocado.svg',
-                        foodNumber: '2 Large',
-                        foodText: 'Egg',
-                        foodCalorie: '143',
+                        image:
+                            'assets/images/${Provider.of<DiyetListModel>(context).ogun}.png',
+                        foodNumber: getSecondPart(
+                          Provider.of<DiyetListModel>(context).keyList[0],
+                        ),
+                        foodText: getFirstPart(
+                          Provider.of<DiyetListModel>(context).keyList[0],
+                        ).toUpperCase(),
+                        foodCalorie: calculateCalorie(
+                            getSecondPart(
+                              Provider.of<DiyetListModel>(context).keyList[0],
+                            ),
+                            Provider.of<DiyetListModel>(context).valueList[0]),
                       ),
                       HomeCardWidget(
                         width: width,
                         height: height,
-                        image: 'assets/svg/egg.svg',
-                        foodNumber: '1 Medium',
-                        foodText: 'Avocado',
-                        foodCalorie: '240',
+                        image:
+                            'assets/images/${Provider.of<DiyetListModel>(context).ogun}.png',
+                        foodNumber: getSecondPart(
+                          Provider.of<DiyetListModel>(context).keyList[1],
+                        ),
+                        foodText: getFirstPart(
+                          Provider.of<DiyetListModel>(context).keyList[1],
+                        ).toUpperCase(),
+                        foodCalorie: calculateCalorie(
+                            getSecondPart(
+                              Provider.of<DiyetListModel>(context).keyList[1],
+                            ),
+                            Provider.of<DiyetListModel>(context).valueList[1]),
                       ),
-                      HomeCardWidget(
-                        width: width,
-                        height: height,
-                        image: 'assets/svg/toast.svg',
-                        foodNumber: '1 Slice',
-                        foodText: 'Whole Grain Toast',
-                        foodCalorie: '100',
-                      ),
+                      Provider.of<DiyetListModel>(context).keyList[2] != null
+                          ? HomeCardWidget(
+                              width: width,
+                              height: height,
+                              image:
+                                  'assets/images/${Provider.of<DiyetListModel>(context).ogun}.png',
+                              foodNumber: getSecondPart(
+                                Provider.of<DiyetListModel>(context).keyList[2],
+                              ),
+                              foodText: getFirstPart(
+                                Provider.of<DiyetListModel>(context).keyList[2],
+                              ).toUpperCase(),
+                              foodCalorie: calculateCalorie(
+                                  getSecondPart(
+                                    Provider.of<DiyetListModel>(context)
+                                        .keyList[2],
+                                  ),
+                                  Provider.of<DiyetListModel>(context)
+                                      .valueList[2]),
+                            )
+                          : HomeCardWidget(
+                              width: width,
+                              height: height,
+                              image:
+                                  'assets/images/${Provider.of<DiyetListModel>(context).ogun}.png',
+                              foodNumber: '1 Slice',
+                              foodText: 'Whole Grain Toast',
+                              foodCalorie: '100',
+                            ),
                       const Spacer(),
                       Container(
                         width: height / 2.3,
@@ -177,10 +221,11 @@ class _HomeViewState extends HomeViewModel {
                         color: ColorConst.mainBoxBottomColor,
                         child: Center(
                           child: Text(
-                            'Net Carbs: 16%  Fat 66%  Protein 23%',
+                            "Total : ${totalCalories()} Kcal",
                             style: GoogleFonts.glory(
                               color: ColorConst.createPageText,
-                              fontSize: 14,
+                              fontSize: 19,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),

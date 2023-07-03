@@ -5,8 +5,10 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:d/product/service/database_service.dart';
 import 'package:d/view/home/homePage/view/home_view.dart';
+import 'package:d/view/home/target/model/diyetList_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 abstract class HomeViewModel extends State<HomeView> {
   String motivation = '';
@@ -37,5 +39,38 @@ abstract class HomeViewModel extends State<HomeView> {
         });
       }
     }
+  }
+
+  String getFirstPart(String input) {
+    List<String> parts = input.split('x');
+
+    return parts[0];
+  }
+
+  String getSecondPart(String input) {
+    List<String> parts = input.split('x');
+
+    return parts[1];
+  }
+
+  String calculateCalorie(String value, String calories) {
+    double result = double.parse(value) * double.parse(calories);
+    return result.toStringAsFixed(0);
+  }
+
+  String totalCalories() {
+    int total = 0;
+    for (int i = 0;
+        i < Provider.of<DiyetListModel>(context).keyList.length;
+        i++) {
+      String values = calculateCalorie(
+          getSecondPart(
+            Provider.of<DiyetListModel>(context).keyList[i],
+          ),
+          Provider.of<DiyetListModel>(context).valueList[i]);
+
+      total += int.parse(values);
+    }
+    return total.toString();
   }
 }

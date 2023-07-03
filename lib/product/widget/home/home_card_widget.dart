@@ -1,6 +1,5 @@
 import 'package:d/core/constant/color_constant.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeCardWidget extends StatelessWidget {
@@ -45,7 +44,7 @@ class HomeCardWidget extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 30.0),
-              child: SvgPicture.asset(image),
+              child: Image.asset(image),
             ),
             const SizedBox(
               width: 15,
@@ -57,6 +56,7 @@ class HomeCardWidget extends StatelessWidget {
                   foodText,
                   style: GoogleFonts.glory(
                     fontSize: 14,
+                    fontWeight: FontWeight.bold,
                     color: ColorConst.createPageText,
                   ),
                 ),
@@ -65,6 +65,7 @@ class HomeCardWidget extends StatelessWidget {
                   style: GoogleFonts.glory(
                     fontSize: 14,
                     color: ColorConst.createPageText,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
@@ -77,6 +78,7 @@ class HomeCardWidget extends StatelessWidget {
                 style: GoogleFonts.glory(
                   color: ColorConst.createPageText,
                   fontSize: 14,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
