@@ -256,6 +256,7 @@ class DatabaseService {
 
     for (QueryDocumentSnapshot doc in diyetListSnapshot.docs) {
       CollectionReference innerCollectionRef = doc.reference.collection('List');
+
       QuerySnapshot innerCollectionSnapshot = await innerCollectionRef.get();
 
       for (QueryDocumentSnapshot innerDoc in innerCollectionSnapshot.docs) {

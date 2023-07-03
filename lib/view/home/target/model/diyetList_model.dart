@@ -9,6 +9,8 @@ class DiyetListModel extends ChangeNotifier {
   List<Map<String, dynamic>> diyetList = [];
   List<String> keyList = [];
   List<String> valueList = [];
+  List<String> keyList2 = [];
+  List<String> valueList2 = [];
   String ogun = '';
 
   String currentDate = DateFormat('dd').format(DateTime.now());
@@ -66,5 +68,33 @@ class DiyetListModel extends ChangeNotifier {
     } else {
       print('İstenilen gün değerine sahip map bulunamadi.');
     }
+  }
+
+  getDayListByOgun(String ogunByString) {
+    calculateTime();
+    Map<String, dynamic>? desiredMap;
+
+    for (Map<String, dynamic> map in diyetList) {
+      if (map['day'] == currentDate) {
+        desiredMap = map;
+        break;
+      }
+    }
+
+    if (desiredMap != null) {
+      print('İstenilen map: $desiredMap');
+      print('${desiredMap[ogunByString]}');
+      Map<String, dynamic> lunchMap = desiredMap[ogunByString];
+      keyList2.clear();
+      valueList2.clear();
+      lunchMap.forEach((key, value) {
+        print('key: $key, value: $value');
+        keyList2.add(key);
+        valueList2.add(value);
+      });
+    } else {
+      print('İstenilen gün değerine sahip map bulunamadi.');
+    }
+    notifyListeners();
   }
 }
