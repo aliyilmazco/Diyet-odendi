@@ -26,6 +26,8 @@ class DatabaseService {
       FirebaseFirestore.instance.collection('recipe');
   final CollectionReference diyetListCollection =
       FirebaseFirestore.instance.collection('diyetList');
+  final CollectionReference eatenCollection =
+      FirebaseFirestore.instance.collection('eaten');
 
   Future savingUserData(
     String fullName,
@@ -224,6 +226,40 @@ class DatabaseService {
       "recentMessage": chatMessageData['message'],
       "recentMessageSender": chatMessageData['sender'],
       "recentMessageTime": chatMessageData['time'].toString(),
+    });
+  }
+
+  Future createEaten(String userName, String id, String eatenName) async {
+    DocumentReference eatenDocumentReference = await eatenCollection.add(
+      {
+        "chatName": eatenName,
+        "userId": id,
+        "eatenId": "",
+        "recentEaten": "",
+      },
+    );
+    await eatenDocumentReference.update({
+      "eatenId": eatenDocumentReference.id,
+    });
+
+    DocumentReference userDocumentReference = userCollection.doc(uid);
+    return await userDocumentReference.update(
+      {
+        "eaten": FieldValue.arrayUnion(
+          [
+            (eatenDocumentReference.id),
+          ],
+        ),
+      },
+    );
+  }
+
+  sendEaten(String eatenId, Map<String, dynamic> eatenData) async {
+    chatCollection.doc(eatenId).collection("eatenBy").add(eatenData);
+    chatCollection.doc(eatenId).update({
+      "recentMessage": eatenData['message'],
+      "recentMessageSender": eatenData['sender'],
+      "recentMessageTime": eatenData['time'].toString(),
     });
   }
 

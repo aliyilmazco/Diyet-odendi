@@ -46,6 +46,14 @@ abstract class AddInfoViewModel extends State<AddInfoView> {
     });
   }
 
+  createEaten() {
+    DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
+        .createEaten(fullName, FirebaseAuth.instance.currentUser!.uid, fullName)
+        .whenComplete(() {
+      isLoading = false;
+    });
+  }
+
   updateProfile(
     String uid,
     String fullName,
@@ -101,6 +109,7 @@ abstract class AddInfoViewModel extends State<AddInfoView> {
       weight: kilo,
     );
     createChat();
+    createEaten();
     context.pushReplacement('/main');
   }
 
