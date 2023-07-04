@@ -156,9 +156,9 @@ class _HomeViewState extends HomeViewModel {
                         height: height,
                         image:
                             'assets/images/${Provider.of<DiyetListModel>(context).ogun}.png',
-                        foodNumber: getSecondPart(
+                        foodNumber: '${getSecondPart(
                           Provider.of<DiyetListModel>(context).keyList[0],
-                        ),
+                        )} Adet',
                         foodText: getFirstPart(
                           Provider.of<DiyetListModel>(context).keyList[0],
                         ).toUpperCase(),
@@ -173,9 +173,9 @@ class _HomeViewState extends HomeViewModel {
                         height: height,
                         image:
                             'assets/images/${Provider.of<DiyetListModel>(context).ogun}.png',
-                        foodNumber: getSecondPart(
+                        foodNumber: '${getSecondPart(
                           Provider.of<DiyetListModel>(context).keyList[1],
-                        ),
+                        )} Adet',
                         foodText: getFirstPart(
                           Provider.of<DiyetListModel>(context).keyList[1],
                         ).toUpperCase(),
@@ -191,9 +191,9 @@ class _HomeViewState extends HomeViewModel {
                               height: height,
                               image:
                                   'assets/images/${Provider.of<DiyetListModel>(context).ogun}.png',
-                              foodNumber: getSecondPart(
+                              foodNumber: '${getSecondPart(
                                 Provider.of<DiyetListModel>(context).keyList[2],
-                              ),
+                              )} Adet',
                               foodText: getFirstPart(
                                 Provider.of<DiyetListModel>(context).keyList[2],
                               ).toUpperCase(),

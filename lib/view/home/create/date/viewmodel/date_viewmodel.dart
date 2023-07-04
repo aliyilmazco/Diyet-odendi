@@ -125,7 +125,7 @@ abstract class DateViewModel extends State<DateView> {
                   height: height,
                   title: 'Snack',
                   text: 'Recommended 89 - 178 Kcal',
-                  image: 'assets/images/snacks.png',
+                  image: 'assets/images/snack.png',
                   function: () => {
                     callFunction('snack'),
                   },

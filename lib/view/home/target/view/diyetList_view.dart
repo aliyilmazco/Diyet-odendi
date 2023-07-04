@@ -1,7 +1,8 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unnecessary_null_comparison
 
 import 'package:d/core/base/view/base_view.dart';
 import 'package:d/core/constant/color_constant.dart';
+import 'package:d/product/widget/home/home_card_widget.dart';
 import 'package:d/view/home/target/model/diyetList_model.dart';
 import 'package:d/view/home/target/viewmodel/diyetList_viewmodel.dart';
 import 'package:flutter/material.dart';
@@ -62,9 +63,9 @@ class _DiyetListViewState extends DiyetListViewModel {
                         setState(() {
                           selectedMenuItem = value;
                           Provider.of<DiyetListModel>(context, listen: false)
-                              .getDayListByOgun(value!);
+                              .total = 0;
                           Provider.of<DiyetListModel>(context, listen: false)
-                              .getData();
+                              .getDayListByOgun(value!);
                         });
                       },
                       items: menuItems
@@ -79,88 +80,193 @@ class _DiyetListViewState extends DiyetListViewModel {
                 ),
               ),
               const SizedBox(height: 16),
-              Text(
-                selectedMenuItem!.toUpperCase(),
-                style: GoogleFonts.glory(
-                  color: ColorConst.createPageText,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
               Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Card(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Container(
-                          height: 165,
-                          width: width,
-                          decoration: const BoxDecoration(
-                            borderRadius:
-                                BorderRadius.vertical(top: Radius.circular(20)),
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Column(
+                        children: [
+                          Text(
+                            Provider.of<DiyetListModel>(context)
+                                .currentDayName
+                                .toUpperCase(),
+                            style: GoogleFonts.glory(
+                              color: ColorConst.createPageText,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          child: Column(
-                            children: [
-                              for (int i = 0;
-                                  i <
-                                      Provider.of<DiyetListModel>(context)
-                                          .keyList2
-                                          .length;
-                                  i++)
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 50.0,
-                                    vertical: 10,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Card(
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8),
+                              ),
+                            ),
+                            elevation: 3,
+                            shadowColor: ColorConst.mainBoxBg,
+                            clipBehavior: Clip.hardEdge,
+                            child: Container(
+                              color: ColorConst.mainBoxBg,
+                              width: width / 1.2,
+                              height: height / 2,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Text(
-                                        getFirstPart(
-                                          Provider.of<DiyetListModel>(context)
-                                              .keyList2[i],
-                                        ),
-                                        style: GoogleFonts.glory(
-                                          color: ColorConst.createPageText,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        calculateCalorie(
-                                            getSecondPart(
-                                              Provider.of<DiyetListModel>(
-                                                      context)
-                                                  .keyList2[i],
+                                      Flex(
+                                        direction: Axis.horizontal,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 20.0, top: 20),
+                                            child: Image.asset(
+                                              'assets/images/$selectedMenuItem.png',
+                                              width: 90,
                                             ),
-                                            Provider.of<DiyetListModel>(context)
-                                                .valueList2[i]),
-                                        style: GoogleFonts.glory(
-                                          color: ColorConst.createPageText,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                          ),
+                                          Column(
+                                            children: [
+                                              Text(
+                                                selectedMenuItem!.toUpperCase(),
+                                                style: GoogleFonts.glory(
+                                                  color:
+                                                      ColorConst.createPageText,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10.0),
+                                                child: Text(
+                                                  'Tavsiye edilen ${totalCalories()} Kcal',
+                                                  style: GoogleFonts.glory(
+                                                    color: ColorConst
+                                                        .createPageText,
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
-                                ),
-                            ],
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  HomeCardWidget(
+                                    width: width,
+                                    height: height,
+                                    image:
+                                        'assets/images/$selectedMenuItem.png',
+                                    foodNumber: '${getSecondPart(
+                                      Provider.of<DiyetListModel>(context)
+                                          .keyList2[0],
+                                    )} Adet',
+                                    foodText: getFirstPart(
+                                      Provider.of<DiyetListModel>(context)
+                                          .keyList2[0],
+                                    ).toUpperCase(),
+                                    foodCalorie: calculateCalorie(
+                                        getSecondPart(
+                                          Provider.of<DiyetListModel>(context)
+                                              .keyList2[0],
+                                        ),
+                                        Provider.of<DiyetListModel>(context)
+                                            .valueList2[0]),
+                                  ),
+                                  HomeCardWidget(
+                                    width: width,
+                                    height: height,
+                                    image:
+                                        'assets/images/$selectedMenuItem.png',
+                                    foodNumber: '${getSecondPart(
+                                      Provider.of<DiyetListModel>(context)
+                                          .keyList2[1],
+                                    )} Adet',
+                                    foodText: getFirstPart(
+                                      Provider.of<DiyetListModel>(context)
+                                          .keyList2[1],
+                                    ).toUpperCase(),
+                                    foodCalorie: calculateCalorie(
+                                        getSecondPart(
+                                          Provider.of<DiyetListModel>(context)
+                                              .keyList2[1],
+                                        ),
+                                        Provider.of<DiyetListModel>(context)
+                                            .valueList2[1]),
+                                  ),
+                                  Provider.of<DiyetListModel>(context)
+                                              .keyList2[2] !=
+                                          null
+                                      ? HomeCardWidget(
+                                          width: width,
+                                          height: height,
+                                          image:
+                                              'assets/images/$selectedMenuItem.png',
+                                          foodNumber: '${getSecondPart(
+                                            Provider.of<DiyetListModel>(context)
+                                                .keyList2[2],
+                                          )} Adet',
+                                          foodText: getFirstPart(
+                                            Provider.of<DiyetListModel>(context)
+                                                .keyList2[2],
+                                          ).toUpperCase(),
+                                          foodCalorie: calculateCalorie(
+                                              getSecondPart(
+                                                Provider.of<DiyetListModel>(
+                                                        context)
+                                                    .keyList2[2],
+                                              ),
+                                              Provider.of<DiyetListModel>(
+                                                      context)
+                                                  .valueList2[2]),
+                                        )
+                                      : HomeCardWidget(
+                                          width: width,
+                                          height: height,
+                                          image:
+                                              'assets/images/$selectedMenuItem.png',
+                                          foodNumber: '1 Slice',
+                                          foodText: 'Whole Grain Toast',
+                                          foodCalorie: '100',
+                                        ),
+                                  const Spacer(),
+                                  Container(
+                                    width: height / 2.3,
+                                    height: 40,
+                                    color: ColorConst.mainBoxBottomColor,
+                                    child: Center(
+                                      child: Text(
+                                        "Total : ${totalCalories()} Kcal",
+                                        style: GoogleFonts.glory(
+                                          color: ColorConst.createPageText,
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],

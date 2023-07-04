@@ -12,8 +12,11 @@ class DiyetListModel extends ChangeNotifier {
   List<String> keyList2 = [];
   List<String> valueList2 = [];
   String ogun = '';
+  int total = 0;
 
   String currentDate = DateFormat('dd').format(DateTime.now());
+  String currentDayName = DateFormat('EEEE').format(DateTime.now());
+
   String formattedTime = DateTime.now().toString().substring(11, 16);
 
   calculateTime() {
@@ -87,6 +90,7 @@ class DiyetListModel extends ChangeNotifier {
       Map<String, dynamic> lunchMap = desiredMap[ogunByString];
       keyList2.clear();
       valueList2.clear();
+      total = 0;
       lunchMap.forEach((key, value) {
         print('key: $key, value: $value');
         keyList2.add(key);
@@ -95,6 +99,5 @@ class DiyetListModel extends ChangeNotifier {
     } else {
       print('İstenilen gün değerine sahip map bulunamadi.');
     }
-    notifyListeners();
   }
 }
