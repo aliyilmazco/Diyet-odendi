@@ -99,6 +99,8 @@ abstract class SplashScreenViewModel extends State<SplashScreenView> {
       note = note;
       chatId = chatId;
       picture = picture;
+      Provider.of<DiyetListModel>(context, listen: false).getData();
+      Provider.of<RecipeModel>(context, listen: false).getRecipe();
     });
   }
 }

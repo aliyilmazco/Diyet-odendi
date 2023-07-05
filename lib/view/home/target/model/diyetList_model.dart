@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 
 class DiyetListModel extends ChangeNotifier {
   List<Map<String, dynamic>> diyetList = [];
-  List<String> keyList = ['', '', ''];
-  List<String> valueList = ['', '', ''];
-  List<String> keyList2 = ['', '', ''];
+  List<String> keyList = [];
+  List<String> valueList = [];
+  List<String> keyList2 = [];
   List<String> valueList2 = ['', '', ''];
   String ogun = '';
 

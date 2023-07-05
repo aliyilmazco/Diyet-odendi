@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 
 abstract class DiyetListViewModel extends State<DiyetListView> {
   String? selectedMenuItem = 'breakfast';
+  String totalCaloriesValue = '';
   List<String> menuItems = [
     'breakfast',
     'lunch',
@@ -16,10 +17,14 @@ abstract class DiyetListViewModel extends State<DiyetListView> {
   @override
   void initState() {
     super.initState();
-    Provider.of<DiyetListModel>(context, listen: false).getData();
+
     selectedMenuItem = menuItems[0];
     Provider.of<DiyetListModel>(context, listen: false)
         .getDayListByOgun(selectedMenuItem!);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<DiyetListModel>(context, listen: false).getData();
+      totalCaloriesValue = totalCalories();
+    });
   }
 
   String getFirstPart(String input) {
@@ -48,13 +53,13 @@ abstract class DiyetListViewModel extends State<DiyetListView> {
 
   String totalCalories() {
     for (int i = 0;
-        i < Provider.of<DiyetListModel>(context).keyList2.length;
+        i < Provider.of<DiyetListModel>(context, listen: false).keyList2.length;
         i++) {
       String values = calculateCalorie(
           getSecondPart(
-            Provider.of<DiyetListModel>(context).keyList2[i],
+            Provider.of<DiyetListModel>(context, listen: false).keyList2[i],
           ),
-          Provider.of<DiyetListModel>(context).valueList2[i]);
+          Provider.of<DiyetListModel>(context, listen: false).valueList2[i]);
 
       Provider.of<DiyetListModel>(context, listen: false).total +=
           int.parse(values);

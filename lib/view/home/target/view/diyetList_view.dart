@@ -67,6 +67,7 @@ class _DiyetListViewState extends DiyetListViewModel {
                           Provider.of<DiyetListModel>(context, listen: false)
                               .getDayListByOgun(value!);
                         });
+                        totalCaloriesValue = totalCalories();
                       },
                       items: menuItems
                           .map<DropdownMenuItem<String>>((String value) {
@@ -149,7 +150,7 @@ class _DiyetListViewState extends DiyetListViewModel {
                                                 padding: const EdgeInsets.only(
                                                     left: 10.0),
                                                 child: Text(
-                                                  'Tavsiye edilen ${totalCalories() == '' ? 'none' : totalCalories()} Kcal',
+                                                  'Tavsiye edilen $totalCaloriesValue Kcal',
                                                   style: GoogleFonts.glory(
                                                     color: ColorConst
                                                         .createPageText,
@@ -173,11 +174,7 @@ class _DiyetListViewState extends DiyetListViewModel {
                                         'assets/images/$selectedMenuItem.png',
                                     foodNumber: '${getSecondPart(
                                       Provider.of<DiyetListModel>(context)
-                                              .keyList2[0]
-                                              .isEmpty
-                                          ? '0'
-                                          : Provider.of<DiyetListModel>(context)
-                                              .keyList2[0],
+                                          .keyList2[0],
                                     )} Adet',
                                     foodText: getFirstPart(
                                       Provider.of<DiyetListModel>(context)
@@ -186,19 +183,10 @@ class _DiyetListViewState extends DiyetListViewModel {
                                     foodCalorie: calculateCalorie(
                                       getSecondPart(
                                         Provider.of<DiyetListModel>(context)
-                                                .keyList2[0]
-                                                .isEmpty
-                                            ? '0'
-                                            : Provider.of<DiyetListModel>(
-                                                    context)
-                                                .keyList2[0],
+                                            .keyList2[0],
                                       ),
                                       Provider.of<DiyetListModel>(context)
-                                              .valueList2[0]
-                                              .isEmpty
-                                          ? '0'
-                                          : Provider.of<DiyetListModel>(context)
-                                              .valueList2[0],
+                                          .valueList2[0],
                                     ),
                                   ),
                                   HomeCardWidget(
@@ -208,11 +196,7 @@ class _DiyetListViewState extends DiyetListViewModel {
                                         'assets/images/$selectedMenuItem.png',
                                     foodNumber: '${getSecondPart(
                                       Provider.of<DiyetListModel>(context)
-                                              .keyList2[1]
-                                              .isEmpty
-                                          ? '0'
-                                          : Provider.of<DiyetListModel>(context)
-                                              .keyList2[1],
+                                          .keyList2[1],
                                     )} Adet',
                                     foodText: getFirstPart(
                                       Provider.of<DiyetListModel>(context)
@@ -221,19 +205,10 @@ class _DiyetListViewState extends DiyetListViewModel {
                                     foodCalorie: calculateCalorie(
                                       getSecondPart(
                                         Provider.of<DiyetListModel>(context)
-                                                .keyList2[1]
-                                                .isEmpty
-                                            ? '0'
-                                            : Provider.of<DiyetListModel>(
-                                                    context)
-                                                .keyList2[1],
+                                            .keyList2[1],
                                       ),
                                       Provider.of<DiyetListModel>(context)
-                                              .valueList2[1]
-                                              .isEmpty
-                                          ? '0'
-                                          : Provider.of<DiyetListModel>(context)
-                                              .valueList2[1],
+                                          .valueList2[1],
                                     ),
                                   ),
                                   Provider.of<DiyetListModel>(context)
@@ -278,7 +253,7 @@ class _DiyetListViewState extends DiyetListViewModel {
                                     color: ColorConst.mainBoxBottomColor,
                                     child: Center(
                                       child: Text(
-                                        "Total ${totalCalories() == '' ? 'none' : totalCalories()} Kcal",
+                                        "Total $totalCaloriesValue Kcal",
                                         style: GoogleFonts.glory(
                                           color: ColorConst.createPageText,
                                           fontSize: 19,
