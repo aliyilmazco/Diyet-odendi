@@ -149,7 +149,7 @@ class _DiyetListViewState extends DiyetListViewModel {
                                                 padding: const EdgeInsets.only(
                                                     left: 10.0),
                                                 child: Text(
-                                                  'Tavsiye edilen ${totalCalories()} Kcal',
+                                                  'Tavsiye edilen ${totalCalories() == '' ? 'none' : totalCalories()} Kcal',
                                                   style: GoogleFonts.glory(
                                                     color: ColorConst
                                                         .createPageText,
@@ -173,19 +173,33 @@ class _DiyetListViewState extends DiyetListViewModel {
                                         'assets/images/$selectedMenuItem.png',
                                     foodNumber: '${getSecondPart(
                                       Provider.of<DiyetListModel>(context)
-                                          .keyList2[0],
+                                              .keyList2[0]
+                                              .isEmpty
+                                          ? '0'
+                                          : Provider.of<DiyetListModel>(context)
+                                              .keyList2[0],
                                     )} Adet',
                                     foodText: getFirstPart(
                                       Provider.of<DiyetListModel>(context)
                                           .keyList2[0],
                                     ).toUpperCase(),
                                     foodCalorie: calculateCalorie(
-                                        getSecondPart(
-                                          Provider.of<DiyetListModel>(context)
-                                              .keyList2[0],
-                                        ),
+                                      getSecondPart(
                                         Provider.of<DiyetListModel>(context)
-                                            .valueList2[0]),
+                                                .keyList2[0]
+                                                .isEmpty
+                                            ? '0'
+                                            : Provider.of<DiyetListModel>(
+                                                    context)
+                                                .keyList2[0],
+                                      ),
+                                      Provider.of<DiyetListModel>(context)
+                                              .valueList2[0]
+                                              .isEmpty
+                                          ? '0'
+                                          : Provider.of<DiyetListModel>(context)
+                                              .valueList2[0],
+                                    ),
                                   ),
                                   HomeCardWidget(
                                     width: width,
@@ -194,22 +208,36 @@ class _DiyetListViewState extends DiyetListViewModel {
                                         'assets/images/$selectedMenuItem.png',
                                     foodNumber: '${getSecondPart(
                                       Provider.of<DiyetListModel>(context)
-                                          .keyList2[1],
+                                              .keyList2[1]
+                                              .isEmpty
+                                          ? '0'
+                                          : Provider.of<DiyetListModel>(context)
+                                              .keyList2[1],
                                     )} Adet',
                                     foodText: getFirstPart(
                                       Provider.of<DiyetListModel>(context)
                                           .keyList2[1],
                                     ).toUpperCase(),
                                     foodCalorie: calculateCalorie(
-                                        getSecondPart(
-                                          Provider.of<DiyetListModel>(context)
-                                              .keyList2[1],
-                                        ),
+                                      getSecondPart(
                                         Provider.of<DiyetListModel>(context)
-                                            .valueList2[1]),
+                                                .keyList2[1]
+                                                .isEmpty
+                                            ? '0'
+                                            : Provider.of<DiyetListModel>(
+                                                    context)
+                                                .keyList2[1],
+                                      ),
+                                      Provider.of<DiyetListModel>(context)
+                                              .valueList2[1]
+                                              .isEmpty
+                                          ? '0'
+                                          : Provider.of<DiyetListModel>(context)
+                                              .valueList2[1],
+                                    ),
                                   ),
                                   Provider.of<DiyetListModel>(context)
-                                              .keyList2[2] !=
+                                              .keyList2[1] !=
                                           null
                                       ? HomeCardWidget(
                                           width: width,
@@ -250,7 +278,7 @@ class _DiyetListViewState extends DiyetListViewModel {
                                     color: ColorConst.mainBoxBottomColor,
                                     child: Center(
                                       child: Text(
-                                        "Total : ${totalCalories()} Kcal",
+                                        "Total ${totalCalories() == '' ? 'none' : totalCalories()} Kcal",
                                         style: GoogleFonts.glory(
                                           color: ColorConst.createPageText,
                                           fontSize: 19,

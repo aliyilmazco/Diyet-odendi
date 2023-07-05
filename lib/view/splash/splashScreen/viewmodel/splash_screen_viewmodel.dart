@@ -87,8 +87,6 @@ abstract class SplashScreenViewModel extends State<SplashScreenView> {
     chatId = await HelperFunctions.getUserChatSharedPreference();
 
     setState(() {
-      Provider.of<RecipeModel>(context, listen: false).getRecipe();
-      Provider.of<DiyetListModel>(context, listen: false).getData();
       fullName = fullName;
       email = email;
       yas = yas;

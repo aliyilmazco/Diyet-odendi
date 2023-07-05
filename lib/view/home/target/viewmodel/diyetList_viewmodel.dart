@@ -29,12 +29,19 @@ abstract class DiyetListViewModel extends State<DiyetListView> {
   }
 
   String getSecondPart(String input) {
+    bool isConatein = input.contains('x');
     List<String> parts = input.split('x');
 
-    return parts[1];
+    return isConatein ? parts[1] : '';
   }
 
   String calculateCalorie(String value, String calories) {
+    if (value == '') {
+      value = '1';
+    }
+    if (calories == '') {
+      calories = '0';
+    }
     double result = double.parse(value) * double.parse(calories);
     return result.toStringAsFixed(0);
   }

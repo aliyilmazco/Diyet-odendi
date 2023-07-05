@@ -48,12 +48,19 @@ abstract class HomeViewModel extends State<HomeView> {
   }
 
   String getSecondPart(String input) {
+    bool isContain = input.contains('x');
     List<String> parts = input.split('x');
 
-    return parts[1];
+    return isContain ? parts[1] : '';
   }
 
   String calculateCalorie(String value, String calories) {
+    if (value == '') {
+      value = '1';
+    }
+    if (calories == '') {
+      calories = '1';
+    }
     double result = double.parse(value) * double.parse(calories);
     return result.toStringAsFixed(0);
   }
