@@ -179,8 +179,7 @@ class _EatingViewState extends EatingViewModel {
                           value: valueFoods,
                         ));
                         Provider.of<FoodsModel>(context, listen: false)
-                            .listFoodNames
-                            .add(text);
+                            .addToList(text);
                         Provider.of<FoodsModel>(context, listen: false)
                             .addCalculateCalorie();
                         Provider.of<FoodsModel>(context, listen: false)
@@ -189,8 +188,6 @@ class _EatingViewState extends EatingViewModel {
                                 .count;
                         Provider.of<FoodsModel>(context, listen: false).count =
                             1;
-                        Provider.of<FoodsModel>(context, listen: false)
-                            .counterForOut++;
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorConst.createButton,

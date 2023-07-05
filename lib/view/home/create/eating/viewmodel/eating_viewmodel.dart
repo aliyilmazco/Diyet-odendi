@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:d/product/service/database_service.dart';
+import 'package:d/product/widget/login/snackbar_widget.dart';
 import 'package:d/view/auth/signup/model/sign_up_model.dart';
 import 'package:d/view/home/create/eating/model/eating_model.dart';
 import 'package:d/view/home/create/eating/view/eating_view.dart';
@@ -7,6 +8,7 @@ import 'package:d/view/home/target/model/diyetList_model.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -83,8 +85,7 @@ abstract class EatingViewModel extends State<EatingView> {
   sendEaten() {
     if (Provider.of<FoodsModel>(context, listen: false).widgetList.isNotEmpty) {
       Map<String, dynamic> eatenMap = {
-        "eaten":
-            Provider.of<FoodsModel>(context, listen: false).listFoodNames[0],
+        "eaten": Provider.of<FoodsModel>(context, listen: false).listFoodNames,
         "sender":
             Provider.of<UserModelProvider>(context, listen: false).fullName,
         'howMuch':
@@ -93,6 +94,7 @@ abstract class EatingViewModel extends State<EatingView> {
         'day': currentDate,
         'dayName': currentDayName,
         'ogunTime': Provider.of<DiyetListModel>(context, listen: false).ogun,
+        'totalCalorie': Provider.of<FoodsModel>(context, listen: false).total,
       };
 
       DatabaseService(
@@ -101,6 +103,13 @@ abstract class EatingViewModel extends State<EatingView> {
         eatenId,
         eatenMap,
       );
+      context.pop();
+      context.pop();
+      Provider.of<FoodsModel>(context, listen: false).listFoodNames.clear();
+      Provider.of<FoodsModel>(context, listen: false).counterForOut = 0;
+      Provider.of<FoodsModel>(context, listen: false).widgetList.clear();
+      Provider.of<FoodsModel>(context, listen: false).total = 0;
     }
+    showSnackBar(context, Colors.blueAccent, 'Added Successfully');
   }
 }

@@ -145,6 +145,14 @@ class FoodsModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void addToList(String text) {
+    for (int i = 0; i < count; i++) {
+      listFoodNames.add(text);
+    }
+
+    notifyListeners();
+  }
+
   void getWidgetList(List<Widget> widgets) {
     for (var widget in widgets) {
       print(widget);

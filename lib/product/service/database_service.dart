@@ -232,7 +232,7 @@ class DatabaseService {
   Future createEaten(String userName, String id, String eatenName) async {
     DocumentReference eatenDocumentReference = await eatenCollection.add(
       {
-        "chatName": eatenName,
+        "eatenName": eatenName,
         "userId": id,
         "eatenId": "",
         "recentEaten": "",
@@ -258,9 +258,9 @@ class DatabaseService {
   sendEaten(String eatenId, Map<String, dynamic> eatenData) async {
     eatenCollection.doc(eatenId).collection("eatens").add(eatenData);
     eatenCollection.doc(eatenId).update({
-      "recentMessage": eatenData['eaten'],
-      "recentMessageSender": eatenData['message'],
-      "recentMessageTime": eatenData['time'].toString(),
+      "recentEaten": eatenData['eaten'],
+      "recentEatenSender": eatenData['message'],
+      "recentEatenTime": eatenData['time'].toString(),
     });
   }
 
