@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
@@ -19,7 +17,11 @@ class FoodsModel extends ChangeNotifier {
   List<Map<String, dynamic>> object2;
   String selectedOgun = 'dairies';
   String calorie = '0';
+  List<String> listFoodNames = [];
+  int counterForOut = 0;
+
   FoodsModel({
+    required this.listFoodNames,
     required this.menuItems1,
     required this.menuItems2,
     required this.selectedValue,

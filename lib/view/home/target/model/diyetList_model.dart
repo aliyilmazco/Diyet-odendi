@@ -12,6 +12,7 @@ class DiyetListModel extends ChangeNotifier {
   List<String> keyList2 = [];
   List<String> valueList2 = [];
   String ogun = '';
+
   int total = 0;
 
   String currentDate = DateFormat('dd').format(DateTime.now());

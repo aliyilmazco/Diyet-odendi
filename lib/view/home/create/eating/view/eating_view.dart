@@ -172,16 +172,25 @@ class _EatingViewState extends EatingViewModel {
                                     .selectedValue));
                         Provider.of<FoodsModel>(context, listen: false)
                             .calorie = valueFoods!;
+
                         Provider.of<FoodsModel>(context, listen: false)
                             .addToWidgetList(EatingRowWidget(
                           title: text!,
                           value: valueFoods,
                         ));
-
+                        Provider.of<FoodsModel>(context, listen: false)
+                            .listFoodNames
+                            .add(text);
                         Provider.of<FoodsModel>(context, listen: false)
                             .addCalculateCalorie();
+                        Provider.of<FoodsModel>(context, listen: false)
+                                .counterForOut +=
+                            Provider.of<FoodsModel>(context, listen: false)
+                                .count;
                         Provider.of<FoodsModel>(context, listen: false).count =
                             1;
+                        Provider.of<FoodsModel>(context, listen: false)
+                            .counterForOut++;
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorConst.createButton,
@@ -204,6 +213,12 @@ class _EatingViewState extends EatingViewModel {
                             .deleteWidgetList();
                         Provider.of<FoodsModel>(context, listen: false)
                             .deleteCalculateCalorie();
+
+                        Provider.of<FoodsModel>(context, listen: false)
+                            .listFoodNames
+                            .clear();
+                        Provider.of<FoodsModel>(context, listen: false)
+                            .counterForOut = 0;
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorConst.createButton,
@@ -268,7 +283,9 @@ class _EatingViewState extends EatingViewModel {
                   height: 30,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    sendEaten();
+                  },
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size(width / 1.5, 40),
                     backgroundColor: ColorConst.createButton,

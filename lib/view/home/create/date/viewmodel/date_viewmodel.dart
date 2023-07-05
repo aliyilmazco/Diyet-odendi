@@ -7,6 +7,7 @@ import 'package:d/product/service/database_service.dart';
 import 'package:d/product/widget/create/lunch_container_widget.dart';
 import 'package:d/view/home/create/date/view/date_view.dart';
 import 'package:d/view/home/create/eating/model/eating_model.dart';
+import 'package:d/view/home/target/model/diyetList_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -23,7 +24,8 @@ abstract class DateViewModel extends State<DateView> {
   void callFunction(String title) async {
     Provider.of<FoodsModel>(context, listen: false).selectedOgun =
         title.toLowerCase();
-
+    Provider.of<DiyetListModel>(context, listen: false).ogun =
+        title.toLowerCase();
     print("=========================================================1");
     print("=========================================================1.2");
     List<Map<String, dynamic>> listFoods =

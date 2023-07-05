@@ -19,6 +19,7 @@ Future<void> main() async {
       providers: [
         ChangeNotifierProvider<FoodsModel>(
           create: (BuildContext context) => FoodsModel(
+            listFoodNames: [],
             menuItems1: [],
             menuItems2: [],
             selectedValue2: '0',

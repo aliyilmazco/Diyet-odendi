@@ -240,6 +240,7 @@ class DatabaseService {
     );
     await eatenDocumentReference.update({
       "eatenId": eatenDocumentReference.id,
+      "speakers": FieldValue.arrayUnion(["$uid"]),
     });
 
     DocumentReference userDocumentReference = userCollection.doc(uid);
@@ -255,10 +256,10 @@ class DatabaseService {
   }
 
   sendEaten(String eatenId, Map<String, dynamic> eatenData) async {
-    chatCollection.doc(eatenId).collection("eatenBy").add(eatenData);
-    chatCollection.doc(eatenId).update({
-      "recentMessage": eatenData['message'],
-      "recentMessageSender": eatenData['sender'],
+    eatenCollection.doc(eatenId).collection("eatens").add(eatenData);
+    eatenCollection.doc(eatenId).update({
+      "recentMessage": eatenData['eaten'],
+      "recentMessageSender": eatenData['message'],
       "recentMessageTime": eatenData['time'].toString(),
     });
   }
