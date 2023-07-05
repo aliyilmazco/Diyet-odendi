@@ -29,10 +29,10 @@ abstract class DiyetListViewModel extends State<DiyetListView> {
   }
 
   String getSecondPart(String input) {
-    bool isConatein = input.contains('x');
+    bool isContain = input.contains('x');
     List<String> parts = input.split('x');
 
-    return isConatein ? parts[1] : '';
+    return isContain ? parts[1] : '';
   }
 
   String calculateCalorie(String value, String calories) {
