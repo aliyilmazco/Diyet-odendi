@@ -49,21 +49,18 @@ class _ProfileViewState extends ProfileViewModel {
                               : const AssetImage('assets/images/profile.png'),
                     ),
                   ),
-                  Positioned(
-                    right: width / 2.5,
-                    top: height / 5,
-                    child: Column(
-                      children: [
-                        Text(
-                          Provider.of<UserModelProvider>(context, listen: false)
-                              .fullName,
-                          style: GoogleFonts.raleway(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: ColorConst.sliderTitle,
-                          ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 150.0),
+                      child: Text(
+                        Provider.of<UserModelProvider>(context, listen: false)
+                            .fullName,
+                        style: GoogleFonts.raleway(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: ColorConst.sliderTitle,
                         ),
-                      ],
+                      ),
                     ),
                   ),
                   Positioned(
