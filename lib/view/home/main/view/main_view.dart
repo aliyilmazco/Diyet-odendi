@@ -82,10 +82,12 @@ class _MainViewState extends MainViewModel {
 
               /// Search
               DotNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'assets/svg/notification_page.svg',
+                icon: const Icon(
+                  Icons.fastfood_outlined,
+                  size: 25,
+                  color: Colors.black54,
                 ),
-                selectedColor: Colors.orange,
+                selectedColor: Colors.pink,
               ),
 
               /// Profile
@@ -93,7 +95,7 @@ class _MainViewState extends MainViewModel {
                 icon: SvgPicture.asset(
                   'assets/svg/profile_page.svg',
                 ),
-                selectedColor: Colors.teal,
+                selectedColor: Colors.pink,
               ),
             ],
           ),
