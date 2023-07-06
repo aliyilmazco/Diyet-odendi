@@ -18,6 +18,9 @@ abstract class HomeViewModel extends State<HomeView> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       getMotivation();
       totalCaloriesValue = totalCalories();
+      Provider.of<DiyetListModel>(context, listen: false).getData();
+      Provider.of<DiyetListModel>(context, listen: false)
+          .getDayListByOgun('breakfast');
     });
 
     super.initState();

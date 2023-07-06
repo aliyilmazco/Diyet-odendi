@@ -173,19 +173,23 @@ class _DiyetListViewState extends DiyetListViewModel {
                                     image:
                                         'assets/images/$selectedMenuItem.png',
                                     foodNumber: '${getSecondPart(
-                                      Provider.of<DiyetListModel>(context)
-                                          .keyList2[0],
+                                      Provider.of<DiyetListModel>(
+                                        context,
+                                      ).keyList2[0],
                                     )} Adet',
                                     foodText: getFirstPart(
-                                      Provider.of<DiyetListModel>(context)
+                                      Provider.of<DiyetListModel>(context,
+                                              listen: false)
                                           .keyList2[0],
                                     ).toUpperCase(),
                                     foodCalorie: calculateCalorie(
                                       getSecondPart(
-                                        Provider.of<DiyetListModel>(context)
+                                        Provider.of<DiyetListModel>(context,
+                                                listen: false)
                                             .keyList2[0],
                                       ),
-                                      Provider.of<DiyetListModel>(context)
+                                      Provider.of<DiyetListModel>(context,
+                                              listen: false)
                                           .valueList2[0],
                                     ),
                                   ),

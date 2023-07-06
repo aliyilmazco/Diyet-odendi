@@ -24,7 +24,7 @@ abstract class DateViewModel extends State<DateView> {
   void callFunction(String title) async {
     Provider.of<FoodsModel>(context, listen: false).selectedOgun =
         title.toLowerCase();
-    Provider.of<DiyetListModel>(context, listen: false).ogun =
+    Provider.of<DiyetListModel>(context, listen: false).secondOgun =
         title.toLowerCase();
     print("=========================================================1");
     print("=========================================================1.2");

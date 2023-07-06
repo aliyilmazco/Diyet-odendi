@@ -157,15 +157,19 @@ class _HomeViewState extends HomeViewModel {
                         image:
                             'assets/images/${Provider.of<DiyetListModel>(context).ogun}.png',
                         foodNumber: '${getSecondPart(
-                          Provider.of<DiyetListModel>(context).keyList[0],
+                          Provider.of<DiyetListModel>(context, listen: false)
+                              .keyList[0],
                         )} Adet',
                         foodText: getFirstPart(
-                          Provider.of<DiyetListModel>(context).keyList[0],
+                          Provider.of<DiyetListModel>(context, listen: false)
+                              .keyList[0],
                         ).toUpperCase(),
                         foodCalorie: calculateCalorie(
-                          getSecondPart(
-                              Provider.of<DiyetListModel>(context).keyList[0]),
-                          Provider.of<DiyetListModel>(context).valueList[0],
+                          getSecondPart(Provider.of<DiyetListModel>(context,
+                                  listen: false)
+                              .keyList[0]),
+                          Provider.of<DiyetListModel>(context, listen: false)
+                              .valueList[0],
                         ),
                       ),
                       HomeCardWidget(

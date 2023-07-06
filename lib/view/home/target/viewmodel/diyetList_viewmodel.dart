@@ -17,12 +17,11 @@ abstract class DiyetListViewModel extends State<DiyetListView> {
   @override
   void initState() {
     super.initState();
-
     selectedMenuItem = menuItems[0];
-    Provider.of<DiyetListModel>(context, listen: false)
-        .getDayListByOgun(selectedMenuItem!);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<DiyetListModel>(context, listen: false).getData();
+      Provider.of<DiyetListModel>(context, listen: false)
+          .getDayListByOgun(selectedMenuItem!);
       totalCaloriesValue = totalCalories();
     });
   }

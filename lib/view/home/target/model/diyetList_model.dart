@@ -7,11 +7,12 @@ import 'package:flutter/material.dart';
 
 class DiyetListModel extends ChangeNotifier {
   List<Map<String, dynamic>> diyetList = [];
-  List<String> keyList = [];
-  List<String> valueList = [];
-  List<String> keyList2 = [];
-  List<String> valueList2 = ['', '', ''];
+  List<String> keyList = ['0', '0', '0'];
+  List<String> valueList = ['0', '0', '0'];
+  List<String> keyList2 = ['0', '0', '0'];
+  List<String> valueList2 = ['0', '0', '0'];
   String ogun = '';
+  String secondOgun = '';
 
   int total = 0;
 
@@ -42,10 +43,14 @@ class DiyetListModel extends ChangeNotifier {
     diyetList =
         await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
             .getDiyetList(FirebaseAuth.instance.currentUser!.uid);
+
     getDayList();
+    getDayListByOgun('breakfast');
+
     print("diyetList: $diyetList");
 
     print('current day: $currentDate');
+    notifyListeners();
   }
 
   getDayList() {
@@ -64,11 +69,10 @@ class DiyetListModel extends ChangeNotifier {
       print('${desiredMap[ogun]}');
       Map<String, dynamic> lunchMap = desiredMap[ogun];
 
-      lunchMap.forEach((key, value) {
-        print('key: $key, value: $value');
-        keyList.add(key);
-        valueList.add(value);
-      });
+      for (int i = 0; i < lunchMap.length; i++) {
+        keyList[i] = lunchMap.keys.toList()[i];
+        valueList[i] = lunchMap.values.toList()[i];
+      }
     } else {
       print('İstenilen gün değerine sahip map bulunamadi.');
     }
@@ -89,14 +93,12 @@ class DiyetListModel extends ChangeNotifier {
       print('İstenilen map: $desiredMap');
       print('${desiredMap[ogunByString]}');
       Map<String, dynamic> lunchMap = desiredMap[ogunByString];
-      keyList2.clear();
-      valueList2.clear();
+
       total = 0;
-      lunchMap.forEach((key, value) {
-        print('key: $key, value: $value');
-        keyList2.add(key);
-        valueList2.add(value);
-      });
+      for (int i = 0; i < lunchMap.length; i++) {
+        keyList2[i] = lunchMap.keys.toList()[i];
+        valueList2[i] = lunchMap.values.toList()[i];
+      }
     } else {
       print('İstenilen gün değerine sahip map bulunamadi.');
     }

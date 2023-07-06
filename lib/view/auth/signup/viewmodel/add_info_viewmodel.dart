@@ -5,6 +5,7 @@ import 'package:d/product/service/auth_service.dart';
 import 'package:d/product/service/database_service.dart';
 import 'package:d/view/auth/signup/model/sign_up_model.dart';
 import 'package:d/view/auth/signup/view/add_info_view.dart';
+import 'package:d/view/home/target/model/diyetList_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -132,5 +133,6 @@ abstract class AddInfoViewModel extends State<AddInfoView> {
         print('chatId: $chatId');
       });
     });
+    Provider.of<DiyetListModel>(context, listen: false).getData();
   }
 }

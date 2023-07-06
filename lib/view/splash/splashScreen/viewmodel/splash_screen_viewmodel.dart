@@ -55,12 +55,6 @@ abstract class SplashScreenViewModel extends State<SplashScreenView> {
               "Full name from splash: ${Provider.of<UserModelProvider>(context, listen: false).fullName} ..");
           print(fullName);
         });
-        Provider.of<SettingsModel>(
-          context,
-          listen: false,
-        ).downloadImage();
-        Provider.of<RecipeModel>(context, listen: false).getRecipe();
-        Provider.of<DiyetListModel>(context, listen: false).getData();
       } else {
         Future.delayed(const Duration(seconds: 3), () async {
           context.pushReplacement('/login');
@@ -101,6 +95,10 @@ abstract class SplashScreenViewModel extends State<SplashScreenView> {
       picture = picture;
       Provider.of<DiyetListModel>(context, listen: false).getData();
       Provider.of<RecipeModel>(context, listen: false).getRecipe();
+      Provider.of<SettingsModel>(
+        context,
+        listen: false,
+      ).downloadImage();
     });
   }
 }
