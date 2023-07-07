@@ -113,7 +113,7 @@ class _HomeViewState extends HomeViewModel {
                                 padding:
                                     const EdgeInsets.only(left: 20.0, top: 20),
                                 child: Image.asset(
-                                  'assets/images/${Provider.of<DiyetListModel>(context).ogun}.png',
+                                  'assets/images/${Provider.of<DiyetListModel>(context).homeViewOgun}.png',
                                   width: 90,
                                 ),
                               ),
@@ -121,7 +121,7 @@ class _HomeViewState extends HomeViewModel {
                                 children: [
                                   Text(
                                     Provider.of<DiyetListModel>(context)
-                                        .ogun
+                                        .homeViewOgun
                                         .toUpperCase(),
                                     style: GoogleFonts.glory(
                                       color: ColorConst.createPageText,
@@ -155,7 +155,7 @@ class _HomeViewState extends HomeViewModel {
                         width: width,
                         height: height,
                         image:
-                            'assets/images/${Provider.of<DiyetListModel>(context).ogun}.png',
+                            'assets/images/${Provider.of<DiyetListModel>(context).homeViewOgun}.png',
                         foodNumber: '${getSecondPart(
                           Provider.of<DiyetListModel>(context, listen: false)
                               .keyList[0],
@@ -176,7 +176,7 @@ class _HomeViewState extends HomeViewModel {
                         width: width,
                         height: height,
                         image:
-                            'assets/images/${Provider.of<DiyetListModel>(context).ogun}.png',
+                            'assets/images/${Provider.of<DiyetListModel>(context).homeViewOgun}.png',
                         foodNumber: '${getSecondPart(
                           Provider.of<DiyetListModel>(context).keyList[1],
                         )} Adet',
@@ -195,7 +195,7 @@ class _HomeViewState extends HomeViewModel {
                               width: width,
                               height: height,
                               image:
-                                  'assets/images/${Provider.of<DiyetListModel>(context).ogun}.png',
+                                  'assets/images/${Provider.of<DiyetListModel>(context).homeViewOgun}.png',
                               foodNumber: '${getSecondPart(
                                 Provider.of<DiyetListModel>(context).keyList[2],
                               )} Adet',
@@ -214,7 +214,7 @@ class _HomeViewState extends HomeViewModel {
                               width: width,
                               height: height,
                               image:
-                                  'assets/images/${Provider.of<DiyetListModel>(context).ogun}.png',
+                                  'assets/images/${Provider.of<DiyetListModel>(context).homeViewOgun}.png',
                               foodNumber: '1 Slice',
                               foodText: 'Whole Grain Toast',
                               foodCalorie: '100',

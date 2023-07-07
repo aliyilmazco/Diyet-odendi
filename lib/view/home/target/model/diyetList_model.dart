@@ -13,7 +13,7 @@ class DiyetListModel extends ChangeNotifier {
   List<String> valueList2 = ['0', '0', '0'];
   String ogun = '';
   String secondOgun = '';
-
+  String homeViewOgun = '';
   int total = 0;
 
   String currentDate = DateFormat('dd').format(DateTime.now());
@@ -23,16 +23,20 @@ class DiyetListModel extends ChangeNotifier {
 
   calculateTime() {
     if (formattedTime.compareTo('06:00') >= 0 &&
-        formattedTime.compareTo('09:00') < 0) {
+        formattedTime.compareTo('11:59') < 0) {
       ogun = 'breakfast';
+      homeViewOgun = 'breakfast';
     } else if (formattedTime.compareTo('12:00') >= 0 &&
-        formattedTime.compareTo('15:00') < 0) {
+        formattedTime.compareTo('17:59') < 0) {
       ogun = 'lunch';
+      homeViewOgun = 'lunch';
     } else if (formattedTime.compareTo('18:00') >= 0 &&
-        formattedTime.compareTo('21:00') < 0) {
+        formattedTime.compareTo('23:00') < 0) {
       ogun = 'dinner';
+      homeViewOgun = 'dinner';
     } else {
       ogun = 'snack';
+      homeViewOgun = 'snack';
     }
 
     print('Mevcut Zaman: $formattedTime');
