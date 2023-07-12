@@ -44,7 +44,7 @@ class _UpdateProfileViewState extends UpdateProfileViewModel {
                           child: Padding(
                             padding: const EdgeInsets.only(top: 8.0),
                             child: Text(
-                              "Update Profile",
+                              "Profili Güncelle",
                               style: GoogleFonts.glory(
                                 color: ColorConst.createPageText,
                                 fontSize: 30,
@@ -81,7 +81,7 @@ class _UpdateProfileViewState extends UpdateProfileViewModel {
                         ),
                         LoginTextfieldWidget(
                           labelText: "Kilo",
-                          hintText: "Enter Kilo",
+                          hintText: "Kilo Giriniz",
                           showSuffix: false,
                           functionCallBack: (value) {
                             setState(() {
@@ -93,7 +93,7 @@ class _UpdateProfileViewState extends UpdateProfileViewModel {
                             if (value!.isNotEmpty) {
                               return null;
                             } else {
-                              return "Lutfen isim giriniz!";
+                              return "Lutfen kilo giriniz!";
                             }
                           },
                         ),
@@ -101,8 +101,8 @@ class _UpdateProfileViewState extends UpdateProfileViewModel {
                           height: 20,
                         ),
                         LoginTextfieldWidget(
-                          labelText: "Password",
-                          hintText: "Enter Password",
+                          labelText: "Şifre",
+                          hintText: "Şifre Giriniz",
                           showSuffix: true,
                           functionCallBack: (value) {
                             setState(() {
@@ -113,15 +113,15 @@ class _UpdateProfileViewState extends UpdateProfileViewModel {
                           validator: (value) {
                             return value!.length > 6
                                 ? null
-                                : "Enter a password 6+ chars long";
+                                : "Lütfen 6 karakterden daha uzun şifre giriniz!";
                           },
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         LoginTextfieldWidget(
-                          labelText: "Target Weight",
-                          hintText: "Enter Target Weight",
+                          labelText: "Hedef Kilo",
+                          hintText: "Hedef Kilo Giriniz",
                           showSuffix: false,
                           functionCallBack: (value) {
                             setState(() {
@@ -132,15 +132,15 @@ class _UpdateProfileViewState extends UpdateProfileViewModel {
                           validator: (value) {
                             return value!.length > 2
                                 ? null
-                                : "Enter a Target Weight 6+ chars long";
+                                : "Lütfen 6 karakterden daha uzun hedef kilo giriniz!";
                           },
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         LoginTextfieldWidget(
-                          labelText: "Diseases",
-                          hintText: "Enter Diseases",
+                          labelText: "Hastalık",
+                          hintText: "Hastalık Giriniz",
                           showSuffix: false,
                           height: 100,
                           functionCallBack: (value) {
@@ -152,15 +152,15 @@ class _UpdateProfileViewState extends UpdateProfileViewModel {
                           validator: (value) {
                             return value!.length > 6
                                 ? null
-                                : "Enter a diseases 6+ chars long";
+                                : "Lütfen 6 karakterden daha uzun hastalık giriniz!";
                           },
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         LoginTextfieldWidget(
-                          labelText: "Note",
-                          hintText: "Enter Notes",
+                          labelText: "Not",
+                          hintText: "Not Giriniz",
                           height: 100,
                           showSuffix: false,
                           functionCallBack: (value) {
@@ -172,7 +172,7 @@ class _UpdateProfileViewState extends UpdateProfileViewModel {
                           validator: (value) {
                             return value!.length > 6
                                 ? null
-                                : "Enter a note 6+ chars long";
+                                : "Lütfen 6 karakterden daha uzun note giriniz!";
                           },
                         ),
                         const SizedBox(
@@ -181,7 +181,7 @@ class _UpdateProfileViewState extends UpdateProfileViewModel {
                         LoginButtonWidget(
                           width: width,
                           height: height,
-                          text: "Guncelle",
+                          text: "Güncelle",
                           backgroundColor: ColorConst.sliderTitle,
                           textColor: ColorConst.appBgColorWhite,
                           borderColor: ColorConst.sliderTitle,

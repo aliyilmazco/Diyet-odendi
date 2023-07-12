@@ -9,7 +9,7 @@ abstract class DiyetListViewModel extends State<DiyetListView> {
   String? selectedMenuItem = 'breakfast';
   String totalCaloriesValue = '';
   List<String> menuItems = [
-    'breakfast',
+    'kahvaltı',
     'lunch',
     'dinner',
     'snack',

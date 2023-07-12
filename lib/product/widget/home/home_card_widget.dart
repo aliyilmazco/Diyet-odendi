@@ -43,12 +43,10 @@ class HomeCardWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 30.0),
+              padding: const EdgeInsets.only(left: 10.0),
               child: Image.asset(image),
             ),
-            const SizedBox(
-              width: 15,
-            ),
+            Spacer(),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

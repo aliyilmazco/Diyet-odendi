@@ -22,7 +22,7 @@ class _ChatViewState extends ChatViewModel {
         centerTitle: true,
         elevation: 1,
         title: const Text(
-          "Chat with Doctor",
+          "Diyetisyene Yaz",
           style: TextStyle(
             color: Colors.black,
             fontSize: 22,
@@ -52,7 +52,7 @@ class _ChatViewState extends ChatViewModel {
                         color: Colors.black,
                       ),
                       decoration: const InputDecoration(
-                        hintText: "Send a message...",
+                        hintText: "Bir mesaj yazınız...",
                         hintStyle: TextStyle(
                           color: Colors.black,
                           fontSize: 16,

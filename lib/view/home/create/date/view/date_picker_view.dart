@@ -35,7 +35,7 @@ class _DatePickerViewState extends DatePickerViewModel {
               padding: const EdgeInsets.only(right: 50.0),
               child: Center(
                 child: Text(
-                  'Calendar',
+                  'Görüşme Tarihi Al',
                   style: GoogleFonts.raleway(
                     color: ColorConst.sliderTitle,
                     fontSize: 25,
@@ -66,7 +66,7 @@ class _DatePickerViewState extends DatePickerViewModel {
                     highlightColor: Colors.transparent,
                   ),
                   Text(
-                    'Today',
+                    'Görüşmelerim',
                     style: GoogleFonts.raleway(
                       color: ColorConst.sliderTitle,
                       fontSize: 25,
@@ -98,7 +98,7 @@ class _DatePickerViewState extends DatePickerViewModel {
                       Consumer<DateModel>(
                         builder: (context, dateModel, _) {
                           return dateModel.widgetList.isEmpty
-                              ? const Text('Liste bos')
+                              ? const Text('Liste boş!')
                               : Column(
                                   children: dateModel.widgetList,
                                 );

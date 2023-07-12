@@ -69,8 +69,8 @@ class _DateViewState extends DateViewModel {
               DateButtonWidget(
                 width: width,
                 height: height,
-                title: 'Ogun Ekle',
-                text: 'Available on 12th May 2021',
+                title: 'Öğün Ekle',
+                text: 'Öğünlerinizi ekleyiniz lütfen!',
                 function: () async {
                   showSheet(width, height);
                 },
@@ -82,8 +82,8 @@ class _DateViewState extends DateViewModel {
               DateButtonWidget(
                 width: width,
                 height: height,
-                title: 'Appointment Online',
-                text: 'Available on 12th May 2021',
+                title: 'Görüşme Tarihi Al',
+                text: 'Görüşme Tarihi Alabilirsiniz!',
                 function: () async {
                   context.pushNamed(RouteConstants.appointment);
                   Provider.of<DateModel>(context, listen: false)
@@ -103,8 +103,8 @@ class _DateViewState extends DateViewModel {
               DateButtonWidget(
                 width: width,
                 height: height,
-                title: 'Chat with the Doctor',
-                text: 'Available 24x7',
+                title: 'Diyetisyene Soru Sor',
+                text: 'Mesaj atmanız yeterli!',
                 function: () {
                   context.pushNamed(RouteConstants.chat);
                 },

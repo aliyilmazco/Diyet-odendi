@@ -50,6 +50,8 @@ class RecipeModel extends ChangeNotifier {
   }
 
   getRecipeNumber() {
-    recipeNumber = snapshot!.docs.length;
+    if (snapshot!.docs.isNotEmpty) {
+      recipeNumber = snapshot!.docs.length;
+    }
   }
 }

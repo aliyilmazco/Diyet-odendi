@@ -26,7 +26,7 @@ class _SettingsViewState extends SettingsViewModel {
           padding: const EdgeInsets.only(right: 50.0),
           child: Center(
             child: Text(
-              'Settings',
+              'Ayarlar',
               style: GoogleFonts.raleway(
                 color: ColorConst.sliderTitle,
                 fontSize: 25,

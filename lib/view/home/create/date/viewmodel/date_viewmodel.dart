@@ -95,8 +95,8 @@ abstract class DateViewModel extends State<DateView> {
                 LunchContainerWidget(
                   width: width,
                   height: height,
-                  title: 'BreakFast',
-                  text: 'Recommended 356-535 Kcal',
+                  title: 'Kahvaltı',
+                  text: 'Önerilen calorie 356-535 Kcal',
                   image: 'assets/images/breakfast.png',
                   function: () async {
                     callFunction('breakfast');
@@ -105,8 +105,8 @@ abstract class DateViewModel extends State<DateView> {
                 LunchContainerWidget(
                   width: width,
                   height: height,
-                  title: 'Lunch',
-                  text: 'Recommended 356-731 Kcal',
+                  title: 'Öğle Yemeği',
+                  text: 'Önerilen calorie 356-731 Kcal',
                   image: 'assets/images/lunch.png',
                   function: () async {
                     callFunction('lunch');
@@ -115,8 +115,8 @@ abstract class DateViewModel extends State<DateView> {
                 LunchContainerWidget(
                   width: width,
                   height: height,
-                  title: 'Dinner',
-                  text: 'Recommended 356-535 Kcal',
+                  title: 'Akşam Yemeği',
+                  text: 'Önerilen calorie 356-535 Kcal',
                   image: 'assets/images/dinner.png',
                   function: () {
                     callFunction('dinner');
@@ -125,8 +125,8 @@ abstract class DateViewModel extends State<DateView> {
                 LunchContainerWidget(
                   width: width,
                   height: height,
-                  title: 'Snack',
-                  text: 'Recommended 89 - 178 Kcal',
+                  title: 'Atıştırmalık',
+                  text: 'Önerilen calorie 89 - 178 Kcal',
                   image: 'assets/images/snack.png',
                   function: () => {
                     callFunction('snack'),
