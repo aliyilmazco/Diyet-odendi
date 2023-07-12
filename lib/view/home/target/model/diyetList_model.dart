@@ -15,9 +15,27 @@ class DiyetListModel extends ChangeNotifier {
   String secondOgun = '';
   String homeViewOgun = '';
   int total = 0;
-
+  String selectedOgunImage = 'breakfast';
   String currentDate = DateFormat('dd').format(DateTime.now());
   String currentDayName = DateFormat('EEEE').format(DateTime.now());
+
+  getCurrentDateInTurkish() {
+    if (currentDayName == 'Monday') {
+      return 'Pazartesi';
+    } else if (currentDayName == 'Tuesday') {
+      return 'Salı';
+    } else if (currentDayName == 'Wednesday') {
+      return 'Çarşamba';
+    } else if (currentDayName == 'Thursday') {
+      return 'Perşembe';
+    } else if (currentDayName == 'Friday') {
+      return 'Cuma';
+    } else if (currentDayName == 'Saturday') {
+      return 'Cumartesi';
+    } else if (currentDayName == 'Sunday') {
+      return 'Pazar';
+    }
+  }
 
   String formattedTime = DateTime.now().toString().substring(11, 16);
 
@@ -105,6 +123,18 @@ class DiyetListModel extends ChangeNotifier {
       }
     } else {
       print('İstenilen gün değerine sahip map bulunamadi.');
+    }
+    if (ogunByString == 'breakfast') {
+      selectedOgunImage = 'breakfast';
+    }
+    if (ogunByString == 'lunch') {
+      selectedOgunImage = 'lunch';
+    }
+    if (ogunByString == 'dinner') {
+      selectedOgunImage = 'dinner';
+    }
+    if (ogunByString == 'snack') {
+      selectedOgunImage = 'snack';
     }
   }
 }

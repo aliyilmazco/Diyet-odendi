@@ -64,8 +64,22 @@ class _DiyetListViewState extends DiyetListViewModel {
                           selectedMenuItem = value;
                           Provider.of<DiyetListModel>(context, listen: false)
                               .total = 0;
-                          Provider.of<DiyetListModel>(context, listen: false)
-                              .getDayListByOgun(value!);
+                          if (value == 'kahvalti') {
+                            Provider.of<DiyetListModel>(context, listen: false)
+                                .getDayListByOgun('breakfast');
+                          }
+                          if (value == 'ogle yemegi') {
+                            Provider.of<DiyetListModel>(context, listen: false)
+                                .getDayListByOgun('lunch');
+                          }
+                          if (value == 'aksam yemegi') {
+                            Provider.of<DiyetListModel>(context, listen: false)
+                                .getDayListByOgun('dinner');
+                          }
+                          if (value == 'atistirmalik') {
+                            Provider.of<DiyetListModel>(context, listen: false)
+                                .getDayListByOgun('snack');
+                          }
                         });
                         totalCaloriesValue = totalCalories();
                       },
@@ -91,7 +105,8 @@ class _DiyetListViewState extends DiyetListViewModel {
                         children: [
                           Text(
                             Provider.of<DiyetListModel>(context)
-                                .currentDayName
+                                .getCurrentDateInTurkish()
+                                .toString()
                                 .toUpperCase(),
                             style: GoogleFonts.glory(
                               color: ColorConst.createPageText,
@@ -128,7 +143,7 @@ class _DiyetListViewState extends DiyetListViewModel {
                                             padding: const EdgeInsets.only(
                                                 left: 20.0, top: 20),
                                             child: Image.asset(
-                                              'assets/images/$selectedMenuItem.png',
+                                              'assets/images/${Provider.of<DiyetListModel>(context, listen: false).selectedOgunImage}.png',
                                               width: 90,
                                             ),
                                           ),
@@ -171,7 +186,7 @@ class _DiyetListViewState extends DiyetListViewModel {
                                     width: width,
                                     height: height,
                                     image:
-                                        'assets/images/$selectedMenuItem.png',
+                                        'assets/images/${Provider.of<DiyetListModel>(context, listen: false).selectedOgunImage}.png',
                                     foodNumber: '${getSecondPart(
                                       Provider.of<DiyetListModel>(
                                         context,
@@ -197,7 +212,7 @@ class _DiyetListViewState extends DiyetListViewModel {
                                     width: width,
                                     height: height,
                                     image:
-                                        'assets/images/$selectedMenuItem.png',
+                                        'assets/images/${Provider.of<DiyetListModel>(context, listen: false).selectedOgunImage}.png',
                                     foodNumber: '${getSecondPart(
                                       Provider.of<DiyetListModel>(context)
                                           .keyList2[1],
@@ -222,7 +237,7 @@ class _DiyetListViewState extends DiyetListViewModel {
                                           width: width,
                                           height: height,
                                           image:
-                                              'assets/images/$selectedMenuItem.png',
+                                              'assets/images/${Provider.of<DiyetListModel>(context, listen: false).selectedOgunImage}.png',
                                           foodNumber: '${getSecondPart(
                                             Provider.of<DiyetListModel>(context)
                                                 .keyList2[2],
@@ -245,7 +260,7 @@ class _DiyetListViewState extends DiyetListViewModel {
                                           width: width,
                                           height: height,
                                           image:
-                                              'assets/images/$selectedMenuItem.png',
+                                              'assets/images/${Provider.of<DiyetListModel>(context, listen: false).selectedOgunImage}.png',
                                           foodNumber: '1 Slice',
                                           foodText: 'Whole Grain Toast',
                                           foodCalorie: '100',
@@ -257,7 +272,7 @@ class _DiyetListViewState extends DiyetListViewModel {
                                     color: ColorConst.mainBoxBottomColor,
                                     child: Center(
                                       child: Text(
-                                        "Total $totalCaloriesValue Kcal",
+                                        "Toplam: $totalCaloriesValue Kcal",
                                         style: GoogleFonts.glory(
                                           color: ColorConst.createPageText,
                                           fontSize: 19,

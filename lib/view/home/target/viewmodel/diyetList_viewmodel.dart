@@ -8,20 +8,21 @@ import 'package:provider/provider.dart';
 abstract class DiyetListViewModel extends State<DiyetListView> {
   String? selectedMenuItem = 'breakfast';
   String totalCaloriesValue = '';
+
   List<String> menuItems = [
-    'kahvaltı',
-    'lunch',
-    'dinner',
-    'snack',
+    'kahvalti',
+    'ogle yemegi',
+    'aksam yemegi',
+    'atistirmalik',
   ];
   @override
   void initState() {
     super.initState();
-    selectedMenuItem = menuItems[0];
+    selectedMenuItem = 'kahvalti';
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<DiyetListModel>(context, listen: false).getData();
       Provider.of<DiyetListModel>(context, listen: false)
-          .getDayListByOgun(selectedMenuItem!);
+          .getDayListByOgun('breakfast');
       totalCaloriesValue = totalCalories();
     });
   }
