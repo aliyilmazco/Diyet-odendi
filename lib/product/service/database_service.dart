@@ -126,7 +126,8 @@ class DatabaseService {
       String firstDay,
       String lastMonth,
       String lastDay,
-      String dietationID) async {
+      String dietationID,
+      String confirmedDate) async {
     try {
       await dateCollection.doc().set({
         "firstMonth": firstMonth,
@@ -134,10 +135,11 @@ class DatabaseService {
         "lastMonth": lastMonth,
         "lastDay": lastDay,
         "uid": uid,
+        "userName": userName,
         "dietationID": "",
         "isConfirmed": 'false',
         'doctorName': 'Not assigned yet',
-        'confirmedDate': 'none',
+        'confirmedDate': confirmedDate,
       });
     } catch (e) {
       return "Date olusturulurken bir hata olustu: $e";

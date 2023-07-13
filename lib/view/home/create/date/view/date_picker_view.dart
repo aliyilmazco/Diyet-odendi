@@ -25,14 +25,6 @@ class _DatePickerViewState extends DatePickerViewModel {
 
   @override
   Widget build(BuildContext context) {
-    TimeOfDay _time = TimeOfDay.now().replacing(hour: 14, minute: 30);
-
-    void onTimeChanged(TimeOfDay newTime) {
-      setState(() {
-        _time = newTime;
-      });
-    }
-
     return BaseView(
       builder: (context, width, height, appBar) {
         return Scaffold(
@@ -71,13 +63,16 @@ class _DatePickerViewState extends DatePickerViewModel {
                       showPicker(
                         workingHours: [0, 1, 9, 12, 11, 12, 13, 15, 19, 23],
                         context: context,
-                        value: _time,
+                        value:
+                            Provider.of<DateModel>(context, listen: false).time,
                         ascending: true,
-                        onChange: onTimeChanged,
+                        onChange: Provider.of<DateModel>(context, listen: false)
+                            .onTimeChanged,
                         maxMinuteAtMaximumHour: 40,
                         minMinuteAtMinimumHour: 20,
                         onChangeDateTime: (DateTime dateTime) {
                           debugPrint("[debug datetime]:  $dateTime");
+                          setState(() {});
                         },
                       ),
                     );
@@ -98,7 +93,13 @@ class _DatePickerViewState extends DatePickerViewModel {
                   ),
                 ),
               ),
-              buildCalendarDialogButton(),
+              Consumer<DateModel>(
+                builder: (context, dateModel, _) {
+                  return dateModel.isSelecting
+                      ? buildCalendarDialogButton()
+                      : Container();
+                },
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -133,25 +134,24 @@ class _DatePickerViewState extends DatePickerViewModel {
               const SizedBox(
                 height: 10,
               ),
-              SizedBox(
-                width: width / 1.1,
-                height: height / 3.5,
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Consumer<DateModel>(
-                        builder: (context, dateModel, _) {
-                          return dateModel.widgetList.isEmpty
-                              ? const Text('Liste boş!')
-                              : Column(
-                                  children: dateModel.widgetList,
-                                );
-                        },
+              Consumer<DateModel>(
+                builder: (context, dateModel, _) {
+                  return SizedBox(
+                    width: width / 1.1,
+                    height: height / 3.5,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          if (dateModel.widgetList.isEmpty)
+                            const Text('Liste boş!')
+                          else
+                            ...dateModel.widgetList,
+                        ],
                       ),
-                    ],
-                  ),
-                ),
+                    ),
+                  );
+                },
               ),
             ],
           ),

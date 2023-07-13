@@ -170,7 +170,8 @@ abstract class DatePickerViewModel extends State<DatePickerView> {
                       .setDate(dialogCalendarPickerValue);
 
                   Provider.of<DateModel>(context, listen: false).splitDate();
-                  Provider.of<DateModel>(context, listen: false).createDate();
+                  Provider.of<DateModel>(context, listen: false)
+                      .createDate(context);
                   Provider.of<DateModel>(context, listen: false).getDates(
                       MediaQuery.of(context).size.width,
                       MediaQuery.of(context).size.height);
