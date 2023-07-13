@@ -525,6 +525,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1"
+  interval_time_selector:
+    dependency: "direct main"
+    description:
+      name: interval_time_selector
+      sha256: "95f34631855b37585a9fd2db3d50a6ed3becc380b94fac9540d1cab5a5920cfe"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   intl:
     dependency: transitive
     description:

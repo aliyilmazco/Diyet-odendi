@@ -6,6 +6,7 @@ import 'package:d/view/home/create/date/model/date_model.dart';
 import 'package:d/view/home/create/date/viewmodel/date_picker_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:interval_time_selector/show_time_picker/day_time_picker.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +25,14 @@ class _DatePickerViewState extends DatePickerViewModel {
 
   @override
   Widget build(BuildContext context) {
+    TimeOfDay _time = TimeOfDay.now().replacing(hour: 14, minute: 30);
+
+    void onTimeChanged(TimeOfDay newTime) {
+      setState(() {
+        _time = newTime;
+      });
+    }
+
     return BaseView(
       builder: (context, width, height, appBar) {
         return Scaffold(
@@ -52,6 +61,42 @@ class _DatePickerViewState extends DatePickerViewModel {
               SizedBox(
                 height: height / 2.7,
                 child: Lottie.asset('assets/animations/doctor.json'),
+              ),
+              SizedBox(
+                width: width / 2.5,
+                height: 37,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      showPicker(
+                        workingHours: [0, 1, 9, 12, 11, 12, 13, 15, 19, 23],
+                        context: context,
+                        value: _time,
+                        ascending: true,
+                        onChange: onTimeChanged,
+                        maxMinuteAtMaximumHour: 40,
+                        minMinuteAtMinimumHour: 20,
+                        onChangeDateTime: (DateTime dateTime) {
+                          debugPrint("[debug datetime]:  $dateTime");
+                        },
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    primary: ColorConst.createButton,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                  ),
+                  child: Text(
+                    'Bir Saat Seciniz',
+                    style: GoogleFonts.raleway(
+                      color: ColorConst.createPageText,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ),
               ),
               buildCalendarDialogButton(),
               Row(
