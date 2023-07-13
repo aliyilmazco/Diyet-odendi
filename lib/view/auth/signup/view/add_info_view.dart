@@ -173,7 +173,7 @@ class _AddInfoViewState extends AddInfoViewModel {
                           child: Slider(
                             min: 20,
                             max: 350,
-                            label: "Kilo: ${kilo.round().toString()}",
+                            label: "Kilo: ${kilo.toInt().toString()}",
                             activeColor: ColorConst.sliderInActive,
                             inactiveColor: ColorConst.sliderInActive,
                             thumbColor: ColorConst.menBoxGrey,

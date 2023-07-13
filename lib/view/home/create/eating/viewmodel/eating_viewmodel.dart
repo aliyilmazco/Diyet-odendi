@@ -93,7 +93,8 @@ abstract class EatingViewModel extends State<EatingView> {
         "time": DateTime.now().millisecondsSinceEpoch,
         'day': currentDate,
         'dayName': currentDayName,
-        'ogunTime': Provider.of<DiyetListModel>(context, listen: false).ogun,
+        'ogunTime':
+            Provider.of<DiyetListModel>(context, listen: false).secondOgun,
         'totalCalorie': Provider.of<FoodsModel>(context, listen: false).total,
       };
 
