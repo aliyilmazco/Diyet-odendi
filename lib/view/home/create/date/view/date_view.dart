@@ -21,6 +21,8 @@ class DateView extends StatefulWidget {
 class _DateViewState extends DateViewModel {
   @override
   Widget build(BuildContext context) {
+    final dateModel = Provider.of<DateModel>(context, listen: false);
+
     return BaseView(
       builder: (context, width, height, appBar) {
         return Scaffold(
@@ -85,15 +87,10 @@ class _DateViewState extends DateViewModel {
                 title: 'Görüşme Tarihi Al',
                 text: 'Görüşme Tarihi Alabilirsiniz!',
                 function: () async {
-                  context.pushNamed(RouteConstants.appointment);
-                  Provider.of<DateModel>(context, listen: false)
-                      .getDates(width, height);
-                  await Future.delayed(
-                    const Duration(milliseconds: 650),
-                  );
-                  Provider.of<DateModel>(context, listen: false)
-                      .addToWidgetList(MediaQuery.of(context).size.width,
-                          MediaQuery.of(context).size.height);
+                  await context.pushNamed(RouteConstants.appointment);
+                  dateModel.getDates(width, height);
+                  dateModel.addToWidgetList(MediaQuery.of(context).size.width,
+                      MediaQuery.of(context).size.height);
                 },
                 icon: Icons.ondemand_video_outlined,
               ),

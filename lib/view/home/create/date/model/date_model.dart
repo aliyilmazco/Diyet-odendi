@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:d/product/service/database_service.dart';
 import 'package:d/product/widget/create/date_container_widget.dart';
@@ -53,6 +55,7 @@ class DateModel extends ChangeNotifier {
         continue;
       }
 
+      print(snapshotLength);
       widgetList.add(
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -60,7 +63,7 @@ class DateModel extends ChangeNotifier {
             width: width,
             height: height,
             time: getDateForWidget(i),
-            doctor: getDoctorForWidget(i),
+            doctor: getDoctorTime(),
             status: getStatusForWidget(i),
           ),
         ),
@@ -117,8 +120,18 @@ class DateModel extends ChangeNotifier {
     return doctorName;
   }
 
+  String getDoctorTime() {
+    final String confirmedTime = snapshot!.docs[0]['confirmedDate'];
+    return confirmedTime;
+  }
+
   String getStatusForWidget(int number) {
     final String status = snapshot!.docs[number]['isConfirmed'];
+    if (status == 'false') {
+      return 'Onaylanmadı';
+    } else if (status == 'true') {
+      return 'Onaylandı';
+    }
     return status;
   }
 
@@ -126,7 +139,6 @@ class DateModel extends ChangeNotifier {
     snapshot =
         await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
             .getDate();
-
     snapshotLength = snapshot!.docs.length;
     print("value degeri: $snapshotLength");
   }

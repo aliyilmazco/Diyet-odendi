@@ -180,6 +180,7 @@ abstract class DatePickerViewModel extends State<DatePickerView> {
                       .addToWidgetList(MediaQuery.of(context).size.width,
                           MediaQuery.of(context).size.height);
                 });
+                setState(() {});
               }
             },
             child: Text(
