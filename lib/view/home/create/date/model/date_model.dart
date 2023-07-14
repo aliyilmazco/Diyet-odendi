@@ -55,7 +55,6 @@ class DateModel extends ChangeNotifier {
         continue;
       }
 
-      print(snapshotLength);
       widgetList.add(
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -63,7 +62,7 @@ class DateModel extends ChangeNotifier {
             width: width,
             height: height,
             time: getDateForWidget(i),
-            doctor: getDoctorTime(),
+            doctor: getDoctorTime(i),
             status: getStatusForWidget(i),
           ),
         ),
@@ -71,13 +70,11 @@ class DateModel extends ChangeNotifier {
     }
 
     isSelecting = false;
-    notifyListeners();
   }
 
-  void getWidgetList(List<Widget> widgets) {
-    for (final widget in widgets) {
-      print(widget);
-    }
+  List<Widget> getWidgetList(List<Widget> widgets) {
+    widgetList = widgets;
+    return widgetList;
   }
 
   void splitDate() {
@@ -100,10 +97,10 @@ class DateModel extends ChangeNotifier {
     DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid).createDate(
       Provider.of<UserModelProvider>(context, listen: false).fullName,
       FirebaseAuth.instance.currentUser!.uid,
-      firstMonth,
-      firstDay,
       lastMonth,
       lastDay,
+      firstMonth,
+      firstDay,
       '',
       selectedTime,
     );
@@ -120,8 +117,8 @@ class DateModel extends ChangeNotifier {
     return doctorName;
   }
 
-  String getDoctorTime() {
-    final String confirmedTime = snapshot!.docs[0]['confirmedDate'];
+  String getDoctorTime(int i) {
+    final String confirmedTime = snapshot!.docs[i]['confirmedDate'];
     return confirmedTime;
   }
 

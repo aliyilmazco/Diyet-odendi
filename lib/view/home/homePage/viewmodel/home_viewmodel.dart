@@ -12,7 +12,9 @@ import 'package:provider/provider.dart';
 abstract class HomeViewModel extends State<HomeView> {
   String motivation = '';
   QuerySnapshot? snapshot;
+  QuerySnapshot? snapshotDate;
   String totalCaloriesValue = '';
+  int selectedIndex = 0;
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -22,8 +24,24 @@ abstract class HomeViewModel extends State<HomeView> {
       Provider.of<DiyetListModel>(context, listen: false)
           .getDayListByOgun('breakfast');
     });
+    getDateForHomePage();
 
     super.initState();
+  }
+
+  Future<void> getDateForHomePage() async {
+    snapshotDate =
+        await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
+            .getDate();
+    if (snapshotDate!.docs.isNotEmpty) {
+      for (int i = 0; i < snapshotDate!.docs.length; i++) {
+        if (snapshot?.docs[i]['isConfirmed'] == "true") {
+          setState(() {
+            selectedIndex = i;
+          });
+        }
+      }
+    }
   }
 
   Future<void> getMotivation() async {

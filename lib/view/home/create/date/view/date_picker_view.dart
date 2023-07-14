@@ -51,7 +51,7 @@ class _DatePickerViewState extends DatePickerViewModel {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
-                height: height / 2.7,
+                height: height / 3.5,
                 child: Lottie.asset('assets/animations/doctor.json'),
               ),
               SizedBox(
@@ -139,15 +139,18 @@ class _DatePickerViewState extends DatePickerViewModel {
                   return SizedBox(
                     width: width / 1.1,
                     height: height / 3.5,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          if (dateModel.widgetList.isEmpty)
-                            const Text('Liste boş!')
-                          else
-                            ...dateModel.widgetList,
-                        ],
+                    child: Container(
+                      constraints: const BoxConstraints.expand(),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            ...dateModel.getWidgetList(dateModel.widgetList),
+                            dateModel.widgetList.isEmpty
+                                ? const Text('Liste Bos')
+                                : const Text(''),
+                          ],
+                        ),
                       ),
                     ),
                   );

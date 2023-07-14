@@ -297,13 +297,17 @@ class _HomeViewState extends HomeViewModel {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  '12',
+                                  snapshotDate?.docs[selectedIndex]
+                                          ['firstDay'] ??
+                                      '1',
                                   style: GoogleFonts.raleway(
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
-                                  'Tue',
+                                  snapshotDate?.docs[selectedIndex]
+                                          ['firstMonth'] ??
+                                      'OCAK',
                                   style: GoogleFonts.raleway(
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -313,28 +317,29 @@ class _HomeViewState extends HomeViewModel {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        width: 80,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '09:30 AM',
-                            style: GoogleFonts.glory(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
+                      const Spacer(),
+                      Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Saat : ${snapshotDate?.docs[selectedIndex]['confirmedDate'] ?? '12:00'}",
+                              style: GoogleFonts.glory(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Dr.Ali',
-                            style: GoogleFonts.glory(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                            Text(
+                              'Diyetisyen : ${snapshotDate?.docs[selectedIndex]['isConfirmed'] == 'true' ? 'Aleyna Akman' : 'Onaylanmadi'}',
+                              style: GoogleFonts.glory(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                      const Spacer(),
                     ],
                   ),
                 ),
