@@ -132,8 +132,8 @@ class DatabaseService {
       await dateCollection.doc().set({
         "firstMonth": firstMonth,
         "firstDay": firstDay,
-        "lastMonth": lastMonth,
-        "lastDay": lastDay,
+        "lastMonth": firstMonth,
+        "lastDay": firstDay,
         "uid": uid,
         "userName": userName,
         "dietationID": "",

@@ -297,17 +297,21 @@ class _HomeViewState extends HomeViewModel {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  snapshotDate?.docs[selectedIndex]
-                                          ['firstDay'] ??
-                                      '1',
+                                  snapshotDate?.docs.isEmpty ?? true
+                                      ? '00'
+                                      : snapshotDate?.docs[selectedIndex]
+                                              ['firstDay'] ??
+                                          '1',
                                   style: GoogleFonts.raleway(
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
-                                  snapshotDate?.docs[selectedIndex]
-                                          ['firstMonth'] ??
-                                      'OCAK',
+                                  snapshotDate?.docs.isEmpty ?? true
+                                      ? '00'
+                                      : snapshotDate?.docs[selectedIndex]
+                                              ['firstMonth'] ??
+                                          'OCAK',
                                   style: GoogleFonts.raleway(
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -323,14 +327,18 @@ class _HomeViewState extends HomeViewModel {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Saat : ${snapshotDate?.docs[selectedIndex]['confirmedDate'] ?? '12:00'}",
+                              snapshotDate?.docs.isEmpty ?? true
+                                  ? 'Saat : 0000'
+                                  : "Saat : ${snapshotDate?.docs[selectedIndex]['confirmedDate'] ?? '12:00'}",
                               style: GoogleFonts.glory(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
                               ),
                             ),
                             Text(
-                              'Diyetisyen : ${snapshotDate?.docs[selectedIndex]['isConfirmed'] == 'true' ? 'Aleyna Akman' : 'Onaylanmadi'}',
+                              snapshotDate?.docs.isEmpty ?? true
+                                  ? 'Diyetisyen : Atanmadi'
+                                  : 'Diyetisyen : ${snapshotDate?.docs[selectedIndex]['isConfirmed'] == 'true' ? 'Aleyna Akman' : 'Onaylanmadi'}',
                               style: GoogleFonts.glory(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,

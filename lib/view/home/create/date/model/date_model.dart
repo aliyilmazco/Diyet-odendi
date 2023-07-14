@@ -86,8 +86,8 @@ class DateModel extends ChangeNotifier {
           firstDay = day.toString();
           firstMonth = month.toString();
         } else {
-          lastDay = day.toString();
-          lastMonth = month.toString();
+          firstDay = day.toString();
+          firstMonth = month.toString();
         }
       }
     }
